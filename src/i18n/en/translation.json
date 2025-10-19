@@ -1,0 +1,78 @@
+{
+  "welcome": {
+    "member": "Member ?",
+    "memberDescription": "Tap to scan the QR-code",
+    "orderNow": "Order now !",
+    "orderDescription": "Continue without logging in",
+    "preferredLanguage": "Preferred language?",
+    "french": "French",
+    "english": "English"
+  },
+  "login": {
+    "title": "Member ?",
+    "subtitle": "Scan the QR code with your phone",
+    "skipLogin": "Skip login"
+  },
+  "connectInfos": {
+    "title": "How to connect",
+    "step1": {
+      "title": "Scan the QR Code",
+      "description": "Open your camera or QR scanner and scan the code displayed on the kiosk screen."
+    },
+    "step2": {
+      "title": "Get Logged In Instantly",
+      "description": "You'll be connected automatically — no sign-up or extra steps needed."
+    },
+    "step3": {
+      "title": "Enjoy Special Offers",
+      "description": "Once connected, you'll unlock exclusive deals, personalized recommendations, and more surprises just for you!"
+    },
+    "understood": "Understood"
+  },
+  "orderType": {
+    "title": "Dine-in or Takeout?",
+    "eatIn": "Eat In",
+    "takeAway": "Take away"
+  },
+  "loginSuccess": {
+    "message": "You have been logged in sucessfuly."
+  },
+  "logoutConfirmation": {
+    "title": "Are you sure you want to log out ?",
+    "subtitle": "To proceed with your order, click 'Continue'",
+    "cancel": "Cancel",
+    "continue": "Continue"
+  },
+  "cardConfirmation": {
+    "title": "Are you sure you have a card ?",
+    "cancel": "Cancel",
+    "continue": "Continue"
+  },
+  "cashConfirmation": {
+    "title": "Are you sure you have cash ?",
+    "cancel": "Cancel",
+    "continue": "Continue"
+  },
+  "logoutSuccess": {
+    "message": "You have been logged out."
+  },
+  "thankYou": {
+    "donation": "Thank you for your donation",
+    "feedback": "Thank you for your feedback",
+    "tip": "Thank you for your tip"
+  },
+  "continueOrder": {
+    "title": "Thinking about it?",
+    "subtitle": "To proceed with your order, click 'Continue'",
+    "continue": "Continue"
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close"
+  }
+}

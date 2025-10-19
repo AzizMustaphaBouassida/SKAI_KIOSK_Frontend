@@ -1,0 +1,78 @@
+{
+  "welcome": {
+    "member": "Membre ?",
+    "memberDescription": "Appuyez pour scanner le code QR",
+    "orderNow": "Commander maintenant !",
+    "orderDescription": "Continuer sans se connecter",
+    "preferredLanguage": "Langue préférée ?",
+    "french": "Français",
+    "english": "Anglais"
+  },
+  "login": {
+    "title": "Membre ?",
+    "subtitle": "Scannez le code QR avec votre téléphone",
+    "skipLogin": "Passer la connexion"
+  },
+  "connectInfos": {
+    "title": "Comment se connecter",
+    "step1": {
+      "title": "Scanner le code QR",
+      "description": "Ouvrez votre appareil photo ou scanner QR et scannez le code affiché sur l'écran de la borne."
+    },
+    "step2": {
+      "title": "Connectez-vous instantanément",
+      "description": "Vous serez connecté automatiquement — pas d'inscription ou d'étapes supplémentaires nécessaires."
+    },
+    "step3": {
+      "title": "Profitez d'offres spéciales",
+      "description": "Une fois connecté, vous débloquerez des offres exclusives, des recommandations personnalisées et bien plus de surprises rien que pour vous !"
+    },
+    "understood": "Compris"
+  },
+  "orderType": {
+    "title": "Sur place ou à emporter ?",
+    "eatIn": "Sur place",
+    "takeAway": "À emporter"
+  },
+  "loginSuccess": {
+    "message": "Vous avez été connecté avec succès."
+  },
+  "logoutConfirmation": {
+    "title": "Êtes-vous sûr de vouloir vous déconnecter ?",
+    "subtitle": "Pour continuer votre commande, cliquez sur 'Continuer'",
+    "cancel": "Annuler",
+    "continue": "Continuer"
+  },
+  "cardConfirmation": {
+    "title": "Êtes-vous sûr d'avoir une carte ?",
+    "cancel": "Annuler",
+    "continue": "Continuer"
+  },
+  "cashConfirmation": {
+    "title": "Êtes-vous sûr d'avoir de l'argent ?",
+    "cancel": "Annuler",
+    "continue": "Continuer"
+  },
+  "logoutSuccess": {
+    "message": "Vous avez été déconnecté."
+  },
+  "thankYou": {
+    "donation": "Merci pour votre don",
+    "feedback": "Merci pour vos commentaires",
+    "tip": "Merci pour votre pourboire"
+  },
+  "continueOrder": {
+    "title": "Vous y réfléchissez ?",
+    "subtitle": "Pour continuer votre commande, cliquez sur 'Continuer'",
+    "continue": "Continuer"
+  },
+  "common": {
+    "yes": "Oui",
+    "no": "Non",
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
+    "back": "Retour",
+    "next": "Suivant",
+    "close": "Fermer"
+  }
+}
