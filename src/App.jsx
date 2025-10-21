@@ -10,6 +10,7 @@ import ConfirmationPage from './pages/ConfirmationPage'
 import IconTextPage from './pages/IconTextPage'
 import ContinueOrderPage from './pages/Continue-order'
 import Catalog from './pages/Catalog'
+import Offers from './pages/Offers'
 import HeaderLayout from './layouts/header-layout'
 import FooterLayout from './layouts/footer-layout'
 import SidebarLayout from './layouts/sidebar-layout'
@@ -36,6 +37,7 @@ function App() {
             <Route path="/order-type" element={<OrderTypePage />} />
             <Route path="/continue-order" element={<ContinueOrderPage />} />
             <Route path="/catalog" element={<Catalog />} />
+            <Route path="/offers" element={<Offers />} />
 
             {/* Confirmation pages - pages with Cancel/Continue buttons */}
             <Route path="/logout-confirmation" element={<ConfirmationPage type="logout" />} />

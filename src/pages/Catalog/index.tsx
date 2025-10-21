@@ -15,30 +15,35 @@ import productImage from '@/assets/images/product-image.svg'
 
 export default function Catalog() {
     const theme = useTheme()
-    const isLoggedIn = true
+    const isLoggedIn = false
+
+    const forYouProductCount = 2
 
     return (
-        <MainMenuLayout>
+        <MainMenuLayout title="Good morning.">
             <div className="w-full h-full px-6 py-0">
                 <div className="space-y-3">
                     {isLoggedIn ? (
                         // For You Section (shown when logged in)
                         <div>
                             <h2 className="text-4xl font-bold mb-4" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>For you</h2>
-                            <div className="grid grid-cols-3 gap-4">
-                                {[1, 2, 3].map((item) => (
+                            <div className={`grid ${forYouProductCount === 2 ? 'grid-cols-2 gap-6' : 'grid-cols-3 gap-4'}`}>
+                                {Array.from({ length: forYouProductCount }, (_, i) => i + 1).map((item) => (
                                     <div key={item} className="flex flex-col items-center cursor-pointer">
                                         <div className="relative mb-3">
-                                            <div className="w-[150px] h-[150px] rounded-full border-[5px] overflow-hidden flex items-center justify-center" style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('primaryBorder') }}>
+                                            <div 
+                                                className={`${forYouProductCount === 2 ? 'w-[180px] h-[180px]' : 'w-[150px] h-[150px]'} rounded-full border-[5px] overflow-hidden flex items-center justify-center`} 
+                                                style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('primaryBorder') }}
+                                            >
                                                 <img src={forYouBurgerImage} alt="Product" className="w-full h-full object-cover" />
                                             </div>
                                         </div>
-                                        <div className="w-full px-1 flex flex-col items-start">
-                                            <div className="flex items-center gap-12 mb-1">
+                                        <div className="flex flex-col items-center">
+                                            <div className="flex items-center justify-between gap-8 w-full mb-1">
                                                 <h3 className="text-2xl font-bold leading-tight" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Product</h3>
                                                 <p className="text-xl font-bold leading-none" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>7 $</p>
                                             </div>
-                                            <p className="text-lg text-gray-400 leading-tight">1500 cal</p>
+                                            <p className="text-lg text-gray-400 leading-tight w-full text-left">1500 cal</p>
                                         </div>
                                     </div>
                                 ))}

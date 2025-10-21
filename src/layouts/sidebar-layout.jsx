@@ -5,7 +5,7 @@ import exampleIcon from '../assets/icons/example.svg';
 import SigninBoxLayout from './signin-box-layout';
 import { useState, useRef } from 'react';
 
-export default function SidebarLayout({ children }) {
+export default function SidebarLayout({ children, activePage }) {
     const theme = useTheme();
     const [isSignedIn, setIsSignedIn] = useState(false);
     const scrollRef = useRef(null);
@@ -19,11 +19,11 @@ export default function SidebarLayout({ children }) {
     };
 
     const menuCategories = [
-        { name: 'Drinks', icon: exampleIcon, isActive: false },
-        { name: 'Chicken & Fish', icon: exampleIcon, isActive: false },
-        { name: 'Burgers', icon: exampleIcon, isActive: false },
-        { name: 'Breakfast', icon: exampleIcon, isActive: false },
-        { name: 'Sweets & Treats', icon: exampleIcon, isActive: false },
+        { name: 'Drinks', icon: exampleIcon },
+        { name: 'Chicken & Fish', icon: exampleIcon },
+        { name: 'Burgers', icon: exampleIcon },
+        { name: 'Breakfast', icon: exampleIcon },
+        { name: 'Sweets & Treats', icon: exampleIcon },
     ];
 
     const scrollUp = () => {
@@ -39,16 +39,18 @@ export default function SidebarLayout({ children }) {
     };
 
     return (
-        <aside className="absolute left-0 top-0 w-full flex flex-col py-4 px-2 h-full" style={theme.getStyle('whiteBg')}>
+        <aside className="absolute left-4 top-0 w-full flex flex-col py-4 px-2 h-full" style={theme.getStyle('whiteBg')}>
             <div className="h-full flex flex-col">
                 <button
-                    className="w-full flex flex-row items-center gap-4 px-4 py-10 mb-2 border-2 rounded-lg"
+                    className={`w-full flex flex-row items-center gap-4 px-4 py-10 mb-2 rounded-lg transition-all duration-150 ${activePage === 'Mc Selects' ? 'border-2 shadow-[0_2px_6px_rgba(0,0,0,0.25)]' : 'shadow-[0_2px_4px_rgba(0,0,0,0.3)]'
+                        }`}
                     style={{
-                        borderColor: theme.colors.primary,
-                        boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
+                        borderColor: activePage === 'Mc Selects' ? theme.colors.primary : 'transparent',
                         ...theme.getStyle('whiteBg'),
                         ...theme.getStyle('fontBranded')
                     }}
+                    onMouseEnter={(e) => activePage !== 'Mc Selects' && (e.currentTarget.style.backgroundColor = theme.colors.greyLight)}
+                    onMouseLeave={(e) => activePage !== 'Mc Selects' && (e.currentTarget.style.backgroundColor = theme.colors.white)}
                 >
                     <img src={homeIcon} alt="Home" className="w-16 h-16 flex-shrink-0" />
                     <span className="text-2xl font-bold leading-tight break-words" style={theme.getStyle('black')}>
@@ -58,13 +60,15 @@ export default function SidebarLayout({ children }) {
 
                 {/* Offers */}
                 <button
-                    className="w-full flex flex-row items-center gap-4 px-4 py-10 mb-2 rounded-lg shadow-[0_2px_4px_rgba(0,0,0,0.3)] transition-colors duration-150"
+                    className={`w-full flex flex-row items-center gap-4 px-4 py-10 mb-2 rounded-lg transition-all duration-150 ${activePage === 'Offers' ? 'border-2 shadow-[0_2px_6px_rgba(0,0,0,0.25)]' : 'shadow-[0_2px_4px_rgba(0,0,0,0.3)]'
+                        }`}
                     style={{
+                        borderColor: activePage === 'Offers' ? theme.colors.primary : 'transparent',
                         ...theme.getStyle('whiteBg'),
                         ...theme.getStyle('fontBranded')
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = theme.colors.greyLight}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = theme.colors.white}
+                    onMouseEnter={(e) => activePage !== 'Offers' && (e.currentTarget.style.backgroundColor = theme.colors.greyLight)}
+                    onMouseLeave={(e) => activePage !== 'Offers' && (e.currentTarget.style.backgroundColor = theme.colors.white)}
                 >
                     <img src={offreIcon} alt="Offers" className="w-16 h-16 flex-shrink-0" />
                     <span className="text-3xl font-bold break-words" style={theme.getStyle('black')}>
@@ -102,18 +106,18 @@ export default function SidebarLayout({ children }) {
                         {menuCategories.map((item, idx) => (
                             <button
                                 key={idx}
-                                className={`w-full flex flex-row items-center gap-4 px-4 py-10 rounded-lg transition-all duration-150 ${item.isActive
-                                        ? 'border-2 shadow-[0_2px_6px_rgba(0,0,0,0.25)]'
-                                        : 'shadow-[0_2px_4px_rgba(0,0,0,0.3)] hover:shadow-[0_3px_8px_rgba(0,0,0,0.35)]'
+                                className={`w-full flex flex-row items-center gap-4 px-4 py-10 rounded-lg transition-all duration-150 ${activePage === item.name
+                                    ? 'border-2 shadow-[0_2px_6px_rgba(0,0,0,0.25)]'
+                                    : 'shadow-[0_2px_4px_rgba(0,0,0,0.3)] hover:shadow-[0_3px_8px_rgba(0,0,0,0.35)]'
                                     }`}
                                 style={{
-                                    borderColor: item.isActive ? theme.colors.primary : 'transparent',
+                                    borderColor: activePage === item.name ? theme.colors.primary : 'transparent',
                                     ...theme.getStyle('whiteBg'),
                                     ...theme.getStyle('fontBranded'),
                                     minHeight: '80px',
                                 }}
-                                onMouseEnter={(e) => !item.isActive && (e.currentTarget.style.backgroundColor = theme.colors.greyLight)}
-                                onMouseLeave={(e) => !item.isActive && (e.currentTarget.style.backgroundColor = theme.colors.white)}
+                                onMouseEnter={(e) => activePage !== item.name && (e.currentTarget.style.backgroundColor = theme.colors.greyLight)}
+                                onMouseLeave={(e) => activePage !== item.name && (e.currentTarget.style.backgroundColor = theme.colors.white)}
                             >
                                 <img
                                     src={item.icon}

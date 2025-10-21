@@ -6,7 +6,7 @@ import SidebarLayout from './sidebar-layout'
 import CheckoutBarLayout from './checkout-bar-layout'
 import NotificationBarLayout from './notification-bar-layout'
 
-export default function MainMenuLayout({ children }) {
+export default function MainMenuLayout({ children, title, activePage }) {
     const theme = useTheme()
     const [showNotification, setShowNotification] = useState(true)
     const [cartItems, setCartItems] = useState(2)
@@ -35,16 +35,16 @@ export default function MainMenuLayout({ children }) {
         <div className="relative h-screen flex flex-col" style={theme.getStyle('whiteBg')}>
             {/* Header Layout */}
             <div className="relative shrink-0">
-                <HeaderLayout showTitle={true} title="Good morning." />
+                <HeaderLayout showTitle={true} title={title}/>
             </div>
 
 
-            {/* Main Content Area with Sidebar */}  
+            {/* Main Content Area with Sidebar */}
             <div className="relative h-full grid grid-cols-[260px_1fr]">
                 {/* Sidebar */}
                 <div className="relative col-span-1 pl-6">
 
-                    <SidebarLayout />
+                    <SidebarLayout activePage={activePage} />
                 </div>
 
                 {/* Main Content Area */}
