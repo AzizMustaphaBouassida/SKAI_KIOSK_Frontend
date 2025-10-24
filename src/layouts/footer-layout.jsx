@@ -38,7 +38,7 @@ export default function FooterLayout() {
                 >
                     Caloric requirements vary by age and activity level, ranging from approximately 1,000–1,800 kcal daily for
                     children,1,800–
-                    2,800 kcal for adolescents and 1,600–3,000 kcal for adults, with differences based on gender and lifestyle
+                    2,800 kcal for adolescents and 1,600–3,000 kcal for adults, with differences based on gender
                 </p>
 
                 <button

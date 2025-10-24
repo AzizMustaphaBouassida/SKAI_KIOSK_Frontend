@@ -15,16 +15,14 @@ import productImage from '@/assets/images/product-image.svg'
 
 export default function Catalog() {
     const theme = useTheme()
-    const isLoggedIn = false
-
-    const forYouProductCount = 2
+    const isLoggedIn = true
+    const forYouProductCount = 3
 
     return (
         <MainMenuLayout title="Good morning.">
             <div className="w-full h-full px-6 py-0">
                 <div className="space-y-3">
                     {isLoggedIn ? (
-                        // For You Section (shown when logged in)
                         <div>
                             <h2 className="text-4xl font-bold mb-4" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>For you</h2>
                             <div className={`grid ${forYouProductCount === 2 ? 'grid-cols-2 gap-6' : 'grid-cols-3 gap-4'}`}>
@@ -43,7 +41,7 @@ export default function Catalog() {
                                                 <h3 className="text-2xl font-bold leading-tight" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Product</h3>
                                                 <p className="text-xl font-bold leading-none" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>7 $</p>
                                             </div>
-                                            <p className="text-lg text-gray-400 leading-tight w-full text-left">1500 cal</p>
+                                            <p className="text-lg leading-tight w-full text-left font-bold" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>1500 cal</p>
                                         </div>
                                     </div>
                                 ))}
@@ -71,7 +69,7 @@ export default function Catalog() {
                     <div>
                         <h2 className="text-4xl font-bold mb-4" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Mc Selects</h2>
                         <div className="grid grid-cols-2 gap-3">
-                            <Card className="border border-gray-200 rounded-[18px] hover:shadow-md transition-shadow cursor-pointer overflow-hidden bg-white h-[190px]">
+                            <Card className="border border-gray-400 rounded-[18px] shadow-sm hover:shadow-md transition-shadow cursor-pointer overflow-hidden bg-white h-[190px]">
                                 <CardContent className="p-4 flex items-center justify-between h-full">
                                     <div className="flex-1 pr-2 pl-8">
                                         <h3 className="text-3xl font-bold leading-[1.15]" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
@@ -84,7 +82,7 @@ export default function Catalog() {
                                 </CardContent>
                             </Card>
 
-                            <Card className="border border-gray-200 rounded-[18px] hover:shadow-md transition-shadow cursor-pointer overflow-hidden bg-white h-[190px]">
+                            <Card className="border-gray-400 rounded-[18px] shadow-sm hover:shadow-md transition-shadow cursor-pointer overflow-hidden bg-white h-[190px]">
                                 <CardContent className="p-4 flex items-center justify-between h-full">
                                     <div className="flex-1 pr-2 pl-4">
                                         <h3 className="text-3xl font-bold leading-[1.15]" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
@@ -100,7 +98,7 @@ export default function Catalog() {
                     </div>
 
                     {/* Yellow Kiosk Banner */}
-                    <Card className="border-none rounded-[20px] overflow-hidden shadow-sm h-[210px]" style={theme.getStyle('secondaryBg')}>
+                    <Card className="border-gray-400 rounded-[20px] overflow-hidden shadow-sm hover:shadow-md transition-shadow h-[210px]" style={theme.getStyle('secondaryBg')}>
                         <CardContent className="p-5 flex items-center gap-4 h-full">
                             <div className="shrink-0 mt-4">
                                 <img src={kioskIllustration} alt="Kiosk" className="w-[200px] h-[200px]" />
@@ -117,14 +115,14 @@ export default function Catalog() {
 
                     {/* McCafe & Happy Meal Section */}
                     <div className="grid grid-cols-2 gap-3">
-                        <Card className="border border-gray-200 rounded-[18px] hover:shadow-md transition-shadow cursor-pointer overflow-hidden bg-white h-[190px]">
+                        <Card className="border-gray-400 rounded-[18px] shadow-sm hover:shadow-md transition-shadow cursor-pointer overflow-hidden bg-white h-[190px]">
                             <CardContent className="p-4 flex items-center justify-between h-full">
                                 <h3 className="text-3xl font-bold flex-1 pr-2 pl-4" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>McCafe</h3>
                                 <img src={mccafeImage} alt="McCafe" className="w-[180px] h-[180px] object-contain -mr-11 mt-3" />
                             </CardContent>
                         </Card>
 
-                        <Card className="border border-gray-200 rounded-[18px] hover:shadow-md transition-shadow cursor-pointer overflow-hidden bg-white h-[190px]">
+                        <Card className="border-gray-400 rounded-[18px] shadow-sm hover:shadow-md transition-shadow cursor-pointer overflow-hidden bg-white h-[190px]">
                             <CardContent className="p-4 flex items-center justify-between h-full">
                                 <div className="flex-1 pr-2 pl-6">
                                     <h3 className="text-3xl font-bold leading-[1.15]" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
@@ -145,14 +143,14 @@ export default function Catalog() {
                             {[1, 2, 3].map((item) => (
                                 <Card
                                     key={item}
-                                    className="border border-gray-200 rounded-[18px] hover:shadow-md transition-shadow cursor-pointer overflow-hidden bg-white h-[210px]"
+                                    className="border-gray-400 rounded-[18px] shadow-sm hover:shadow-md transition-shadow cursor-pointer overflow-hidden bg-white h-[210px]"
                                 >
                                     <CardContent className="p-3 h-full flex flex-col">
                                         <img src={productImage} alt="Product" className="w-[200px] h-[200px] object-contain mb-2.5" />
                                         <div className="space-y-0.5">
                                             <h3 className="text-2xl font-bold leading-tight" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Product</h3>
                                             <div className="flex items-end justify-between">
-                                                <p className="text-lg leading-tight" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>1500 cal</p>
+                                                <p className="text-lg leading-tight font-bold" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>1500 cal</p>
                                                 <p className="text-xl font-bold leading-none" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>7$</p>
                                             </div>
                                         </div>

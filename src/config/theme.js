@@ -31,6 +31,12 @@ export const THEME_FONTS = {
     family: "'Poppins', 'Helvetica Neue', sans-serif",
     weights: [300, 400, 500, 600, 700],
     googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'
+  },
+
+  baloo: {
+    family: "'Baloo Tamma 2', 'Poppins', sans-serif",
+    weights: [400, 500, 600, 700],
+    googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;600;700&display=swap'
   }
 }
 
@@ -58,6 +64,7 @@ export const getCSSVariables = () => ({
   '--theme-error': THEME_COLORS.error,
   '--font-serious': THEME_FONTS.serious.family,
   '--font-branded': THEME_FONTS.branded.family,
+  '--font-baloo': THEME_FONTS.baloo.family,
 })
 
 export const getThemeColors = () => THEME_COLORS
@@ -122,6 +129,8 @@ export const getThemeStyle = (colorType) => {
       return { fontFamily: THEME_FONTS.serious.family }
     case 'fontBranded':
       return { fontFamily: THEME_FONTS.branded.family }
+    case 'fontBaloo':
+      return { fontFamily: THEME_FONTS.baloo.family }
 
     default:
       return {}

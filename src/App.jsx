@@ -5,12 +5,15 @@ import { ThemeProvider } from './contexts/ThemeContext'
 import WelcomePage from './pages/Welcome'
 import SignIn from './pages/Login'
 import ConnectInfosPage from './pages/Connect-infos'
-import OrderTypePage from './pages/Order-type'
+import SelectionPage from './pages/SelectionPage'
 import ConfirmationPage from './pages/ConfirmationPage'
 import IconTextPage from './pages/IconTextPage'
 import ContinueOrderPage from './pages/Continue-order'
 import Catalog from './pages/Catalog'
 import Offers from './pages/Offers'
+import CategoryPage from './pages/Category'
+import DonationPage from './pages/DonationPage'
+import TipPage from './pages/TipPage'
 import HeaderLayout from './layouts/header-layout'
 import FooterLayout from './layouts/footer-layout'
 import SidebarLayout from './layouts/sidebar-layout'
@@ -22,6 +25,7 @@ import HeaderTitleLayout from './layouts/header-title-layout'
 import StepsBarLayout from './layouts/steps-bar-layout'
 import StepsMenuLayout from './layouts/steps-menu-layout'
 import HeaderIconTextLayout from './layouts/header-icon-text-layout'
+import TrioSelectionPage from './pages/TrioSelectionPage'
 
 function App() {
 
@@ -34,10 +38,18 @@ function App() {
             <Route path="/welcome" element={<WelcomePage />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/connect-infos" element={<ConnectInfosPage />} />
-            <Route path="/order-type" element={<OrderTypePage />} />
             <Route path="/continue-order" element={<ContinueOrderPage />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/offers" element={<Offers />} />
+            <Route path="/category" element={<CategoryPage />} />
+            <Route path="/donation" element={<DonationPage />} />
+            <Route path="/tip" element={<TipPage />} />
+            <Route path="/trio-selection" element={<TrioSelectionPage />} />
+
+            {/* Selection pages */}
+            <Route path="/make-trio" element={<SelectionPage type="make-trio" />} />
+            <Route path="/order-type" element={<SelectionPage type="order-type" />} />
+
 
             {/* Confirmation pages - pages with Cancel/Continue buttons */}
             <Route path="/logout-confirmation" element={<ConfirmationPage type="logout" />} />

@@ -34,6 +34,13 @@
     "eatIn": "Sur place",
     "takeAway": "À emporter"
   },
+  "makeTrio": {
+    "title": "Faire un Trio ?",
+    "goForTrio": "Opter pour un trio",
+    "articleOnly": "Article seulement",
+    "price": "12 $",
+    "goBack": "Revenir"
+  },
   "loginSuccess": {
     "message": "Vous avez été connecté avec succès."
   },

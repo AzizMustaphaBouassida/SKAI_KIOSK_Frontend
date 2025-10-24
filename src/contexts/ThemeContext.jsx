@@ -109,7 +109,9 @@ export const ThemeProvider = ({ children }) => {
           return { fontFamily: THEME_FONTS.serious.family }
         case 'fontBranded':
           return { fontFamily: THEME_FONTS.branded.family }
-        
+        case 'fontBaloo':
+          return { fontFamily: THEME_FONTS.baloo.family }
+
         default:
           return {}
       }

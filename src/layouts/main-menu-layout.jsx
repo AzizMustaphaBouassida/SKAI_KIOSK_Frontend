@@ -35,14 +35,14 @@ export default function MainMenuLayout({ children, title, activePage }) {
         <div className="relative h-screen flex flex-col" style={theme.getStyle('whiteBg')}>
             {/* Header Layout */}
             <div className="relative shrink-0">
-                <HeaderLayout showTitle={true} title={title}/>
+                <HeaderLayout showTitle={true} title={title} />
             </div>
 
 
             {/* Main Content Area with Sidebar */}
             <div className="relative h-full grid grid-cols-[260px_1fr]">
                 {/* Sidebar */}
-                <div className="relative col-span-1 pl-6">
+                <div className="relative col-span-1">
 
                     <SidebarLayout activePage={activePage} />
                 </div>
@@ -50,7 +50,7 @@ export default function MainMenuLayout({ children, title, activePage }) {
                 {/* Main Content Area */}
                 <div className="col-span-1 flex flex-col">
                     {/* Top section - Main content area */}
-                    <div className="flex-1 p-8 overflow-auto" style={theme.getStyle('whiteBg')}>
+                    <div className="flex-1 overflow-auto" style={theme.getStyle('whiteBg')}>
                         {children}
                     </div>
 
@@ -61,7 +61,7 @@ export default function MainMenuLayout({ children, title, activePage }) {
                         <div className="flex-1 flex flex-col">
                             {/* Notification Bar Layout */}
                             {showNotification && (
-                                <div className="z-50 w-full mb-14">
+                                <div className="z-50 mb-0 mr-2">
                                     <NotificationBarLayout
                                         message="Added to Cart: Offer name"
                                         show={showNotification}

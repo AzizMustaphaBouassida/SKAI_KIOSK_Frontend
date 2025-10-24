@@ -4,9 +4,32 @@ import HeaderLayout from './header-layout'
 import FooterLayout from './footer-layout'
 import StepsBarLayout from './steps-bar-layout'
 
-export default function StepsMenuLayout() {
+export default function StepsMenuLayout({ children }) {
     const theme = useTheme()
-    const [currentStep, setCurrentStep] = useState(2)
+    const [currentStep, setCurrentStep] = useState(1)
+
+    const handleNext = () => {
+        if (currentStep < 4) {
+            setCurrentStep(currentStep + 1)
+        }
+    }
+
+    const handleBack = () => {
+        if (currentStep > 1) {
+            setCurrentStep(currentStep - 1)
+        }
+    }
+
+    const childrenWithProps = React.Children.map(children, child => {
+        if (React.isValidElement(child) && typeof child.type !== 'string') {
+            return React.cloneElement(child, {
+                currentStep,
+                onNext: handleNext,
+                onBack: handleBack
+            })
+        }
+        return child
+    })
 
     return (
         <div className="relative h-screen flex flex-col" style={theme.getStyle('whiteBg')}>
@@ -23,16 +46,9 @@ export default function StepsMenuLayout() {
                 </div>
 
                 {/* Main Content Area - Right Side */}
-                <div className="flex-1 p-8 overflow-auto">
-                    <div className="w-full h-full flex items-center justify-center">
-                        <div className="text-center">
-                            <h2 className="text-2xl font-bold mb-4" style={{ ...theme.getStyle('greyDark'), ...theme.getStyle('fontBranded') }}>
-                                Main Content Area
-                            </h2>
-                            <p className="text-lg" style={{ ...theme.getStyle('greyDark'), ...theme.getStyle('fontSerious') }}>
-                                This section is for the step content (Burgers, Sides, Drinks, Review)
-                            </p>
-                        </div>
+                <div className="flex-1 overflow-auto">
+                    <div className="h-full w-full py-4">
+                        {childrenWithProps}
                     </div>
                 </div>
             </div>

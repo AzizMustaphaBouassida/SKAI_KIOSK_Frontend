@@ -51,7 +51,7 @@ export default function HeaderIconTextLayout({
 
                 {/* Children Content */}
                 {children && (
-                    <div className="w-full py-12">
+                    <div className="w-full py-12 flex justify-center">
                         {children}
                     </div>
                 )}

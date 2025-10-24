@@ -33,14 +33,14 @@ export default function Offers() {
   const theme = useTheme()
   const [selectedOffer, setSelectedOffer] = useState<OfferData | null>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [isLoggedIn] = useState(false)
+  const [isLoggedIn] = useState(true)
 
   const offers: Record<string, OfferData> = {
     offer1: {
       id: "offer1",
       title: "Exclusive One-Time Offer – 25% Off Your Next Purchase",
       description: "Valid for One Use Only!",
-      termsAndConditions: "This offer is valid at participating McDonald's restaurants from September 1st to September 30th, 2025. Customers who purchase any Big Mac Meal will receive a free medium fries with their order. The offer is limited to one redemption per customer per transaction and is valid for dine-in, takeaway, and drive-thru only. It cannot be combined with other discounts, promotions, or coupons, and it is not exchangeable for cash or alternative menu items. McDonald's reserves the right to amend or withdraw the offer at any time without prior notice, and in the event of any dispute, the decision of McDonald's management shall be final."
+      termsAndConditions: "This offer is valid at participating McDonald's restaurants from September 1st to September 30th, 2025. Customers who purchase any Big Mac Meal will receive a free medium fries with their order. The offer is limited to one redemption per customer per transaction and is valid for dine-in, takeaway, and drive-thru only. It cannot be combined with other discounts, promotions, or coupons, and it is not exchangeable for cash or alternative menu items"
     },
     offer2: {
       id: "offer2",
@@ -233,16 +233,16 @@ export default function Offers() {
           {/* Header with Title and Icon */}
           <div className="flex items-start justify-between p-8 pb-4">
             <div className="flex-1 pl-12 pt-24">
-              <DialogTitle className="text-5xl font-bold leading-tight mb-2" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
+              <DialogTitle className="text-[36px] font-bold leading-tight mb-2" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
                 {selectedOffer?.title.split(' ').slice(0, 2).join(' ') || 'Offer name'}
               </DialogTitle>
-              <DialogDescription className="text-[34px] font-semibold" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontSerious') }}>
+              <DialogDescription className="text-[30px] font-semibold" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontSerious') }}>
                 Termes & Conditions
               </DialogDescription>
             </div>
             {/* Offer Terms Icon */}
             <div className="flex-shrink-0 ml-4">
-              <img src={offerTermsIcon} alt="Terms & Conditions" className="w-[124px] h-[124px] mt-24 mr-8" />
+              <img src={offerTermsIcon} alt="Terms & Conditions" className="w-[100px] h-[100px] mt-24 mr-8" />
             </div>
           </div>
 
