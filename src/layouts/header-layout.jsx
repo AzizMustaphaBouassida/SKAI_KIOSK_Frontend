@@ -1,7 +1,7 @@
 import { useTheme } from '../hooks/useTheme';
 import Logo from '../components/Logo';
 
-export default function HeaderLayout({ title, showTitle = false }) {
+export default function HeaderLayout({ title, showTitle = false, children }) {
     const theme = useTheme();
 
     return (
@@ -34,6 +34,13 @@ export default function HeaderLayout({ title, showTitle = false }) {
                     </div>
                 </div>
             </header>
+
+            {/* Main content area */}
+            {children && (
+                <main className="w-full h-[1850px] p-16 absolute top-20 left-0">
+                    {children}
+                </main>
+            )}
         </div>
     )
 }

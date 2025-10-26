@@ -2,18 +2,19 @@ import './styles/App.css'
 import './i18n/i18n'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { ThemeProvider } from './contexts/ThemeContext'
-import WelcomePage from './pages/Welcome'
-import SignIn from './pages/Login'
-import ConnectInfosPage from './pages/Connect-infos'
+import WelcomePage from './pages/WelcomePage'
+import SignIn from './pages/LoginPage'
+import ConnectInfosPage from './pages/Connect-infosPage'
 import SelectionPage from './pages/SelectionPage'
 import ConfirmationPage from './pages/ConfirmationPage'
 import IconTextPage from './pages/IconTextPage'
-import ContinueOrderPage from './pages/Continue-order'
-import Catalog from './pages/Catalog'
-import Offers from './pages/Offers'
-import CategoryPage from './pages/Category'
+import ContinueOrderPage from './pages/Continue-orderPage'
+import Catalog from './pages/CatalogPage'
+import Offers from './pages/OffersPage'
+import CategoryPage from './pages/CategoryPage'
 import DonationPage from './pages/DonationPage'
 import TipPage from './pages/TipPage'
+import CustomizationPage from './pages/CustomizationPage'
 import HeaderLayout from './layouts/header-layout'
 import FooterLayout from './layouts/footer-layout'
 import SidebarLayout from './layouts/sidebar-layout'
@@ -45,6 +46,7 @@ function App() {
             <Route path="/donation" element={<DonationPage />} />
             <Route path="/tip" element={<TipPage />} />
             <Route path="/trio-selection" element={<TrioSelectionPage />} />
+            <Route path="/customization" element={<CustomizationPage />} />
 
             {/* Selection pages */}
             <Route path="/make-trio" element={<SelectionPage type="make-trio" />} />

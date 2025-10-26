@@ -103,7 +103,13 @@ export const ThemeProvider = ({ children }) => {
           return { backgroundColor: THEME_COLORS.error }
         case 'errorBorder':
           return { borderColor: THEME_COLORS.error }
-        
+        case 'red':
+          return { color: THEME_COLORS.red }
+        case 'redBg':
+          return { backgroundColor: THEME_COLORS.red }
+        case 'redBorder':
+          return { borderColor: THEME_COLORS.red }
+
         // Font styles
         case 'fontSerious':
           return { fontFamily: THEME_FONTS.serious.family }

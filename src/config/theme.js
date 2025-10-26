@@ -17,6 +17,7 @@ export const THEME_COLORS = {
   greyDarker: '#868686',
   success: '#00AA06',
   error: '#EF4444',
+  red: '#A50000',
 }
 
 // ========== FONT SYSTEM ==========
@@ -62,6 +63,7 @@ export const getCSSVariables = () => ({
   '--theme-grey-darker': THEME_COLORS.greyDarker,
   '--theme-success': THEME_COLORS.success,
   '--theme-error': THEME_COLORS.error,
+  '--theme-red': THEME_COLORS.red,
   '--font-serious': THEME_FONTS.serious.family,
   '--font-branded': THEME_FONTS.branded.family,
   '--font-baloo': THEME_FONTS.baloo.family,
@@ -124,6 +126,12 @@ export const getThemeStyle = (colorType) => {
       return { backgroundColor: THEME_COLORS.error }
     case 'errorBorder':
       return { borderColor: THEME_COLORS.error }
+    case 'red':
+      return { color: THEME_COLORS.red }
+    case 'redBg':
+      return { backgroundColor: THEME_COLORS.red }
+    case 'redBorder':
+      return { borderColor: THEME_COLORS.red }
 
     case 'fontSerious':
       return { fontFamily: THEME_FONTS.serious.family }
