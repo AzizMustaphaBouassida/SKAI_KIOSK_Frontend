@@ -12,12 +12,15 @@ import { useTheme } from "@/hooks/useTheme"
 import HeaderIconTextLayout from "@/layouts/header-icon-text-layout"
 // @ts-ignore
 import DonationIcon from "@/assets/icons/donation-icon.svg"
+import { useTranslation } from "react-i18next"
 
 export default function TipPage() {
   const [selectedPercentage, setSelectedPercentage] = useState<number | null>(null)
   const [customAmount, setCustomAmount] = useState<string>("")
   const [rating, setRating] = useState<number>(0)
+  const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
   const theme = useTheme()
+  const { t } = useTranslation()
 
   // Simulated order total - this should come from your cart/order context
   const orderTotal = 50.00 // Replace with actual order total
@@ -49,8 +52,8 @@ export default function TipPage() {
   return (
     <HeaderIconTextLayout
       icon={DonationIcon}
-      text="Rate us"
-      subtitle="Your rating shows appreciation for our staff's hard work, thank you for your support"
+      text={t("tip.title")}
+      subtitle={t("tip.subtitle")}
     >
       <div
         className="w-full max-w-[960px] mx-auto flex flex-col items-center space-y-8 px-8"
@@ -81,7 +84,7 @@ export default function TipPage() {
                 ...theme.getStyle("fontBranded"),
               }}
             >
-              Want to leave a tip?
+              {t("tip.askTip")}
             </p>
 
             {/* Tip Calculation Info */}
@@ -92,7 +95,7 @@ export default function TipPage() {
                 ...theme.getStyle("fontSerious"),
               }}
             >
-              Tip is calculated on your order total before taxes.
+              {t("tip.info")}
             </p>
 
             {/* Percentage Buttons */}
@@ -107,13 +110,14 @@ export default function TipPage() {
                     style={{
                       ...theme.getStyle("fontBranded"),
                       ...theme.getStyle("black"),
+                      ...boxShadowStyle,
                       ...(isSelected
                         ? {
                             ...theme.getStyle("secondaryBorder"),
                             ...theme.getStyle("secondaryBg"),
                           }
                         : {
-                            ...theme.getStyle("greyLightBorder"),
+                            ...theme.getStyle("greyDarkerBorder"),
                             ...theme.getStyle("whiteBg"),
                           }),
                     }}
@@ -133,7 +137,7 @@ export default function TipPage() {
                 ...theme.getStyle("fontSerious"),
               }}
             >
-              or
+              {t("common.or")}
             </p>
 
             {/* Custom Amount Input */}
@@ -144,7 +148,7 @@ export default function TipPage() {
                 min="0"
                 value={customAmount}
                 onChange={(e) => handleCustomAmountChange(e.target.value)}
-                placeholder="0.00$"
+                placeholder={t("tip.placeholder")}
                 className="w-full h-[85px] text-center text-[20px] font-light border-[2px] rounded-lg focus:outline-none focus:ring-0 focus:border-[#FFC72C] placeholder:text-[20px] placeholder:font-light placeholder:text-[#868686] focus:text-[20px] focus:font-light"
                 style={{
                   ...theme.getStyle("fontSerious"),
@@ -162,13 +166,14 @@ export default function TipPage() {
                 ...theme.getStyle("errorBg"),
                 ...theme.getStyle("white"),
                 ...theme.getStyle("fontBranded"),
+                ...boxShadowStyle,
               }}
               onClick={() => {
                 console.log("[TipPage] Tip amount:", tipAmount)
                 console.log("[TipPage] Rating:", rating)
               }}
             >
-              Give a tip
+              {t("tip.giveTip")}
             </Button>
 
             {/* Not Today Button */}
@@ -177,7 +182,7 @@ export default function TipPage() {
               className="w-[260px] h-[80px] border-2 text-[24px] rounded-lg transition hover:opacity-90 bg-transparent mt-5"
               style={{
                 ...theme.getStyle("fontSerious"),
-                ...theme.getStyle("greyLightBorder"),
+                ...theme.getStyle("greyDarkerBorder"),
                 ...theme.getStyle("whiteBg"),
                 ...theme.getStyle("black"),
               }}
@@ -185,7 +190,7 @@ export default function TipPage() {
                 console.log("[TipPage] User clicked Not today")
               }}
             >
-              Not today
+              {t("tip.notToday")}
             </Button>
           </>
         )}

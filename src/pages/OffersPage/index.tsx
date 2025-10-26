@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 // @ts-ignore
 import MainMenuLayout from "@/layouts/main-menu-layout"
 import { Card } from "@/components/ui/card"
@@ -31,9 +32,11 @@ interface OfferData {
 
 export default function Offers() {
   const theme = useTheme()
+  const { t } = useTranslation()
   const [selectedOffer, setSelectedOffer] = useState<OfferData | null>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isLoggedIn] = useState(true)
+  const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
 
   const offers: Record<string, OfferData> = {
     offer1: {
@@ -85,23 +88,23 @@ export default function Offers() {
   }
 
   return (
-    <MainMenuLayout title="Offers" activePage="Offers">
+    <MainMenuLayout title={t('offers.title')} activePage="Offers">
       {!isLoggedIn ? (
         /* Not Logged In View */
         <div className="w-full h-full mx-auto px-3 py-4 space-y-4">
           {/* Yellow Coupon Banner - Same size as Exclusive offer */}
           <Card 
-            className="flex items-center gap-12 p-12 border-0 rounded-[16px] shadow-lg h-[190px]" 
-            style={theme.getStyle('secondaryBg')}>
+            className="flex items-center gap-12 p-12 border-0 rounded-[16px] h-[190px]" 
+            style={{ ...theme.getStyle('secondaryBg'), ...boxShadowStyle }}>
             <div className="flex-shrink-0 bg-white rounded-lg p-2">
               <img src={barcodeImage} alt="Barcode" className="w-[190px] h-[110px]" />
             </div>
             <div className="flex-1">
               <h3 className="text-[30px] font-bold leading-tight mb-1" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
-                Scan your coupon
+                {t('offers.scanCoupon')}
               </h3>
               <p className="text-2xl leading-tight" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontSerious') }}>
-                Your rewards are just a scan away – grab them now!
+                {t('offers.scanRewards')}
               </p>
             </div>
           </Card>
@@ -113,7 +116,8 @@ export default function Offers() {
 
           {/* Message Card - Same styling as yellow banner */}
           <Card 
-            className="flex items-center gap-12 p-12 rounded-[16px] shadow-lg border border-gray-200 bg-white h-[190px]">
+            className="flex items-center gap-12 p-12 rounded-[16px] border border-gray-200 bg-white h-[190px]"
+            style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyDarkBorder'), ...boxShadowStyle }}>
             {/* QR Code */}
             <div className="flex-shrink-0 bg-white p-2 rounded-lg">
               <img src={qrCodeIcon} alt="QR Code" className="w-[150px] h-[150px]" />
@@ -122,7 +126,7 @@ export default function Offers() {
             {/* Message Text */}
             <div className="flex-1">
               <p className="text-[26px] font-medium leading-tight" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontSerious') }}>
-                Please try again later or log in to access personalized offers and one-purchase only deals
+                {t('catalog.notLoggedIn.message')}
               </p>
             </div>
           </Card>
@@ -133,31 +137,33 @@ export default function Offers() {
         {/* Exclusive One-Time Offer */}
         <Card 
           onClick={() => handleOfferClick('offer1')}
-          className="flex items-center gap-8 p-10 rounded-[16px] shadow-md border border-gray-200 bg-white h-[170px] cursor-pointer hover:shadow-lg transition-shadow">
+          className="flex items-center gap-8 p-10 rounded-[16px] border border-gray-200 bg-white h-[170px] cursor-pointer transition-shadow"
+          style={boxShadowStyle}>
           <div className="flex-shrink-0">
             <img src={discountImage} alt="Discount" className="w-20 h-20" />
           </div>
           <div className="flex-1">
             <h3 className="text-[30px] font-bold leading-[1.25] mb-0.5" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
-              Exclusive One-Time Offer – 25% Off Your Next Purchase
+              {t('offers.exclusiveOffer')}
             </h3>
-            <p className="text-2xl leading-tight" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>Valid for One Use Only!</p>
+            <p className="text-2xl leading-tight" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>{t('offers.validOneUse')}</p>
           </div>
         </Card>
 
         {/* Free Medium Fries Offer */}
         <Card 
           onClick={() => handleOfferClick('offer2')}
-          className="flex items-center gap-2 p-6 rounded-[16px] shadow-md border border-gray-200 bg-white h-[170px] cursor-pointer hover:shadow-lg transition-shadow">
+          className="flex items-center gap-2 p-6 rounded-[16px] border border-gray-200 bg-white h-[170px] cursor-pointer transition-shadow"
+          style={boxShadowStyle}>
           <div className="flex-shrink-0">
             <img src={friesImage} alt="Fries" className="w-28 h-28" />
           </div>
           <div className="flex-1">
             <h3 className="text-[30px] font-bold leading-[1.25] mb-0.5" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
-              Get FREE Medium Fries with every Big Mac® or McChicken® purchase.
+              {t('offers.freeFries')}
             </h3>
             <p className="text-xl leading-tight" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>
-              Only available for a limited time – order now and enjoy your treat!
+              {t('offers.limitedTime')}
             </p>
           </div>
         </Card>
@@ -165,15 +171,15 @@ export default function Offers() {
         {/* Yellow Coupon Banner */}
         <Card 
           onClick={() => handleOfferClick('offer3')}
-          className="flex items-center gap-12 p-12 border-0 rounded-[16px] shadow-lg h-[190px] cursor-pointer hover:shadow-xl transition-shadow" 
-          style={theme.getStyle('secondaryBg')}>
+          className="flex items-center gap-12 p-12 border-0 rounded-[16px] h-[190px] cursor-pointer transition-shadow" 
+          style={{ ...theme.getStyle('secondaryBg'), ...boxShadowStyle }}>
           <div className="flex-shrink-0 bg-white rounded-lg p-2">
             <img src={barcodeImage} alt="Barcode" className="w-[190px] h-[110px]" />
           </div>
           <div className="flex-1">
-            <h3 className="text-[30px] font-bold leading-tight mb-1 " style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Scan your coupon</h3>
+            <h3 className="text-[30px] font-bold leading-tight mb-1 " style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('offers.scanCoupon')}</h3>
             <p className="text-2xl leading-tight" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontSerious') }}>
-              Your rewards are just a scan away – grab them now!
+              {t('offers.scanRewards')}
             </p>
           </div>
         </Card>
@@ -182,13 +188,14 @@ export default function Offers() {
           {/* Sweet Deal */}
           <Card 
             onClick={() => handleOfferClick('offer4')}
-            className="flex items-start gap-2 p-4 rounded-[14px] shadow-md h-[190px] border border-gray-200 bg-white cursor-pointer hover:shadow-lg transition-shadow">
+            className="flex items-start gap-2 p-4 rounded-[14px] h-[190px] border border-gray-200 bg-white cursor-pointer transition-shadow"
+            style={boxShadowStyle}>
             <div className="flex-1 flex flex-col">
-              <h4 className="text-2xl font-bold leading-tight mb-1" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Sweet Deal!</h4>
+              <h4 className="text-2xl font-bold leading-tight mb-1" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('offers.sweetDeal')}</h4>
               <p className="text-lg leading-[1.3] mb-2" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>
-                Get a FREE Sundae with any meal purchase over $15
+                {t('offers.sweetDealDesc')}
               </p>
-              <p className="text-lg leading-tight" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>Limited time only.</p>
+              <p className="text-lg leading-tight" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>{t('offers.limitedTimeOnly')}</p>
             </div>
             <div className="flex-shrink-0 flex items-center justify-center">
               <img src={sweetDealImage} alt="Sweet Deal" className="w-[200px] h-[200px] object-contain -mr-11 -mt-7" />
@@ -198,11 +205,12 @@ export default function Offers() {
           {/* Double the Refreshment */}
           <Card 
             onClick={() => handleOfferClick('offer5')}
-            className="flex items-start gap-2 p-4 rounded-[14px] shadow-md h-[190px] border border-gray-200 bg-white cursor-pointer hover:shadow-lg transition-shadow">
+            className="flex items-start gap-2 p-4 rounded-[14px] h-[190px] border border-gray-200 bg-white cursor-pointer transition-shadow"
+            style={boxShadowStyle}>
             <div className="flex-1 flex flex-col">
-              <h4 className="text-2xl font-bold leading-tight mb-1" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Double the Refreshment!</h4>
-              <p className="text-lg leading-[1.3] mb-2" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>Buy one drink, get one FREE!</p>
-              <p className="text-lg leading-tight" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>Any size soft drink – perfect for sharing</p>
+              <h4 className="text-2xl font-bold leading-tight mb-1" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('offers.doubleRefreshment')}</h4>
+              <p className="text-lg leading-[1.3] mb-2" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>{t('offers.buyOneDrink')}</p>
+              <p className="text-lg leading-tight" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>{t('offers.anySizeDrink')}</p>
             </div>
             <div className="flex-shrink-0 w-[100px] h-[100px] flex items-center justify-center">
               <img src={doubleRefreshmentImage} alt="Double Refreshment" className="w-[220px] h-[220px] object-contain -mr-8 mt-22" />
@@ -212,11 +220,12 @@ export default function Offers() {
           {/* Coffee Break Deal */}
           <Card 
             onClick={() => handleOfferClick('offer6')}
-            className="flex items-start gap-2 p-4 rounded-[14px] shadow-md h-[190px] border border-gray-200 bg-white cursor-pointer hover:shadow-lg transition-shadow">
+            className="flex items-start gap-2 p-4 rounded-[14px] h-[190px] border border-gray-200 bg-white cursor-pointer transition-shadow"
+            style={boxShadowStyle}>
             <div className="flex-1 flex flex-col">
-              <h4 className="text-2xl font-bold leading-tight mb-1" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Coffee Break Deal Only $1.98!</h4>
+              <h4 className="text-2xl font-bold leading-tight mb-1" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('offers.coffeeBreak')}</h4>
               <p className="text-lg leading-[1.3] mb-2" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>
-                Recharge your day with any small McCafe coffee (Latte, Cappuccino, or Americano) for just $1.98
+                {t('offers.coffeeBreakDesc')}
               </p>
             </div>
             <div className="flex-shrink-0 w-[100px] h-[100px] flex items-center justify-center">
@@ -229,15 +238,15 @@ export default function Offers() {
 
       {/* Offer Details Modal */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-[1200px] w-[75vw] max-h-[1500px] h-[50vh] p-0 gap-0 bg-white rounded-[20px]">
+        <DialogContent className="max-w-[1200px] w-[75vw] max-h-[1500px] h-[50vh] p-0 gap-0 bg-white rounded-[20px]" style={boxShadowStyle}>
           {/* Header with Title and Icon */}
           <div className="flex items-start justify-between p-8 pb-4">
             <div className="flex-1 pl-12 pt-24">
               <DialogTitle className="text-[36px] font-bold leading-tight mb-2" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
-                {selectedOffer?.title.split(' ').slice(0, 2).join(' ') || 'Offer name'}
+                {selectedOffer?.title.split(' ').slice(0, 2).join(' ') || t('offers.offerName')}
               </DialogTitle>
               <DialogDescription className="text-[30px] font-semibold" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontSerious') }}>
-                Termes & Conditions
+                {t('offers.termsConditions')}
               </DialogDescription>
             </div>
             {/* Offer Terms Icon */}
@@ -258,17 +267,17 @@ export default function Offers() {
             <Button
               variant="outline"
               onClick={() => setIsDialogOpen(false)}
-              className="w-80 h-20 text-3xl font-semibold rounded-lg border-2 border-gray-300 shadow-md"
-              style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontBranded') }}
+              className="w-80 h-20 text-3xl font-semibold rounded-lg border-2 border-gray-300"
+              style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontBranded'),...theme.getStyle('greyDarkerBorder'), ...boxShadowStyle }}
             >
-              Close
+              {t('common.close')}
             </Button>
             <Button
               onClick={handleApplyToCart}
-              className="w-80 h-20 text-3xl font-semibold rounded-lg border-2 border-transparent shadow-md"
-              style={{ ...theme.getStyle('secondaryBg'), color: '#000000', ...theme.getStyle('fontBranded') }}
+              className="w-80 h-20 text-3xl font-semibold rounded-lg border-2 border-transparent"
+              style={{ ...theme.getStyle('secondaryBg'), color: '#000000', ...theme.getStyle('fontBranded'), ...boxShadowStyle }}
             >
-              Apply to cart
+              {t('offers.applyToCart')}
             </Button>
           </DialogFooter>
         </DialogContent>

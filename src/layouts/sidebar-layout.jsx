@@ -5,7 +5,7 @@ import exampleIcon from '../assets/images/trio-image.svg';
 import SigninBoxLayout from './signin-box-layout';
 import { useState, useRef } from 'react';
 
-export default function SidebarLayout({ children, activePage: initialPage, isLoggedIn = false }) {
+export default function SidebarLayout({ children, activePage: initialPage, isLoggedIn = true }) {
     const theme = useTheme();
     const scrollContainerRef = useRef(null);
     const [hoveredItem, setHoveredItem] = useState(null);
@@ -29,7 +29,6 @@ export default function SidebarLayout({ children, activePage: initialPage, isLog
         { name: 'Sweets & Treats', icon: exampleIcon },
         { name: 'Happy meal', icon: exampleIcon },
         { name: 'Test', icon: exampleIcon },
-        { name: 'Test', icon: exampleIcon },
     ];
 
     const renderMenuItem = (name, icon, isActive, textSize = "text-3xl") => {
@@ -42,9 +41,7 @@ export default function SidebarLayout({ children, activePage: initialPage, isLog
                     backgroundColor: theme.colors.white, 
                     borderColor: isActive ? theme.colors.primary : 'transparent', 
                     borderWidth: isActive ? '3px' : undefined,
-                    boxShadow: isActive
-                        ? '0 2px 6px rgba(0,0,0,0.25)'
-                        : '0 2px 4px rgba(0,0,0,0.3)',
+                    boxShadow: '0px 2px 4px 0px #00000040',
                     ...theme.getStyle('fontBranded')
                 }}
                 onMouseEnter={() => setHoveredItem(null)}
@@ -64,15 +61,17 @@ export default function SidebarLayout({ children, activePage: initialPage, isLog
     const renderScrollButton = (direction, onClick) => {
         const isUp = direction === 'up';
         const bgColor = isUp ? theme.colors.greyDark : theme.colors.secondary;
+        const buttonExtraClasses = isUp ? '' : 'mt-3';
+        const iconExtraClasses = isUp ? '' : ' translate-y-[2px]';
 
         return (
             <button
                 onClick={onClick}
-                className="flex items-center justify-center w-18 h-8 rounded-full transition-all shadow-md active:scale-95 mx-auto"
+                className={`flex items-center justify-center w-18 h-8 rounded-full transition-all shadow-md active:scale-95 mx-auto${` ${buttonExtraClasses}`}`}
                 style={{ backgroundColor: bgColor }}
             >
                 <svg
-                    className="w-6 h-6"
+                    className={`w-6 h-6${iconExtraClasses}`}
                     style={theme.getStyle('black')}
                     fill="none"
                     stroke="currentColor"
@@ -130,7 +129,7 @@ export default function SidebarLayout({ children, activePage: initialPage, isLog
             </div>
 
             {/* Signin Box */}
-            <div className="w-full shrink-0 pt-4 pr-4 pb-4">
+            <div className="w-full shrink-0 pb-4">
                 <SigninBoxLayout isLoggedIn={isLoggedIn} />
             </div>
         </aside>

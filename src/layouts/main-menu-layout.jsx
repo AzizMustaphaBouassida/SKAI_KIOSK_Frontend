@@ -40,7 +40,7 @@ export default function MainMenuLayout({ children, title, activePage }) {
 
 
             {/* Main Content Area with Sidebar */}
-            <div className="relative h-full grid grid-cols-[260px_1fr]">
+            <div className="relative h-full grid grid-cols-[235px_1fr]">
                 {/* Sidebar */}
                 <div className="relative col-span-1">
 
@@ -61,7 +61,7 @@ export default function MainMenuLayout({ children, title, activePage }) {
                         <div className="flex-1 flex flex-col">
                             {/* Notification Bar Layout */}
                             {showNotification && (
-                                <div className="z-50 mb-0 mr-2">
+                                <div className="z-50 mb-0 mr-6 ml-6">
                                     <NotificationBarLayout
                                         message="Added to Cart: Offer name"
                                         show={showNotification}

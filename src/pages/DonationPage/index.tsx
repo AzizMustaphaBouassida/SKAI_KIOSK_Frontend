@@ -12,12 +12,15 @@ import { useTheme } from "@/hooks/useTheme"
 import HeaderIconTextLayout from "@/layouts/header-icon-text-layout"
 // @ts-ignore
 import DonationIcon from "@/assets/icons/donation-icon.svg"
+import { useTranslation } from "react-i18next"
 
 export default function DonationPage() {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
   const [customAmount, setCustomAmount] = useState<string>("")
   const [roundUp, setRoundUp] = useState(false)
+  const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
   const theme = useTheme()
+  const { t } = useTranslation()
 
   const presetAmounts = [1.0, 2.0, 3.0]
 
@@ -44,8 +47,8 @@ export default function DonationPage() {
   return (
     <HeaderIconTextLayout
       icon={DonationIcon}
-      text="Want to donate?"
-      subtitle="our support brings hope and comfort to struggling families"
+      text={t("donation.title")}
+      subtitle={t("donation.subtitle")}
     >
       <div
         className="w-full max-w-[960px] mx-auto flex flex-col items-center space-y-8 px-8"
@@ -62,7 +65,7 @@ export default function DonationPage() {
               ...theme.getStyle("fontSerious"),
             }}
           >
-            Thank you for your help
+            {t("donation.thanks")}
           </p>
         </div>
 
@@ -77,13 +80,14 @@ export default function DonationPage() {
                 style={{
                   ...theme.getStyle("fontBranded"),
                   ...theme.getStyle("black"),
+                  ...boxShadowStyle,
                   ...(isSelected
                     ? {
                         ...theme.getStyle("secondaryBorder"),
                         ...theme.getStyle("secondaryBg"),
                       }
                     : {
-                        ...theme.getStyle("greyLightBorder"),
+                        ...theme.getStyle("greyDarkerBorder"),
                         ...theme.getStyle("whiteBg"),
                       }),
                 }}
@@ -102,7 +106,7 @@ export default function DonationPage() {
             ...theme.getStyle("fontSerious"),
           }}
         >
-          or
+          {t("common.or")}
         </p>
 
         <div className="w-[700px] space-y-3">
@@ -113,7 +117,7 @@ export default function DonationPage() {
               min="0"
               value={customAmount}
               onChange={(e) => handleCustomAmountChange(e.target.value)}
-              placeholder="0.00"
+              placeholder={t("tip.placeholder")}
               className="w-[500px] h-[85px] text-center text-[20px] font-light border-[2px] rounded-lg focus:outline-none focus:ring-0 focus:border-[#FFC72C] placeholder:text-[20px] placeholder:font-light placeholder:text-[#868686] focus:text-[20px] focus:font-light"
               style={{
                 ...theme.getStyle("fontSerious"),
@@ -131,7 +135,7 @@ export default function DonationPage() {
                   ...theme.getStyle("fontSerious"),
                 }}
               >
-                Subtotal: {subtotal.toFixed(2)} $
+                {t("donation.subtotal", { amount: subtotal.toFixed(2) })}
               </span>
               <div
                 className="flex items-center gap-5 border-2 rounded-full px-8 py-3"
@@ -147,7 +151,7 @@ export default function DonationPage() {
                     ...theme.getStyle("fontSerious"),
                   }}
                 >
-                  Round Up
+                  {t("donation.roundUp")}
                 </span>
                 <Switch
                   checked={roundUp}
@@ -166,12 +170,13 @@ export default function DonationPage() {
             ...theme.getStyle("errorBg"),
             ...theme.getStyle("white"),
             ...theme.getStyle("fontBranded"),
+            ...boxShadowStyle,
           }}
           onClick={() => {
             console.log("[v0] Donation amount:", subtotal)
           }}
         >
-          Make a donation
+          {t("donation.makeDonation")}
         </Button>
 
         <Button
@@ -179,7 +184,7 @@ export default function DonationPage() {
           className="w-[240px] h-[70px] border-2 text-[19px] rounded-lg transition hover:opacity-90 bg-transparent mt-5"
           style={{
             ...theme.getStyle("fontSerious"),
-            ...theme.getStyle("greyLightBorder"),
+            ...theme.getStyle("greyDarkerBorder"),
             ...theme.getStyle("whiteBg"),
             ...theme.getStyle("black"),
           }}
@@ -187,7 +192,7 @@ export default function DonationPage() {
             console.log("[v0] User clicked Not today")
           }}
         >
-          Not today
+          {t("donation.notToday")}
         </Button>
       </div>
     </HeaderIconTextLayout>

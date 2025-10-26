@@ -16,6 +16,7 @@ export default function WelcomePage() {
   const theme = useTheme()
   const { t, i18n } = useTranslation()
   const [selectedLanguage, setSelectedLanguage] = useState<"french" | "english">("english")
+  const cardShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
 
   // Function to handle language change
   const handleLanguageChange = (language: "french" | "english") => {
@@ -40,7 +41,7 @@ export default function WelcomePage() {
       <div className="h-fit w-full min-h-[35%] shrink-0 px-12 py-8 flex items-center justify-center" style={theme.getStyle('whiteBg')}>
         <div className="w-full max-w-[1800px] p-6 grid grid-cols-2 gap-8 h-full">
           {/* Left Card - Yellow Member QR Code Card */}
-          <Card className="rounded-3xl p-8 flex flex-col items-center justify-center border-none shadow-xl h-[550px]" style={theme.getStyle('secondaryBg')}>
+          <Card className="rounded-3xl p-8 flex flex-col items-center justify-center border-none shadow-xl h-[550px]" style={{ ...theme.getStyle('secondaryBg'), ...cardShadowStyle }}>
             <h2 className="text-5xl font-bold mb-2 mt-10 text-center" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
               {t('welcome.member')}
             </h2>
@@ -63,7 +64,8 @@ export default function WelcomePage() {
               className="h-[260px] rounded-3xl p-8 flex flex-col items-center justify-center border-2 shadow-xl hover:shadow-2xl transition-all cursor-pointer" 
               style={{ 
                 ...theme.getStyle('whiteBg'), 
-                borderColor: theme.colors.greyDark 
+                borderColor: theme.colors.greyDarker,
+                ...cardShadowStyle 
               }}
             >
               <h2 className="text-5xl font-bold mb-2 text-center min-h-[60px] flex items-center" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
@@ -79,7 +81,8 @@ export default function WelcomePage() {
               className="h-[260px] rounded-3xl p-6 border-2 shadow-xl" 
               style={{ 
                 ...theme.getStyle('whiteBg'), 
-                borderColor: theme.colors.greyDark 
+                borderColor: theme.colors.greyDarker,
+                ...cardShadowStyle 
               }}
             >
               <h3 className="text-4xl font-bold mb-4 text-center leading-tight min-h-[50px] flex items-center justify-center" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>

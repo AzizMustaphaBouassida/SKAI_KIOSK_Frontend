@@ -12,6 +12,7 @@ export default function ContinueOrderPage() {
     const theme = useTheme()
     const { t } = useTranslation()
     const [seconds, setSeconds] = useState(15)
+    const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
 
     useEffect(() => {
         if (seconds > 0) {
@@ -27,7 +28,7 @@ export default function ContinueOrderPage() {
             subtitle={t('continueOrder.subtitle')}
         >
             {/* Countdown Timer */}
-            <div className="flex flex-col items-center mt-16 mb-8">
+            <div className="flex flex-col items-center mt-16">
                 <div className="relative w-24 h-24 flex items-center justify-center">
                     {/* Dots Spinner */}
                     <div className="absolute w-full h-full">
@@ -66,17 +67,14 @@ export default function ContinueOrderPage() {
                         {seconds}
                     </span>
                 </div>
-            </div>
-
-            {/* Continue Button */}
-            <div className="flex justify-center items-center gap-6 mt-20">
                 <button
-                    className="w-[570px] h-26 text-3xl font-bold rounded-xl shadow-md transition-colors"
+                    className="w-[570px] h-26 text-3xl font-bold rounded-xl transition-colors mt-20"
                     style={{
                         ...theme.getStyle('secondaryBg'),
                         ...theme.getStyle('black'),
                         ...theme.getStyle('fontSerious'),
-                        border: 'none'
+                        border: 'none',
+                        ...boxShadowStyle
                     }}
                 >
                     {t('continueOrder.continue')}

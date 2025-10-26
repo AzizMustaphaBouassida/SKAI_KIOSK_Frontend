@@ -6,10 +6,10 @@ export default function SigninBoxLayout({ isLoggedIn = true }) {
     const theme = useTheme();
 
     const displayName = isLoggedIn ? "First Name" : "Guest";
-    const buttonText = isLoggedIn ? "Logout" : "Sign In";
+    const buttonText = isLoggedIn ? "Log Out" : "Sign In";
     const buttonStyle = isLoggedIn
-        ? { ...theme.getStyle('primaryBg'), ...theme.getStyle('white') }
-        : { ...theme.getStyle('secondaryBg'), ...theme.getStyle('black') };
+        ? { ...theme.getStyle('secondaryBg'), ...theme.getStyle('black') }
+        : { ...theme.getStyle('primaryBg'), ...theme.getStyle('white') };
 
     return (
         <div className="w-full">
@@ -20,7 +20,7 @@ export default function SigninBoxLayout({ isLoggedIn = true }) {
                 }}
             >
 
-                <div className="flex flex-col items-center gap-1">
+                <div className="flex flex-col items-center gap-1 mt-4">
                     <div className="rounded-full flex items-center justify-center" style={theme.getStyle('whiteBg')}>
                         <img
                             src={guestIcon}

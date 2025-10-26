@@ -17,6 +17,7 @@ export default function ConfirmationPage({ type }: ConfirmationPageProps) {
     const theme = useTheme()
     const { t } = useTranslation()
     const navigate = useNavigate()
+    const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
     
     const pageConfig = CONFIRMATION_PAGE_CONFIGS[type]
 
@@ -52,24 +53,26 @@ export default function ConfirmationPage({ type }: ConfirmationPageProps) {
             <div className="flex justify-center items-center w-full">
                 <div className="flex justify-center items-center gap-6 mt-24">
                     <button
-                        className="w-[350px] h-24 text-3xl font-bold border-2 rounded-xl hover:bg-gray-50 shadow-md transition-colors"
+                        className="w-[350px] h-24 text-3xl font-bold border-2 rounded-xl hover:bg-gray-50 transition-colors"
                         style={{
                             ...theme.getStyle('whiteBg'),
                             ...theme.getStyle('greyDarker'),
-                            ...theme.getStyle('greyDarkBorder'),
-                            ...theme.getStyle('fontSerious')
+                            ...theme.getStyle('greyDarkerBorder'),
+                            ...theme.getStyle('fontSerious'),
+                            ...boxShadowStyle
                         }}
                         onClick={handleCancel}
                     >
                         {t(pageConfig.cancelKey)}
                     </button>
                     <button
-                        className="w-[350px] h-24 text-3xl font-bold rounded-xl shadow-md transition-colors"
+                        className="w-[350px] h-24 text-3xl font-bold rounded-xl transition-colors"
                         style={{
                             ...theme.getStyle('secondaryBg'),
                             ...theme.getStyle('black'),
                             ...theme.getStyle('fontSerious'),
-                            border: 'none'
+                            border: 'none',
+                            ...boxShadowStyle
                         }}
                         onClick={handleContinue}
                     >

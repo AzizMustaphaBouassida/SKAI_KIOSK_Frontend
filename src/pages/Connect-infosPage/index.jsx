@@ -9,6 +9,7 @@ import { useEffect } from "react"
 export default function ConnectInfosPage() {
     const theme = useTheme()
     const { t, i18n } = useTranslation()
+    const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
 
     useEffect(() => {
         i18n.changeLanguage('fr')
@@ -80,8 +81,9 @@ export default function ConnectInfosPage() {
                         style={{
                             ...theme.getStyle('whiteBg'),
                             ...theme.getStyle('greyDarker'),
-                            ...theme.getStyle('greyDarkBorder'),
-                            ...theme.getStyle('fontSerious')
+                            ...theme.getStyle('greyDarkerBorder'),
+                            ...theme.getStyle('fontSerious'),
+                            ...boxShadowStyle
                         }}
                     >
                         {t('connectInfos.understood')}

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslation } from 'react-i18next'
 // @ts-ignore
 import StepsMenuLayout from "@/layouts/steps-menu-layout"
 import { Button } from "@/components/ui/button"
@@ -36,21 +37,21 @@ interface TrioSelectionPageProps {
 const burgerOptions: Option[] = [
   {
     id: "simple",
-    name: "Simple",
+    name: "trioSelection.simple",
     calories: 1500,
     price: "7$",
     image: forYouBurgerImage,
   },
   {
     id: "double",
-    name: "Double",
+    name: "trioSelection.double",
     calories: 1600,
     price: "+0.5$",
     image: doubleBurgerImage,
   },
   {
     id: "tripler",
-    name: "Tripler",
+    name: "trioSelection.tripler",
     calories: 1800,
     price: "+0.5$",
     image: tripleBurgerImage,
@@ -60,21 +61,21 @@ const burgerOptions: Option[] = [
 const sideOptions: Option[] = [
   {
     id: "fries",
-    name: "Fries",
+    name: "trioSelection.fries",
     calories: 1100,
     price: "7$",
     image: friesImage,
   },
   {
     id: "poutine",
-    name: "Poutine",
+    name: "trioSelection.poutine",
     calories: 1600,
     price: "+0.5$",
     image: poutineImage,
   },
   {
     id: "salad",
-    name: "Salad",
+    name: "trioSelection.salad",
     calories: 1100,
     price: "+0.5$",
     image: saladImage,
@@ -84,21 +85,21 @@ const sideOptions: Option[] = [
 const drinkOptions: Option[] = [
   {
     id: "coke",
-    name: "Coke",
+    name: "trioSelection.coke",
     calories: 200,
     price: "2$",
     image: cokeImage,
   },
   {
     id: "sprite",
-    name: "Sprite",
+    name: "trioSelection.sprite",
     calories: 200,
     price: "2$",
     image: spriteImage,
   },
   {
     id: "coffee",
-    name: "Coffee",
+    name: "trioSelection.coffee",
     calories: 50,
     price: "2$",
     image: coffeeImage,
@@ -113,34 +114,35 @@ function CustomizationInterface({
   onClose: () => void
 }) {
   const theme = useTheme()
+  const { t } = useTranslation()
   const [selectedTab, setSelectedTab] = useState<"popular" | "previous" | "recommendation">("popular")
   const [selectedSize, setSelectedSize] = useState<"S" | "M" | "L" | "XL">("M")
 
   const tabs = [
     {
       id: "popular" as const,
-      label: "Most popular",
-      subtitle: "#1, Ordered by 100+ others",
+      label: t('customization.mostPopular'),
+      subtitle: t('customization.orderedBy'),
       detail: "small, regular, tomato sauce",
     },
     {
       id: "previous" as const,
-      label: "Previous choice",
-      subtitle: "#1, Ordered by 100+ others",
+      label: t('customization.previousChoice'),
+      subtitle: t('customization.orderedBy'),
       detail: "small, regular, tomato sauce",
     },
     {
       id: "recommendation" as const,
-      label: "Our recommendation",
-      subtitle: "#1, Ordered by 100+ others",
+      label: t('customization.ourRecommendation'),
+      subtitle: t('customization.orderedBy'),
       detail: "small, regular, tomato sauce",
     },
   ]
 
   const sizes = [
-    { id: "S" as const, label: "S", price: "+$4.50", calories: "300cal" },
-    { id: "M" as const, label: "M", price: "+$5.00", calories: "300cal" },
-    { id: "L" as const, label: "L", price: "+$12.00", calories: "400cal" },
+    { id: "S" as const, label: t('trioSelection.sizeS'), price: "+$4.50", calories: "300cal" },
+    { id: "M" as const, label: t('trioSelection.sizeM'), price: "+$5.00", calories: "300cal" },
+    { id: "L" as const, label: t('trioSelection.sizeL'), price: "+$12.00", calories: "400cal" },
     { id: "XL" as const, label: "XL", price: "+$20.00", calories: "500cal" },
   ]
 
@@ -158,7 +160,7 @@ function CustomizationInterface({
               className="text-5xl font-bold leading-tight "
               style={{ ...theme.getStyle("black"), ...theme.getStyle("fontBranded") }}
             >
-              {option.name}
+              {t(option.name)}
             </h2>
             <p className="text-[20px] font-semibold" style={theme.getStyle("greyDarker")}>
               {option.price} /{option.calories} cal
@@ -174,7 +176,7 @@ function CustomizationInterface({
             ...theme.getStyle("greyDarker"),
           }}
         >
-          Restart
+          {t('customization.restart')}
         </Button>
       </div>
 
@@ -218,7 +220,7 @@ function CustomizationInterface({
       <div>
         <div className="flex items-start gap-6 mt-6">
           <h3 className="text-[30px] font-bold pt-2" style={theme.getStyle("black")}>
-            Size
+            {t('customization.size')}
           </h3>
           <div className="flex gap-3 flex-nowrap overflow-x-auto ml-24">
             {sizes.map((size) => {
@@ -364,7 +366,7 @@ function CustomizationInterface({
           }}
           onClick={onClose}
         >
-          Done
+          {t('common.confirm')}
         </Button>
       </div>
     </div>
@@ -373,31 +375,33 @@ function CustomizationInterface({
 
 function TrioSelectionContent({ currentStep = 1, onNext, onBack }: TrioSelectionPageProps) {
   const theme = useTheme()
+  const { t } = useTranslation()
   const [selectedBurger, setSelectedBurger] = useState<string | null>(null)
   const [selectedSide, setSelectedSide] = useState<string | null>(null)
   const [selectedDrink, setSelectedDrink] = useState<string | null>(null)
   const [customizingOption, setCustomizingOption] = useState<Option | null>(null)
+  const optionCardShadowStyle = { boxShadow: '0px 2px 4px 0px #00000040' }
 
   // Get current options and selection based on step
   const getCurrentStepData = () => {
     switch (currentStep) {
       case 1:
         return {
-          title: "Choose a Burger",
+          title: t('trioSelection.step1Title'),
           options: burgerOptions,
           selected: selectedBurger,
           setSelected: setSelectedBurger,
         }
       case 2:
         return {
-          title: "Choose a side",
+          title: t('trioSelection.step2Title'),
           options: sideOptions,
           selected: selectedSide,
           setSelected: setSelectedSide,
         }
       case 3:
         return {
-          title: "Choose a Drink",
+          title: t('trioSelection.step3Title'),
           options: drinkOptions,
           selected: selectedDrink,
           setSelected: setSelectedDrink,
@@ -453,6 +457,7 @@ function TrioSelectionContent({ currentStep = 1, onNext, onBack }: TrioSelection
                           borderColor: theme.colors.primary,
                         }
                       : theme.getStyle("greyDarkerBorder")),
+                    ...optionCardShadowStyle,
                   }}
                   onClick={() => stepData.setSelected(option.id)}
                 >
@@ -471,7 +476,7 @@ function TrioSelectionContent({ currentStep = 1, onNext, onBack }: TrioSelection
                       className="text-3xl font-bold leading-tight"
                       style={{ ...theme.getStyle("black"), ...theme.getStyle("fontBranded") }}
                     >
-                      {option.name}
+                      {t(option.name)}
                     </h3>
 
                     {/* Calories */}
@@ -499,7 +504,7 @@ function TrioSelectionContent({ currentStep = 1, onNext, onBack }: TrioSelection
                             setCustomizingOption(option)
                           }}
                         >
-                          Customize
+                          {t('trioSelection.customize')}
                         </Button>
                       )}
 
@@ -535,11 +540,11 @@ function TrioSelectionContent({ currentStep = 1, onNext, onBack }: TrioSelection
       <div className="flex gap-4 justify-center ml-40">
         <Button
           variant="outline"
-          className="w-[270px] h-[70px] text-[18px] font-medium rounded-xl hover:opacity-90 bg-transparent"
+          className="w-[270px] h-[70px] text-[18px] font-semibold rounded-xl hover:opacity-90 bg-transparent"
           style={{
             ...theme.getStyle("whiteBg"),
             ...theme.getStyle("black"),
-            ...theme.getStyle("greyDarkBorder"),
+            ...theme.getStyle("greyDarkerBorder"),
             ...theme.getStyle("fontSerious"),
           }}
           onClick={onBack}
@@ -550,8 +555,9 @@ function TrioSelectionContent({ currentStep = 1, onNext, onBack }: TrioSelection
         <Button
           className="w-[270px] h-[70px] text-[18px] font-medium rounded-xl disabled:opacity-50"
           style={{
-            ...theme.getStyle("greyDarkerBg"),
-            ...theme.getStyle("black"),
+            ...(canContinue
+              ? { ...theme.getStyle("secondaryBg"), ...theme.getStyle("black") }
+              : { ...theme.getStyle("greyDarkerBg"), ...theme.getStyle("black") }),
             ...theme.getStyle("fontSerious"),
           }}
           disabled={!canContinue}

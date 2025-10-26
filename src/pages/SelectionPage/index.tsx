@@ -25,6 +25,7 @@ export default function SelectionPage({ type }: SelectionPageProps) {
     const theme = useTheme()
     const { t } = useTranslation()
     const navigate = useNavigate()
+    const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
     
     const pageConfig = SELECTION_PAGE_CONFIGS[type]
 
@@ -53,7 +54,7 @@ export default function SelectionPage({ type }: SelectionPageProps) {
                             style={{
                                 ...theme.getStyle('whiteBg'),
                                 ...theme.getStyle('greyDarkerBorder'),
-                                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+                                ...boxShadowStyle
                             }}
                             onClick={() => handleOptionClick(option.onSelect)}
                         >
@@ -103,7 +104,8 @@ export default function SelectionPage({ type }: SelectionPageProps) {
                             ...theme.getStyle('whiteBg'),
                             ...theme.getStyle('greyDarker'),
                             ...theme.getStyle('greyDarkerBorder'),
-                            ...theme.getStyle('fontSerious')
+                            ...theme.getStyle('fontSerious'),
+                            ...boxShadowStyle
                         }}
                         onClick={() => navigate(-1)}
                     >

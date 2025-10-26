@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { useTranslation } from 'react-i18next'
 import { Check } from "lucide-react"
 // @ts-ignore
 import MainMenuLayout from "@/layouts/main-menu-layout"
@@ -19,7 +20,9 @@ type OptionType = "hungry" | "little-hungry" | "new-try"
 
 export default function CategoryPage() {
   const theme = useTheme()
+  const { t } = useTranslation()
   const [selectedOptions, setSelectedOptions] = useState<OptionType[]>([])
+  const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
 
   const toggleOption = (option: OptionType) => {
     setSelectedOptions(prev => 
@@ -33,10 +36,10 @@ export default function CategoryPage() {
   const allSectionColumns = 3
 
   return (
-    <MainMenuLayout title="Category name" activePage="category">
+    <MainMenuLayout title={t('category.title')} activePage="category">
       <div className="w-full h-full mx-auto space-y-5 px-4 py-2">
         <div className="space-y-3">
-          <h2 className="text-4xl font-bold leading-tight" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Pick your option</h2>
+          <h2 className="text-4xl font-bold leading-tight" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('category.pickYourOption')}</h2>
           <div className="flex gap-3 mt-7">
             <Button
               variant="outline"
@@ -64,7 +67,7 @@ export default function CategoryPage() {
                   </div>
                 </div>
               )}
-              Hungry
+              {t('category.hungry')}
             </Button>
             <Button
               variant="outline"
@@ -92,7 +95,7 @@ export default function CategoryPage() {
                   </div>
                 </div>
               )}
-              little Hungry
+              {t('category.littleHungry')}
             </Button>
             <Button
               variant="outline"
@@ -120,14 +123,14 @@ export default function CategoryPage() {
                   </div>
                 </div>
               )}
-              New Try
+              {t('category.newTry')}
             </Button>
           </div>
         </div>
 
         {/* Our picks Section */}
         <div>
-          <h2 className="text-4xl font-bold mb-4 mt-10" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Our picks</h2>
+          <h2 className="text-4xl font-bold mb-4 mt-10" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('category.ourPicks')}</h2>
           <div className={`grid ${ourPicksProductCount === 2 ? 'grid-cols-2 gap-6' : 'grid-cols-3 gap-4'}`}>
             {Array.from({ length: ourPicksProductCount }, (_, i) => i + 1).map((item) => (
               <div key={item} className="flex flex-col items-center cursor-pointer">
@@ -141,7 +144,7 @@ export default function CategoryPage() {
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="flex items-center justify-between gap-8 w-full mb-1">
-                    <h3 className="text-2xl font-bold leading-tight" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Product</h3>
+                    <h3 className="text-2xl font-bold leading-tight" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('category.product')}</h3>
                     <p className="text-xl font-bold leading-none" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>7 $</p>
                   </div>
                   <p className="text-lg leading-tight w-full text-left" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>1500 cal</p>
@@ -153,13 +156,13 @@ export default function CategoryPage() {
 
         {/* All Section */}
         <div className="space-y-3.5">
-          <h2 className="text-4xl font-bold leading-tight mb-4" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>All</h2>
+          <h2 className="text-4xl font-bold leading-tight mb-4" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('category.all')}</h2>
           <div className={`grid ${allSectionColumns === 2 ? 'grid-cols-2 gap-6 max-w-[540px]' : 'grid-cols-3 gap-2.5'}`}>
             
             {/* Box 1 - Diagonal Yellow/White */}
             <Card
               className="relative overflow-hidden rounded-[14px] border cursor-pointer hover:shadow-md transition-shadow bg-white"
-              style={{ ...theme.getStyle('greyDarkBorder') }}
+              style={{ ...theme.getStyle('greyDarkBorder'), ...boxShadowStyle }}
             >
               <CardContent className="relative p-0 w-full" style={{ height: '300px' }}>
                 {/* Diagonal yellow background - top-left triangle */}
@@ -175,7 +178,7 @@ export default function CategoryPage() {
 
                 {/* New label */}
                 <div className="absolute left-4 top-10 z-10">
-                  <span className="text-[52px] font-extrabold leading-none" style={{ ...theme.getStyle('white'), ...theme.getStyle('fontBaloo') }}>New</span>
+                  <span className="text-[52px] font-extrabold leading-none" style={{ ...theme.getStyle('white'), ...theme.getStyle('fontBaloo') }}>{t('category.new')}</span>
                 </div>
 
                 {/* Burger image */}
@@ -192,7 +195,7 @@ export default function CategoryPage() {
 
                 {/* Product name and calories - bottom left */}
                 <div className="absolute left-4 bottom-2 z-20">
-                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Product</p>
+                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('category.product')}</p>
                   <p className="text-[15px] text-bold" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>1500 cal</p>
                 </div>
 
@@ -206,11 +209,11 @@ export default function CategoryPage() {
             {/* Box 2 - Full Yellow */}
             <Card
               className="relative overflow-hidden rounded-[14px] border cursor-pointer hover:shadow-md transition-shadow"
-              style={{ ...theme.getStyle('secondaryBg'), ...theme.getStyle('greyDarkBorder') }}
+              style={{ ...theme.getStyle('secondaryBg'), ...theme.getStyle('greyDarkBorder'), ...boxShadowStyle }}
             >
               <CardContent className="p-2.5 space-y-1.5">
                 <div className="absolute top-7 left-1/2" style={{ transform: 'translateX(-65%)' }}>
-                  <span className="text-[82px] font-black leading-none tracking-wide" style={{ ...theme.getStyle('white'), ...theme.getStyle('fontBaloo') }}>NEW</span>
+                  <span className="text-[82px] font-black leading-none tracking-wide" style={{ ...theme.getStyle('white'), ...theme.getStyle('fontBaloo') }}>{t('category.new').toUpperCase()}</span>
                 </div>
 
                 <div className="relative w-full aspect-square rounded-lg flex items-center justify-center overflow-hidden">
@@ -218,7 +221,7 @@ export default function CategoryPage() {
                 </div>
 
                 <div className="space-y-0">
-                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Product 2</p>
+                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('category.product')} 2</p>
                   <p className="text-[15px] text-bold" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>1200 cal</p>
                 </div>
 
@@ -231,7 +234,7 @@ export default function CategoryPage() {
             {/* Box 3 - Badge New */}
             <Card
               className="relative overflow-hidden rounded-[14px] border cursor-pointer hover:shadow-md transition-shadow"
-              style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyDarkBorder') }}
+              style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyDarkBorder'), ...boxShadowStyle }}
             >
               <CardContent className="p-2.5 space-y-1.5">
                 <div className="absolute top-2 left-4 z-10">
@@ -243,7 +246,7 @@ export default function CategoryPage() {
                 </div>
 
                 <div className="space-y-0">
-                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Product 3</p>
+                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('category.product')} 3</p>
                   <p className="text-[15px] text-bold" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>900 cal</p>
                 </div>
 
@@ -256,7 +259,7 @@ export default function CategoryPage() {
             {/* Box 4 - Ribbon New */}
             <Card
               className="relative overflow-hidden rounded-[14px] border cursor-pointer hover:shadow-md transition-shadow"
-              style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyDarkBorder') }}
+              style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyDarkBorder'), ...boxShadowStyle }}
             >
               <CardContent className="p-2.5 space-y-1.5">
                 <div className="absolute top-0 right-0 z-10">
@@ -268,7 +271,7 @@ export default function CategoryPage() {
                 </div>
 
                 <div className="space-y-0">
-                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Product 4</p>
+                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('category.product')} 4</p>
                   <p className="text-[15px] text-bold" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>1800 cal</p>
                 </div>
 
@@ -282,7 +285,7 @@ export default function CategoryPage() {
             {allSectionColumns === 3 && (
               <Card
                 className="relative overflow-hidden rounded-[14px] border cursor-pointer hover:shadow-md transition-shadow"
-                style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyDarkBorder') }}
+                style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyDarkBorder'), ...boxShadowStyle }}
               >
               <CardContent className="p-2.5 space-y-1.5">
                 <div className="absolute -mt-12 -ml-3 z-10">
@@ -294,7 +297,7 @@ export default function CategoryPage() {
                 </div>
 
                 <div className="space-y-0">
-                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Product 5</p>
+                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('category.product')} 5</p>
                   <p className="text-[15px] text-bold" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>1100 cal</p>
                 </div>
 
@@ -309,7 +312,7 @@ export default function CategoryPage() {
             {allSectionColumns === 3 && (
               <Card
                 className="relative overflow-hidden rounded-[14px] border cursor-pointer hover:shadow-md transition-shadow"
-                style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyDarkBorder') }}
+                style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyDarkBorder'), ...boxShadowStyle }}
               >
               <CardContent className="p-2.5 space-y-1.5">
                 <div className="relative w-full aspect-square rounded-lg flex items-center justify-center overflow-hidden opacity-30">
@@ -317,12 +320,12 @@ export default function CategoryPage() {
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center mt-36">
                   <p className="text-[12px] font-semibold text-center px-1.5 leading-tight" style={{ ...theme.getStyle('error'), ...theme.getStyle('fontSerious') }}>
-                    temporarily out of stock
+                    {t('category.outOfStock')}
                   </p>
                 </div>
 
                 <div className="space-y-0">
-                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>Product 6</p>
+                  <p className="text-[20px] font-extrabold leading-tight mb-0" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>{t('category.product')} 6</p>
                   <p className="text-[15px] text-bold" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>2000 cal</p>
                 </div>
 

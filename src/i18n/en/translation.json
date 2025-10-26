@@ -73,6 +73,123 @@
     "subtitle": "To proceed with your order, click 'Continue'",
     "continue": "Continue"
   },
+  "donation": {
+    "title": "Want to donate?",
+    "subtitle": "Our support brings hope and comfort to struggling families",
+    "thanks": "Thank you for your help",
+    "roundUp": "Round Up",
+    "subtotal": "Subtotal: {{amount}} $",
+    "makeDonation": "Make a donation",
+    "notToday": "Not today"
+  },
+  "tip": {
+    "title": "Rate us",
+    "subtitle": "Your rating shows appreciation for our staff's hard work, thank you for your support",
+    "askTip": "Want to leave a tip?",
+    "info": "Tip is calculated on your order total before taxes.",
+    "placeholder": "0.00$",
+    "giveTip": "Give a tip",
+    "notToday": "Not today"
+  },
+  "catalog": {
+    "title": "Good morning.",
+    "forYouTitle": "For you",
+    "productName": "Product",
+    "price": "{{price}} $",
+    "calories": "{{calories}} cal",
+    "helpTitle": "Need help choosing?",
+    "helpSubtitle": "We've got you",
+    "helpDescription": "Tap to scan the QR-code",
+    "mcSelectsTitle": "Mc Selects",
+    "trioBurger": {
+      "line1": "Trio",
+      "line2": "Burger"
+    },
+    "familyMeal": {
+      "line1": "Family",
+      "line2": "Meal"
+    },
+    "cantChooseTitle": "Can't choose? We've got you.",
+    "cantChooseSubtitle": "Quick questions, great matches",
+    "cantChooseCta": "Tap to start",
+    "mccafeTitle": "McCafe",
+    "happyMeal": {
+      "line1": "Happy",
+      "line2": "meal"
+    },
+    "bestSellersTitle": "Best Sellers",
+    "notLoggedIn": {
+      "scanCouponTitle": "Scan your coupon",
+      "scanCouponSubtitle": "Your rewards are just a scan away – grab them now!",
+      "message": "Please try again later or log in to access personalized offers and one-purchase only deals"
+    }
+  },
+  "category": {
+    "title": "Category name",
+    "pickYourOption": "Pick your option",
+    "hungry": "Hungry",
+    "littleHungry": "little Hungry",
+    "newTry": "New Try",
+    "ourPicks": "Our picks",
+    "all": "All",
+    "new": "New",
+    "product": "Product",
+    "outOfStock": "temporarily out of stock"
+  },
+  "customization": {
+    "restart": "Restart",
+    "mostPopular": "Most popular",
+    "previousChoice": "Previous choice",
+    "ourRecommendation": "Our recommendation",
+    "orderedBy": "#1, Ordered by 100+ others",
+    "size": "Size",
+    "subsection": "Subsection",
+    "default": "Default",
+    "option": "Option",
+    "frequentlyBought": "Frequently bought together",
+    "popular": "Popular",
+    "addToCart": "Add to cart",
+    "calorieInfo": "Caloric requirements vary by age and activity level, ranging from approximately 1,000-1,800 kcal daily for children, 1,800-2,800 kcal for adolescents, and 1,600-3,000 kcal for adults, with differences based on gender and lifestyle"
+  },
+  "offers": {
+    "title": "Offers",
+    "exclusiveOffer": "Exclusive One-Time Offer – 25% Off Your Next Purchase",
+    "validOneUse": "Valid for One Use Only!",
+    "freeFries": "Get FREE Medium Fries with every Big Mac® or McChicken® purchase.",
+    "limitedTime": "Only available for a limited time – order now and enjoy your treat!",
+    "scanCoupon": "Scan your coupon",
+    "scanRewards": "Your rewards are just a scan away – grab them now!",
+    "sweetDeal": "Sweet Deal!",
+    "sweetDealDesc": "Get a FREE Sundae with any meal purchase over $15",
+    "limitedTimeOnly": "Limited time only.",
+    "doubleRefreshment": "Double the Refreshment!",
+    "buyOneDrink": "Buy one drink, get one FREE!",
+    "anySizeDrink": "Any size soft drink – perfect for sharing",
+    "coffeeBreak": "Coffee Break Deal Only $1.98!",
+    "coffeeBreakDesc": "Recharge your day with any small McCafe coffee (Latte, Cappuccino, or Americano) for just $1.98",
+    "termsConditions": "Termes & Conditions",
+    "applyToCart": "Apply to cart",
+    "offerName": "Offer name"
+  },
+  "trioSelection": {
+    "step1Title": "Choose your burger",
+    "step2Title": "Choose your side",
+    "step3Title": "Choose your drink",
+    "simple": "Simple",
+    "double": "Double",
+    "tripler": "Tripler",
+    "fries": "Fries",
+    "poutine": "Poutine",
+    "salad": "Salad",
+    "coke": "Coke",
+    "sprite": "Sprite",
+    "coffee": "Coffee",
+    "sizeS": "S",
+    "sizeM": "M",
+    "sizeL": "L",
+    "customize": "Customize",
+    "chooseSize": "Choose size"
+  },
   "common": {
     "yes": "Yes",
     "no": "No",
@@ -80,6 +197,7 @@
     "cancel": "Cancel",
     "back": "Back",
     "next": "Next",
-    "close": "Close"
+    "close": "Close",
+    "or": "or"
   }
 }

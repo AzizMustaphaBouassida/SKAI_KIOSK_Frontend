@@ -3,6 +3,7 @@ import { useTheme } from '../hooks/useTheme'
 
 export default function StepsBarLayout({ currentStep = 3 }) {
     const theme = useTheme()
+    const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
 
     const steps = [
         { id: 1, label: "Burger" },
@@ -27,8 +28,8 @@ export default function StepsBarLayout({ currentStep = 3 }) {
             className="rounded-2xl border shadow-sm p-6 w-64"
             style={{
                 ...theme.getStyle('whiteBg'),
-                borderColor: theme.colors.greyDark,
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                borderColor: theme.colors.greyDarker,
+                ...boxShadowStyle,
             }}
         >
             <h2 className="font-bold text-4xl mb-10" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>

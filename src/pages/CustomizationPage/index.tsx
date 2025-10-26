@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslation } from 'react-i18next'
 // @ts-ignore
 import HeaderLayout from "@/layouts/header-layout"
 import { Button } from "@/components/ui/button"
@@ -63,6 +64,7 @@ function ProductModal({
   product: { name: string; price: string; calories: string; image?: string }
 }) {
   const theme = useTheme()
+  const { t } = useTranslation()
   const [quantity, setQuantity] = useState(1)
 
   return (
@@ -102,9 +104,7 @@ function ProductModal({
 
         {/* Calorie Information */}
         <p className="text-[22px] leading-relaxed mb-9" style={{ color: theme.colors.greyDarker }}>
-          Caloric requirements vary by age and activity level, ranging from approximately 1,000-1,800 kcal daily for
-          children, 1,800-2,800 kcal for adolescents, and 1,600-3,000 kcal for adults, with differences based on gender
-          and lifestyle
+          {t('customization.calorieInfo')}
         </p>
 
         {/* Quantity Controls */}
@@ -150,7 +150,7 @@ function ProductModal({
             }}
             onClick={onClose}
           >
-            Close
+            {t('common.close')}
           </Button>
           <Button
             className="w-[45%] h-[84px] text-[30px] font-bold rounded-2xl"
@@ -159,7 +159,7 @@ function ProductModal({
               ...theme.getStyle("black"),
             }}
           >
-            Add to cart
+            {t('customization.addToCart')}
           </Button>
         </div>
       </DialogContent>
@@ -175,6 +175,7 @@ function CustomizationInterface({
   onClose: () => void
 }) {
   const theme = useTheme()
+  const { t } = useTranslation()
   const [selectedTab, setSelectedTab] = useState<"popular" | "previous" | "recommendation" | null>(null)
   const [selectedSize, setSelectedSize] = useState<"S" | "M" | "L" | "XL" | null>(null)
   const [quantity, setQuantity] = useState(1)
@@ -187,20 +188,20 @@ function CustomizationInterface({
   const tabs = [
     {
       id: "popular" as const,
-      label: "Most popular",
-      subtitle: "#1, Ordered by 100+ others",
+      label: t('customization.mostPopular'),
+      subtitle: t('customization.orderedBy'),
       detail: "small, regular, tomato sauce",
     },
     {
       id: "previous" as const,
-      label: "Previous choice",
-      subtitle: "#1, Ordered by 100+ others",
+      label: t('customization.previousChoice'),
+      subtitle: t('customization.orderedBy'),
       detail: "small, regular, tomato sauce",
     },
     {
       id: "recommendation" as const,
-      label: "Our recommendation",
-      subtitle: "#1, Ordered by 100+ others",
+      label: t('customization.ourRecommendation'),
+      subtitle: t('customization.orderedBy'),
       detail: "small, regular, tomato sauce",
     },
   ]
@@ -283,7 +284,7 @@ function CustomizationInterface({
               ...theme.getStyle("greyDarker"),
             }}
           >
-            Restart
+            {t('customization.restart')}
             <span
               className="inline-flex items-center justify-center w-10 h-10 rounded-lg"
               style={{ backgroundColor: theme.colors.white }}
@@ -323,7 +324,7 @@ function CustomizationInterface({
         <div className="mb-8">
           <div className="flex items-center gap-50 mb-5">
             <h3 className="text-[40px] font-extrabold mb-20" style={theme.getStyle("black")}>
-              Size
+              {t('customization.size')}
             </h3>
             <div className="flex gap-4">
               {sizes.map((size) => {
@@ -369,7 +370,7 @@ function CustomizationInterface({
             >
               <div className="flex items-center gap-4">
                 <h3 className="text-[40px] font-extrabold" style={theme.getStyle("black")}>
-                  Subsection
+                  {t('customization.subsection')}
                 </h3>
                 <span
                   className="px-4 py-1.5 w-[185px] h-[55px] rounded text-[25px] font-normal ml-100"
@@ -378,7 +379,7 @@ function CustomizationInterface({
                     color: theme.colors.black,
                   }}
                 >
-                  Default
+                  {t('customization.default')}
                 </span>
               </div>
               <div
@@ -404,7 +405,7 @@ function CustomizationInterface({
                     }}
                   >
                     <span className="text-[26px] font-bold" style={theme.getStyle("black")}>
-                      Option
+                      {t('customization.option')}
                     </span>
                     <button
                       onClick={() => {
@@ -445,7 +446,7 @@ function CustomizationInterface({
               className="w-full flex items-center justify-between p-5"
             >
               <h3 className="text-[40px] font-extrabold" style={theme.getStyle("black")}>
-                subsection
+                {t('customization.subsection')}
               </h3>
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center"
@@ -470,7 +471,7 @@ function CustomizationInterface({
                     }}
                   >
                     <span className="text-[26px] font-bold" style={theme.getStyle("black")}>
-                      Option
+                      {t('customization.option')}
                     </span>
                     <button
                       onClick={() => {
@@ -506,7 +507,7 @@ function CustomizationInterface({
         <style>{noScrollbarStyles}</style>
         <div className="mb-6">
           <h3 className="text-[40px] font-extrabold mb-5" style={theme.getStyle("black")}>
-            Frequently bought together
+            {t('customization.frequentlyBought')}
           </h3>
           <div className="flex gap-5">
             {frequentlyBought.map((item) => (
@@ -532,7 +533,7 @@ function CustomizationInterface({
                         ...theme.getStyle("black"),
                       }}
                     >
-                      Popular
+                      {t('customization.popular')}
                     </span>
                   </div>
                   <div className="flex flex-col items-end gap-3">
@@ -556,7 +557,7 @@ function CustomizationInterface({
             }}
             onClick={onClose}
           >
-            Cancel
+            {t('common.cancel')}
           </Button>
           <Button
             className="w-[60%] h-[70px] text-[24px] font-bold rounded-xl flex items-center justify-center gap-3"
@@ -568,7 +569,7 @@ function CustomizationInterface({
             <div className="w-6 h-6 rounded-full border-2 border-black flex items-center justify-center">
               <Plus className="w-4 h-4" />
             </div>
-            Add to cart
+            {t('customization.addToCart')}
           </Button>
         </div>
       </div>
