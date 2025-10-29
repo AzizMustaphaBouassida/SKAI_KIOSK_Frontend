@@ -41,6 +41,12 @@
     "price": "12 $",
     "goBack": "Go Back"
   },
+  "paymentMethod": {
+    "title": "How would you pay?",
+    "debitCard": "Debit Card",
+    "cash": "Cash",
+    "goBack": "Go Back"
+  },
   "loginSuccess": {
     "message": "You have been logged in sucessfuly."
   },

@@ -27,7 +27,9 @@ import StepsBarLayout from './layouts/steps-bar-layout'
 import StepsMenuLayout from './layouts/steps-menu-layout'
 import HeaderIconTextLayout from './layouts/header-icon-text-layout'
 import TrioSelectionPage from './pages/TrioSelectionPage'
-
+import RecommendationPage from './pages/RecommendationPage'
+import CustomerInfoPage from './pages/CustomerInfoPage'
+import OrderNumberPage from './pages/OrderNumberPage'
 function App() {
 
   return (
@@ -47,11 +49,14 @@ function App() {
             <Route path="/tip" element={<TipPage />} />
             <Route path="/trio-selection" element={<TrioSelectionPage />} />
             <Route path="/customization" element={<CustomizationPage />} />
-
+            <Route path="/recommendation" element={<RecommendationPage />} />
+            <Route path="/customer-info-phone" element={<CustomerInfoPage type="phone" />} />
+            <Route path="/customer-info-name" element={<CustomerInfoPage type="name" />} />
+            <Route path="/order-number" element={<OrderNumberPage />} />
             {/* Selection pages */}
             <Route path="/make-trio" element={<SelectionPage type="make-trio" />} />
             <Route path="/order-type" element={<SelectionPage type="order-type" />} />
-
+            <Route path="/payment-method" element={<SelectionPage type="payment-method" />} />
 
             {/* Confirmation pages - pages with Cancel/Continue buttons */}
             <Route path="/logout-confirmation" element={<ConfirmationPage type="logout" />} />

@@ -41,6 +41,12 @@
     "price": "12 $",
     "goBack": "Revenir"
   },
+  "paymentMethod": {
+    "title": "Comment souhaitez-vous payer ?",
+    "debitCard": "Carte de débit",
+    "cash": "Espèces",
+    "goBack": "Revenir"
+  },
   "loginSuccess": {
     "message": "Vous avez été connecté avec succès."
   },

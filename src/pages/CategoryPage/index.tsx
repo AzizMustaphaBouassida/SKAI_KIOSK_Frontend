@@ -33,7 +33,7 @@ export default function CategoryPage() {
   }
 
   const ourPicksProductCount = 2
-  const allSectionColumns = 3
+  const allSectionColumns = 2
 
   return (
     <MainMenuLayout title={t('category.title')} activePage="category">
