@@ -30,6 +30,10 @@ import TrioSelectionPage from './pages/TrioSelectionPage'
 import RecommendationPage from './pages/RecommendationPage'
 import CustomerInfoPage from './pages/CustomerInfoPage'
 import OrderNumberPage from './pages/OrderNumberPage'
+import ReviewOrderPage from './pages/ReviewOrderPage'
+import ConfirmOrderPage from './pages/ConfirmOrderPage'
+import AddedSuccessPage from './pages/AddedSuccessPage'
+import FollowInstructionsPage from './pages/FollowInstructionsPage'
 function App() {
 
   return (
@@ -53,6 +57,10 @@ function App() {
             <Route path="/customer-info-phone" element={<CustomerInfoPage type="phone" />} />
             <Route path="/customer-info-name" element={<CustomerInfoPage type="name" />} />
             <Route path="/order-number" element={<OrderNumberPage />} />
+            <Route path="/review-order" element={<ReviewOrderPage />} />
+            <Route path="/confirm-order" element={<ConfirmOrderPage />} />
+            <Route path="/added-success" element={<AddedSuccessPage />} />
+            <Route path="/follow-instructions" element={<FollowInstructionsPage />} />
             {/* Selection pages */}
             <Route path="/make-trio" element={<SelectionPage type="make-trio" />} />
             <Route path="/order-type" element={<SelectionPage type="order-type" />} />
