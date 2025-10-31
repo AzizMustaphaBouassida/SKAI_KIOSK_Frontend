@@ -19,15 +19,15 @@ import barcodeImage from "@/assets/images/barcode-image.svg"
 import sweetDealImage from "@/assets/images/sweetdeal-image.svg"
 import doubleRefreshmentImage from "@/assets/images/doublerefreshment_image.svg"
 import coffeeImage from "@/assets/images/coffee-image.svg"
-import offerTermsIcon from "@/assets/icons/offer-terms_conditions-icon.svg"
 import notLoggedInImage from "@/assets/images/not_loged_in-image.svg"
-import qrCodeIcon from "@/assets/icons/qrcode.svg"
+import qrCodeIcon from "@/assets/images/scan-client-image.svg"
 
 interface OfferData {
   id: string
   title: string
   description: string
   termsAndConditions: string
+  image: string
 }
 
 export default function Offers() {
@@ -43,37 +43,43 @@ export default function Offers() {
       id: "offer1",
       title: "Exclusive One-Time Offer – 25% Off Your Next Purchase",
       description: "Valid for One Use Only!",
-      termsAndConditions: "This offer is valid at participating McDonald's restaurants from September 1st to September 30th, 2025. Customers who purchase any Big Mac Meal will receive a free medium fries with their order. The offer is limited to one redemption per customer per transaction and is valid for dine-in, takeaway, and drive-thru only. It cannot be combined with other discounts, promotions, or coupons, and it is not exchangeable for cash or alternative menu items"
+      termsAndConditions: "This offer is valid at participating McDonald's restaurants from September 1st to September 30th, 2025. Customers who purchase any Big Mac Meal will receive a free medium fries with their order. The offer is limited to one redemption per customer per transaction and is valid for dine-in, takeaway, and drive-thru only. It cannot be combined with other discounts, promotions, or coupons, and it is not exchangeable for cash or alternative menu items",
+      image: discountImage,
     },
     offer2: {
       id: "offer2",
       title: "Get FREE Medium Fries with every Big Mac® or McChicken® purchase",
       description: "Only available for a limited time – order now and enjoy your treat!",
-      termsAndConditions: "This offer is valid at participating McDonald's restaurants from September 1st to September 30th, 2025. Customers who purchase any Big Mac Meal or McChicken Meal will receive a free medium fries with their order. The offer is limited to one redemption per customer per transaction and is valid for dine-in, takeaway, and drive-thru only. It cannot be combined with other discounts, promotions, or coupons, and it is not exchangeable for cash or alternative menu items."
+      termsAndConditions: "This offer is valid at participating McDonald's restaurants from September 1st to September 30th, 2025. Customers who purchase any Big Mac Meal or McChicken Meal will receive a free medium fries with their order. The offer is limited to one redemption per customer per transaction and is valid for dine-in, takeaway, and drive-thru only. It cannot be combined with other discounts, promotions, or coupons, and it is not exchangeable for cash or alternative menu items.",
+      image: friesImage,
     },
     offer3: {
       id: "offer3",
       title: "Scan your coupon",
       description: "Your rewards are just a scan away – grab them now!",
-      termsAndConditions: "This coupon is valid at participating McDonald's restaurants. Simply scan the barcode at the counter or drive-thru to redeem your offer. The coupon cannot be combined with other promotions and is valid for one-time use only. Terms and conditions apply."
+      termsAndConditions: "This coupon is valid at participating McDonald's restaurants. Simply scan the barcode at the counter or drive-thru to redeem your offer. The coupon cannot be combined with other promotions and is valid for one-time use only. Terms and conditions apply.",
+      image: barcodeImage,
     },
     offer4: {
       id: "offer4",
       title: "Sweet Deal!",
       description: "Get a FREE Sundae with any meal purchase over $15. Limited time only.",
-      termsAndConditions: "This offer is valid at participating McDonald's restaurants. Purchase any meal worth $15 or more to receive a free sundae. The offer is limited to one redemption per customer per transaction and cannot be combined with other discounts or promotions. Valid for dine-in, takeaway, and drive-thru only."
+      termsAndConditions: "This offer is valid at participating McDonald's restaurants. Purchase any meal worth $15 or more to receive a free sundae. The offer is limited to one redemption per customer per transaction and cannot be combined with other discounts or promotions. Valid for dine-in, takeaway, and drive-thru only.",
+      image: sweetDealImage,
     },
     offer5: {
       id: "offer5",
       title: "Double the Refreshment!",
       description: "Buy one drink, get one FREE! Any size soft drink – perfect for sharing",
-      termsAndConditions: "This offer is valid at participating McDonald's restaurants. Purchase any size soft drink to receive another one of equal or lesser value for free. The offer is limited to one redemption per customer per transaction and cannot be combined with other discounts or promotions. Valid for dine-in, takeaway, and drive-thru only."
+      termsAndConditions: "This offer is valid at participating McDonald's restaurants. Purchase any size soft drink to receive another one of equal or lesser value for free. The offer is limited to one redemption per customer per transaction and cannot be combined with other discounts or promotions. Valid for dine-in, takeaway, and drive-thru only.",
+      image: doubleRefreshmentImage,
     },
     offer6: {
       id: "offer6",
       title: "Coffee Break Deal Only $1.98!",
       description: "Recharge your day with any small McCafe coffee (Latte, Cappuccino, or Americano) for just $1.98",
-      termsAndConditions: "This offer is valid at participating McDonald's restaurants. Purchase any small McCafe coffee (Latte, Cappuccino, or Americano) for just $1.98. The offer is limited to one redemption per customer per transaction and cannot be combined with other discounts or promotions. Valid for dine-in, takeaway, and drive-thru only."
+      termsAndConditions: "This offer is valid at participating McDonald's restaurants. Purchase any small McCafe coffee (Latte, Cappuccino, or Americano) for just $1.98. The offer is limited to one redemption per customer per transaction and cannot be combined with other discounts or promotions. Valid for dine-in, takeaway, and drive-thru only.",
+      image: coffeeImage,
     }
   }
 
@@ -249,10 +255,15 @@ export default function Offers() {
                 {t('offers.termsConditions')}
               </DialogDescription>
             </div>
-            {/* Offer Terms Icon */}
-            <div className="flex-shrink-0 ml-4">
-              <img src={offerTermsIcon} alt="Terms & Conditions" className="w-[100px] h-[100px] mt-24 mr-8" />
-            </div>
+            {selectedOffer?.image && (
+              <div className="flex-shrink-0 ml-4">
+                <img
+                  src={selectedOffer.image}
+                  alt={selectedOffer.title}
+                  className="w-[180px] h-[180px] object-contain mt-12 mr-8"
+                />
+              </div>
+            )}
           </div>
 
           {/* Terms and Conditions Text */}

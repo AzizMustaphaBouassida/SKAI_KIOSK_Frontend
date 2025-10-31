@@ -15,12 +15,24 @@ import doubleBurgerImage from "@/assets/images/double-burger-image.svg";
 import poutineImage from "@/assets/images/poutine-image.svg";
 // @ts-ignore
 import { useTheme } from "@/hooks/useTheme";
+import React, { useState } from "react";
 
 export default function RecommendationPage() {
   const theme = useTheme();
   const boxShadowStyle = { boxShadow: "0px 4px 4px 0px #00000040" };
 
-  const layout = "list" as "grid-6" | "grid-4" | "list"; // Change this to switch layouts
+  const layout = "grid-2" as "grid-6" | "grid-4" | "grid-2" | "list";
+
+  // State for vegan icons visibility per card in grid
+  // Only cards 2 and 5 (indexes 1 and 4) display vegan icons
+  const [veganVisible, setVeganVisible] = useState([
+    false, // Card 1
+    false, // Card 2
+    true, // Card 3
+    true, // Card 4
+    false, // Card 5
+    true, // Card 6
+  ]);
 
   const listProducts = [
     {
@@ -130,11 +142,19 @@ export default function RecommendationPage() {
           // Grid Layout
           <div
             className={`grid justify-center ${
-              layout === "grid-4"
+              layout === "grid-2"
                 ? "grid-cols-2 gap-x-6 gap-y-8"
-                : "grid-cols-3 gap-x-6 gap-y-8"
+                : layout === "grid-4"
+                  ? "grid-cols-2 gap-x-6 gap-y-8"
+                  : "grid-cols-3 gap-x-6 gap-y-8"
             } mx-auto`}
-            style={layout === "grid-4" ? { maxWidth: "560px" } : {}}
+            style={
+              layout === "grid-2"
+                ? { maxWidth: "560px" }
+                : layout === "grid-4"
+                  ? { maxWidth: "560px" }
+                  : {}
+            }
           >
             {/* === Card 1 === */}
             <Card
@@ -157,8 +177,27 @@ export default function RecommendationPage() {
                   className="absolute top-3 right-3 z-10 hover:opacity-70 transition-opacity"
                   style={{ ...theme.getStyle("greyDarker") }}
                 >
-                  <Plus size={24} strokeWidth={2} />
+                  <Plus size={32} strokeWidth={2} />
                 </button>
+                {veganVisible[0] && (
+                  <div className="absolute right-3 flex flex-col gap-3 z-20 mt-[50px]">
+                    <img
+                      src={VeganIcon || "/placeholder.svg"}
+                      alt="Vegan"
+                      className="w-9 h-9"
+                    />
+                    <img
+                      src={Vegan2Icon || "/placeholder.svg"}
+                      alt="Hot"
+                      className="w-9 h-9"
+                    />
+                    <img
+                      src={VeganIcon || "/placeholder.svg"}
+                      alt="Vegan"
+                      className="w-9 h-9"
+                    />
+                  </div>
+                )}
                 <div className="flex-1 flex items-center justify-center">
                   <img
                     src={TrioImage || "/placeholder.svg"}
@@ -216,8 +255,27 @@ export default function RecommendationPage() {
                   className="absolute top-3 right-3 z-10 hover:opacity-70 transition-opacity"
                   style={{ ...theme.getStyle("greyDarker") }}
                 >
-                  <Plus size={24} strokeWidth={2} />
+                  <Plus size={32} strokeWidth={2} />
                 </button>
+                {veganVisible[1] && (
+                  <div className="absolute right-3 flex flex-col gap-3 z-20 mt-[50px]">
+                    <img
+                      src={VeganIcon || "/placeholder.svg"}
+                      alt="Vegan"
+                      className="w-9 h-9"
+                    />
+                    <img
+                      src={Vegan2Icon || "/placeholder.svg"}
+                      alt="Hot"
+                      className="w-9 h-9"
+                    />
+                    <img
+                      src={VeganIcon || "/placeholder.svg"}
+                      alt="Vegan"
+                      className="w-9 h-9"
+                    />
+                  </div>
+                )}
                 <div className="flex-1 flex items-center justify-center">
                   <img
                     src={CoffeeDrinkImage || "/placeholder.svg"}
@@ -262,6 +320,7 @@ export default function RecommendationPage() {
             </Card>
 
             {/* === Card 3 === */}
+            {layout !== "grid-2" && (
             <Card
               className="relative overflow-visible rounded-xl border-[1.5px] cursor-pointer hover:shadow-md transition-shadow h-[330px] w-[262px]"
               style={{
@@ -275,26 +334,27 @@ export default function RecommendationPage() {
                   className="absolute top-3 right-3 z-10 hover:opacity-70 transition-opacity"
                   style={{ ...theme.getStyle("greyDarker") }}
                 >
-                  <Plus size={24} strokeWidth={2} />
+                  <Plus size={32} strokeWidth={2} />
                 </button>
-
-                <div className="absolute right-3 flex flex-col gap-3 z-20 mt-[50px]">
-                  <img
-                    src={VeganIcon || "/placeholder.svg"}
-                    alt="Vegan"
-                    className="w-9 h-9"
-                  />
-                  <img
-                    src={Vegan2Icon || "/placeholder.svg"}
-                    alt="Hot"
-                    className="w-9 h-9"
-                  />
-                  <img
-                    src={VeganIcon || "/placeholder.svg"}
-                    alt="Vegan"
-                    className="w-9 h-9"
-                  />
-                </div>
+                {veganVisible[2] && (
+                  <div className="absolute right-3 flex flex-col gap-3 z-20 mt-[50px]">
+                    <img
+                      src={VeganIcon || "/placeholder.svg"}
+                      alt="Vegan"
+                      className="w-9 h-9"
+                    />
+                    <img
+                      src={Vegan2Icon || "/placeholder.svg"}
+                      alt="Hot"
+                      className="w-9 h-9"
+                    />
+                    <img
+                      src={VeganIcon || "/placeholder.svg"}
+                      alt="Vegan"
+                      className="w-9 h-9"
+                    />
+                  </div>
+                )}
 
                 <div className="flex-1 flex items-center justify-center">
                   <img
@@ -339,8 +399,10 @@ export default function RecommendationPage() {
                 </div>
               </CardContent>
             </Card>
+            )}
 
             {/* === Card 4 === */}
+            {layout !== "grid-2" && (
             <Card
               className="relative overflow-visible rounded-xl border-[1.5px] cursor-pointer hover:shadow-md transition-shadow h-[330px] w-[262px]"
               style={{
@@ -361,8 +423,27 @@ export default function RecommendationPage() {
                   className="absolute top-3 right-3 z-10 hover:opacity-70 transition-opacity"
                   style={{ ...theme.getStyle("greyDarker") }}
                 >
-                  <Plus size={24} strokeWidth={2} />
+                  <Plus size={32} strokeWidth={2} />
                 </button>
+                {veganVisible[3] && (
+                  <div className="absolute right-3 flex flex-col gap-3 z-20 mt-[50px]">
+                    <img
+                      src={VeganIcon || "/placeholder.svg"}
+                      alt="Vegan"
+                      className="w-9 h-9"
+                    />
+                    <img
+                      src={Vegan2Icon || "/placeholder.svg"}
+                      alt="Hot"
+                      className="w-9 h-9"
+                    />
+                    <img
+                      src={VeganIcon || "/placeholder.svg"}
+                      alt="Vegan"
+                      className="w-9 h-9"
+                    />
+                  </div>
+                )}
                 <div className="flex-1 flex items-center justify-center">
                   <img
                     src={TrioImage || "/placeholder.svg"}
@@ -405,6 +486,7 @@ export default function RecommendationPage() {
                 </div>
               </CardContent>
             </Card>
+            )}
 
             {/* === Card 5 (only in 6-box layout) === */}
             {layout === "grid-6" && (
@@ -421,8 +503,27 @@ export default function RecommendationPage() {
                     className="absolute top-3 right-3 z-10 hover:opacity-70 transition-opacity"
                     style={{ ...theme.getStyle("greyDarker") }}
                   >
-                    <Plus size={24} strokeWidth={2} />
+                    <Plus size={32} strokeWidth={2} />
                   </button>
+                  {veganVisible[4] && (
+                    <div className="absolute right-3 flex flex-col gap-3 z-20 mt-[50px]">
+                      <img
+                        src={VeganIcon || "/placeholder.svg"}
+                        alt="Vegan"
+                        className="w-9 h-9"
+                      />
+                      <img
+                        src={Vegan2Icon || "/placeholder.svg"}
+                        alt="Hot"
+                        className="w-9 h-9"
+                      />
+                      <img
+                        src={VeganIcon || "/placeholder.svg"}
+                        alt="Vegan"
+                        className="w-9 h-9"
+                      />
+                    </div>
+                  )}
                   <div className="flex-1 flex items-center justify-center">
                     <img
                       src={CoffeeDrinkImage || "/placeholder.svg"}
@@ -480,26 +581,27 @@ export default function RecommendationPage() {
                     className="absolute top-3 right-3 z-10 hover:opacity-70 transition-opacity"
                     style={{ ...theme.getStyle("greyDarker") }}
                   >
-                    <Plus size={24} strokeWidth={2} />
+                    <Plus size={32} strokeWidth={2} />
                   </button>
-
-                  <div className="absolute right-3 flex flex-col gap-3 z-20 mt-[50px]">
-                    <img
-                      src={VeganIcon || "/placeholder.svg"}
-                      alt="Vegan"
-                      className="w-9 h-9"
-                    />
-                    <img
-                      src={Vegan2Icon || "/placeholder.svg"}
-                      alt="Hot"
-                      className="w-9 h-9"
-                    />
-                    <img
-                      src={VeganIcon || "/placeholder.svg"}
-                      alt="Vegan"
-                      className="w-9 h-9"
-                    />
-                  </div>
+                  {veganVisible[5] && (
+                    <div className="absolute right-3 flex flex-col gap-3 z-20 mt-[50px]">
+                      <img
+                        src={VeganIcon || "/placeholder.svg"}
+                        alt="Vegan"
+                        className="w-9 h-9"
+                      />
+                      <img
+                        src={Vegan2Icon || "/placeholder.svg"}
+                        alt="Hot"
+                        className="w-9 h-9"
+                      />
+                      <img
+                        src={VeganIcon || "/placeholder.svg"}
+                        alt="Vegan"
+                        className="w-9 h-9"
+                      />
+                    </div>
+                  )}
 
                   <div className="flex-1 flex items-center justify-center">
                     <img
@@ -556,11 +658,13 @@ export default function RecommendationPage() {
             fontSize: "24px",
             borderWidth: "1.5px",
             width:
-              layout === "grid-4"
+              layout === "grid-2"
                 ? "calc(262px * 2 + 24px)"
-                : layout === "list"
-                  ? "850px"
-                  : "100%",
+                : layout === "grid-4"
+                  ? "calc(262px * 2 + 24px)"
+                  : layout === "list"
+                    ? "850px"
+                    : "100%",
           }}
         >
           Not today

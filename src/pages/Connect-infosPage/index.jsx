@@ -4,16 +4,11 @@ import { useTheme } from "../../hooks/useTheme"
 import QRCodeSVG from "../../assets/icons/qrcode.svg"
 import LoginInfoIcon from "../../assets/icons/login-info-icon.svg"
 import GiftIcon from "../../assets/icons/gift-icon.svg"
-import { useEffect } from "react"
 
 export default function ConnectInfosPage() {
     const theme = useTheme()
-    const { t, i18n } = useTranslation()
+    const { t} = useTranslation()
     const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
-
-    useEffect(() => {
-        i18n.changeLanguage('fr')
-    }, [i18n])
 
     return (
         <div className="min-h-screen" style={theme.getStyle('whiteBg')}>
@@ -77,7 +72,7 @@ export default function ConnectInfosPage() {
 
                 <div className="mt-16 flex justify-center">
                     <button
-                        className="w-[70vw] max-w-xl h-24 text-3xl font-bold border-2 rounded-xl hover:bg-gray-50 shadow-lg"
+                        className="w-[70vw] max-w-xl h-24 text-4xl font-semibold border-2 rounded-xl hover:bg-gray-50 shadow-lg"
                         style={{
                             ...theme.getStyle('whiteBg'),
                             ...theme.getStyle('greyDarker'),

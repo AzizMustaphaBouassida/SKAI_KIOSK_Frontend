@@ -11,10 +11,11 @@ import { useTheme } from "../../hooks/useTheme";
 import VeganIcon from "@/assets/icons/vegan_icon.svg";
 import Vegan2Icon from "@/assets/icons/vegan2-icon.svg";
 import Vegan3Icon from "@/assets/icons/vegan3-icon.svg";
-import NewStarIcon from "@/assets/icons/new-icon.svg";
+import NewStarIcon from "@/assets/icons/discount-background-icon.svg";
 import NewBadgeIcon from "@/assets/icons/new2-icon.svg";
 import LimitedEditionIcon from "@/assets/icons/limited_edition-icon.svg";
 import BurgerImage from "@/assets/images/foryou-burger-image.svg";
+import picksBackground from "@/assets/icons/our-picks-product-backround-icon.svg";
 
 type OptionType = "hungry" | "little-hungry" | "new-try";
 
@@ -35,12 +36,21 @@ export default function CategoryPage() {
   const ourPicksProductCount = 3;
   const allSectionColumns = 3;
 
-  // 🔹 Dynamic sizing based on number of columns
   const cardHeight = allSectionColumns === 2 ? "342px" : "300px";
   const imageSize = allSectionColumns === 2 ? "230px" : "190px";
   const fontSizeTitle = allSectionColumns === 2 ? "24px" : "20px";
   const fontSizeCal = allSectionColumns === 2 ? "18px" : "15px";
   const fontSizePrice = allSectionColumns === 2 ? "22px" : "18px";
+
+  // State: vegan icon visibility for 6 cards in 'All Section'
+  const [veganVisible] = useState([
+    true, // Card 1
+    false, // Card 2
+    false, // Card 3
+    false, // Card 4
+    false, // Card 5
+    false, // Card 6
+  ]);
 
   return (
     <MainMenuLayout title={t("category.title")} activePage="category">
@@ -124,16 +134,20 @@ export default function CategoryPage() {
                 >
                   <div className="relative mb-3">
                     <div
-                      className={`${ourPicksProductCount === 2 ? "w-[180px] h-[180px]" : "w-[150px] h-[150px]"} rounded-full border-[5px] overflow-hidden flex items-center justify-center`}
+                      className={`${ourPicksProductCount === 2 ? "w-[160px] h-[160px]" : "w-[150px] h-[150px]"} relative flex items-center justify-center`}
                       style={{
                         ...theme.getStyle("whiteBg"),
-                        ...theme.getStyle("primaryBorder"),
                       }}
                     >
                       <img
+                        src={picksBackground}
+                        alt="Ring"
+                        className="absolute w-[110%] left-0 bottom-4 object-contain"
+                      />
+                      <img
                         src={BurgerImage}
                         alt="Product"
-                        className="w-full h-full object-cover"
+                        className="object-contain relative z-10"
                       />
                     </div>
                   </div>
@@ -236,11 +250,31 @@ export default function CategoryPage() {
                   />
                 </div>
 
-                <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col items-center gap-0 z-20">
-                  <img src={VeganIcon} alt="Vegan" className="w-9 h-9" />
-                  <img src={Vegan2Icon} alt="Hot" className="w-12 h-12" />
-                  <img src={Vegan3Icon} alt="Vegan" className="w-9 h-9" />
-                </div>
+                {veganVisible[0] && (
+                  <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col items-center gap-0 z-20">
+                    <img
+                      src={VeganIcon}
+                      alt="Vegan"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                      }
+                    />
+                    <img
+                      src={Vegan2Icon}
+                      alt="Hot"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-12 h-12"
+                      }
+                    />
+                    <img
+                      src={Vegan3Icon}
+                      alt="Vegan"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                      }
+                    />
+                  </div>
+                )}
 
                 <div className="absolute left-4 bottom-2 z-20">
                   <p
@@ -314,6 +348,31 @@ export default function CategoryPage() {
                     style={{ width: imageSize, height: imageSize }}
                   />
                 </div>
+                {veganVisible[1] && (
+                  <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col items-center gap-0 z-20">
+                    <img
+                      src={VeganIcon}
+                      alt="Vegan"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                      }
+                    />
+                    <img
+                      src={Vegan2Icon}
+                      alt="Hot"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-12 h-12"
+                      }
+                    />
+                    <img
+                      src={Vegan3Icon}
+                      alt="Vegan"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                      }
+                    />
+                  </div>
+                )}
                 <div className="space-y-0 absolute left-4 bottom-2">
                   <p
                     className="font-extrabold leading-tight mb-0"
@@ -364,25 +423,63 @@ export default function CategoryPage() {
                 className="relative p-2.5 space-y-1.5"
                 style={{ height: cardHeight }}
               >
-                <div className="absolute top-2 left-4 z-10">
+                <div
+                  className="absolute top-2 left-4 z-10 relative"
+                  style={{
+                    width: allSectionColumns === 2 ? "80px" : "64px",
+                    height: allSectionColumns === 2 ? "80px" : "64px",
+                  }}
+                >
                   <img
                     src={NewStarIcon}
                     alt="New"
-                    className="object-contain"
-                    style={{
-                      width: allSectionColumns === 2 ? "80px" : "64px",
-                      height: allSectionColumns === 2 ? "80px" : "64px",
-                    }}
+                    className="w-full h-full object-contain"
                   />
+                  <span
+                    className="absolute inset-0 flex items-center justify-center font-extrabold leading-none"
+                    style={{
+                      ...theme.getStyle("white"),
+                      ...theme.getStyle("fontBaloo"),
+                      fontSize: allSectionColumns === 2 ? "22px" : "18px",
+                      letterSpacing: "1px",
+                    }}
+                  >
+                    {t("category.new").toUpperCase()}
+                  </span>
                 </div>
                 <div className="relative w-full flex items-center justify-center overflow-hidden">
                   <img
                     src={BurgerImage}
                     alt="Product 3"
-                    className="object-cover mt-5"
+                    className="object-contain transform -translate-y-8"
                     style={{ width: imageSize, height: imageSize }}
                   />
                 </div>
+                {veganVisible[2] && (
+                  <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col items-center gap-0 z-20">
+                    <img
+                      src={VeganIcon}
+                      alt="Vegan"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                      }
+                    />
+                    <img
+                      src={Vegan2Icon}
+                      alt="Hot"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-12 h-12"
+                      }
+                    />
+                    <img
+                      src={Vegan3Icon}
+                      alt="Vegan"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                      }
+                    />
+                  </div>
+                )}
                 <div className="space-y-0 absolute left-4 bottom-2">
                   <p
                     className="font-extrabold leading-tight mb-0"
@@ -452,6 +549,31 @@ export default function CategoryPage() {
                     style={{ width: imageSize, height: imageSize }}
                   />
                 </div>
+                {veganVisible[3] && (
+                  <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col items-center gap-0 z-20">
+                    <img
+                      src={VeganIcon}
+                      alt="Vegan"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                      }
+                    />
+                    <img
+                      src={Vegan2Icon}
+                      alt="Hot"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-12 h-12"
+                      }
+                    />
+                    <img
+                      src={Vegan3Icon}
+                      alt="Vegan"
+                      className={
+                        allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                      }
+                    />
+                  </div>
+                )}
                 <div className="space-y-0 absolute left-4 bottom-2">
                   <p
                     className="font-extrabold leading-tight mb-0"
@@ -519,6 +641,31 @@ export default function CategoryPage() {
                       style={{ width: imageSize, height: imageSize }}
                     />
                   </div>
+                  {veganVisible[4] && (
+                    <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col items-center gap-0 z-20">
+                      <img
+                        src={VeganIcon}
+                        alt="Vegan"
+                        className={
+                          allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                        }
+                      />
+                      <img
+                        src={Vegan2Icon}
+                        alt="Hot"
+                        className={
+                          allSectionColumns === 2 ? "w-16 h-16" : "w-12 h-12"
+                        }
+                      />
+                      <img
+                        src={Vegan3Icon}
+                        alt="Vegan"
+                        className={
+                          allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                        }
+                      />
+                    </div>
+                  )}
                   <div className="space-y-0 absolute left-4 bottom-2">
                     <p
                       className="font-extrabold leading-tight mb-0"
@@ -575,11 +722,11 @@ export default function CategoryPage() {
                     <img
                       src={BurgerImage}
                       alt="Product 6"
-                      className="object-cover -mt-8"
+                      className="object-cover"
                       style={{ width: imageSize, height: imageSize }}
                     />
                   </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="absolute inset-0 flex items-center justify-center mt-36">
                     <p
                       className="text-center px-1.5 font-semibold"
                       style={{
@@ -591,6 +738,31 @@ export default function CategoryPage() {
                       {t("category.outOfStock")}
                     </p>
                   </div>
+                  {veganVisible[5] && (
+                    <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col items-center gap-0 z-20">
+                      <img
+                        src={VeganIcon}
+                        alt="Vegan"
+                        className={
+                          allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                        }
+                      />
+                      <img
+                        src={Vegan2Icon}
+                        alt="Hot"
+                        className={
+                          allSectionColumns === 2 ? "w-16 h-16" : "w-12 h-12"
+                        }
+                      />
+                      <img
+                        src={Vegan3Icon}
+                        alt="Vegan"
+                        className={
+                          allSectionColumns === 2 ? "w-16 h-16" : "w-9 h-9"
+                        }
+                      />
+                    </div>
+                  )}
                   <div className="space-y-0 absolute left-4 bottom-2">
                     <p
                       className="font-extrabold leading-tight mb-0"

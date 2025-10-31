@@ -34,6 +34,7 @@ import ReviewOrderPage from './pages/ReviewOrderPage'
 import ConfirmOrderPage from './pages/ConfirmOrderPage'
 import AddedSuccessPage from './pages/AddedSuccessPage'
 import FollowInstructionsPage from './pages/FollowInstructionsPage'
+import FeedbackPage from './pages/FeedbackPage'
 function App() {
 
   return (
@@ -61,6 +62,7 @@ function App() {
             <Route path="/confirm-order" element={<ConfirmOrderPage />} />
             <Route path="/added-success" element={<AddedSuccessPage />} />
             <Route path="/follow-instructions" element={<FollowInstructionsPage />} />
+            <Route path="/feedback" element={<FeedbackPage />} />
             {/* Selection pages */}
             <Route path="/make-trio" element={<SelectionPage type="make-trio" />} />
             <Route path="/order-type" element={<SelectionPage type="order-type" />} />

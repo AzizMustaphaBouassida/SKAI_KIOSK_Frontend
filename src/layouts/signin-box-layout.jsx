@@ -40,7 +40,7 @@ export default function SigninBoxLayout({ isLoggedIn = true }) {
                 </div>
 
                 <button
-                    className="w-full font-bold text-xl py-3 px-4 rounded-lg pt-3"
+                    className="w-full font-bold text-2xl py-3 px-4 rounded-lg pt-3"
                     style={{
                         ...buttonStyle,
                         ...theme.getStyle('fontBranded')

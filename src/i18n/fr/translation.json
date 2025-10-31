@@ -2,11 +2,11 @@
   "welcome": {
     "member": "Membre ?",
     "memberDescription": "Appuyez pour scanner le code QR",
-    "orderNow": "Commander maintenant !",
+    "orderNow": "Commander!",
     "orderDescription": "Continuer sans se connecter",
     "preferredLanguage": "Langue préférée ?",
     "french": "Français",
-    "english": "Anglais"
+    "english": "Anglais"  
   },
   "login": {
     "title": "Membre ?",

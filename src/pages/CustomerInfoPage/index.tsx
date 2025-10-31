@@ -17,14 +17,16 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
   const theme = useTheme();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [customerName, setCustomerName] = useState("");
+  const [isUppercase, setIsUppercase] = useState(true);
+  const [cursorIndex, setCursorIndex] = useState(0);
 
   const boxShadowStyle = { boxShadow: "0px 4px 4px 0px #00000040" };
 
-  // Letter keyboard layout for name input (AZERTY)
+  // Letter keyboard layout for name input (QWERTY)
   const letterRows = [
-    ["A", "Z", "E", "R", "T", "Y", "U", "I", "O"],
-    ["P", "Q", "S", "D", "F", "G", "H", "J", "K"],
-    ["L", "M", "W", "X", "C", "V", "B", "N"],
+    ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+    ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+    ["Z", "X", "C", "V", "B", "N", "M"],
   ];
 
   // Format phone number as 555-555-5555
@@ -44,10 +46,13 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
   };
 
   const handleLetterClick = (letter: string) => {
-    if (customerName.length < 20) {
-      // Limit name length
-      setCustomerName(customerName + letter);
-    }
+    if (type === "phone") return;
+    if (customerName.length >= 20) return; // Limit name length
+    const before = customerName.slice(0, cursorIndex);
+    const after = customerName.slice(cursorIndex);
+    const updated = before + letter + after;
+    setCustomerName(updated);
+    setCursorIndex(cursorIndex + letter.length);
   };
 
   const handleBackspace = () => {
@@ -56,7 +61,24 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
       const newNumber = cleaned.slice(0, -1);
       setPhoneNumber(formatPhoneNumber(newNumber));
     } else {
-      setCustomerName(customerName.slice(0, -1));
+      if (cursorIndex > 0) {
+        const before = customerName.slice(0, cursorIndex - 1);
+        const after = customerName.slice(cursorIndex);
+        setCustomerName(before + after);
+        setCursorIndex(cursorIndex - 1);
+      }
+    }
+  };
+
+  const moveCursorLeft = () => {
+    if (type === "name") {
+      setCursorIndex(Math.max(0, cursorIndex - 1));
+    }
+  };
+
+  const moveCursorRight = () => {
+    if (type === "name") {
+      setCursorIndex(Math.min(customerName.length, cursorIndex + 1));
     }
   };
 
@@ -102,17 +124,47 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
               ...boxShadowStyle,
             }}
           >
-            <span
-              className="text-[32px] font-normal"
-              style={{
-                ...theme.getStyle("black"),
-                ...theme.getStyle("fontSerious"),
-              }}
-            >
-              {type === "phone"
-                ? phoneNumber || "555-555-5555"
-                : customerName || "Enter your name"}
-            </span>
+            {type === "phone" ? (
+              <span
+                className="text-[32px] font-normal"
+                style={{
+                  ...(phoneNumber
+                    ? theme.getStyle("black")
+                    : theme.getStyle("greyDark")),
+                  ...theme.getStyle("fontSerious"),
+                }}
+              >
+                {phoneNumber || "555-555-5555"}
+              </span>
+            ) : (
+              <span
+                className="text-[32px] font-normal"
+                style={{
+                  ...(customerName.length === 0
+                    ? theme.getStyle("greyDark")
+                    : theme.getStyle("black")),
+                  ...theme.getStyle("fontSerious"),
+                }}
+              >
+                {customerName.length === 0 ? (
+                  "Enter your name"
+                ) : (
+                  <>
+                    {customerName.slice(0, cursorIndex)}
+                    <span
+                      className="inline-block align-middle"
+                      style={{
+                        width: "2px",
+                        height: "36px",
+                        backgroundColor: theme.getStyle("black").color || "#000",
+                        margin: "0 2px",
+                      }}
+                    />
+                    {customerName.slice(cursorIndex)}
+                  </>
+                )}
+              </span>
+            )}
           </div>
           <Button
             onClick={handleBackspace}
@@ -174,10 +226,12 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
           <div className="space-y-4 mb-16 w-full">
             {letterRows.map((row, rowIndex) => (
               <div key={rowIndex} className="flex gap-4 justify-center">
-                {row.map((letter) => (
+                {row.map((letter) => {
+                  const displayLetter = isUppercase ? letter : letter.toLowerCase();
+                  return (
                   <Button
                     key={letter}
-                    onClick={() => handleLetterClick(letter)}
+                    onClick={() => handleLetterClick(displayLetter)}
                     variant="outline"
                     className="h-[90px] w-[90px] text-[32px] font-semibold rounded-xl"
                     style={{
@@ -188,14 +242,45 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
                       ...boxShadowStyle,
                     }}
                   >
-                    {letter}
+                    {displayLetter}
                   </Button>
-                ))}
+                  );
+                })}
+                {rowIndex === letterRows.length - 1 && (
+                  <Button
+                    onClick={() => setIsUppercase(!isUppercase)}
+                    variant="outline"
+                    className="h-[90px] w-[180px] text-[28px] font-semibold rounded-xl"
+                    style={{
+                      ...theme.getStyle(isUppercase ? "secondaryBg" : "whiteBg"),
+                      ...theme.getStyle("greyDarkerBorder"),
+                      ...theme.getStyle("black"),
+                      ...theme.getStyle("fontSerious"),
+                      ...boxShadowStyle,
+                    }}
+                  >
+                    {isUppercase ? "MAJ" : "maj"}
+                  </Button>
+                )}
               </div>
             ))}
 
-            {/* Space Button */}
-            <div className="flex justify-center">
+            {/* Space row with arrows and MAJ toggle */}
+            <div className="flex justify-center gap-4">
+              <Button
+                onClick={moveCursorLeft}
+                variant="outline"
+                className="h-[90px] w-[130px] text-[50px] font-semibold rounded-xl"
+                style={{
+                  ...theme.getStyle("whiteBg"),
+                  ...theme.getStyle("greyDarkerBorder"),
+                  ...theme.getStyle("black"),
+                  ...theme.getStyle("fontSerious"),
+                  ...boxShadowStyle,
+                }}
+              >
+                ←
+              </Button>
               <Button
                 onClick={() => handleLetterClick(" ")}
                 variant="outline"
@@ -209,6 +294,20 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
                 }}
               >
                 ___
+              </Button>
+              <Button
+                onClick={moveCursorRight}
+                variant="outline"
+                className="h-[90px] w-[130px] text-[50px] font-semibold rounded-xl"
+                style={{
+                  ...theme.getStyle("whiteBg"),
+                  ...theme.getStyle("greyDarkerBorder"),
+                  ...theme.getStyle("black"),
+                  ...theme.getStyle("fontSerious"),
+                  ...boxShadowStyle,
+                }}
+              >
+                →
               </Button>
             </div>
           </div>

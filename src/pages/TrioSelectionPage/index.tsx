@@ -46,7 +46,7 @@ const burgerOptions: Option[] = [
     id: "simple",
     name: "trioSelection.simple",
     calories: 1500,
-    price: "7$",
+    price: "",
     image: forYouBurgerImage,
   },
   {
@@ -70,7 +70,7 @@ const sideOptions: Option[] = [
     id: "fries",
     name: "trioSelection.fries",
     calories: 1100,
-    price: "7$",
+    price: "",
     image: friesImage,
   },
   {
@@ -94,21 +94,21 @@ const drinkOptions: Option[] = [
     id: "coke",
     name: "trioSelection.coke",
     calories: 200,
-    price: "2$",
+    price: "",
     image: cokeImage,
   },
   {
     id: "sprite",
     name: "trioSelection.sprite",
     calories: 200,
-    price: "2$",
+    price: "+2$",
     image: spriteImage,
   },
   {
     id: "coffee",
     name: "trioSelection.coffee",
     calories: 50,
-    price: "2$",
+    price: "+2$",
     image: coffeeImage,
   },
 ];
@@ -514,7 +514,15 @@ function ReviewOrderInterface({
   ];
 
   return (
-    <div className="flex flex-col" style={theme.getStyle("fontSerious")}>
+    <div className="relative flex flex-col" style={theme.getStyle("fontSerious")}>
+      <p
+        className="absolute -top-6 left-0 text-[22px] font-medium mb-2"
+        style={{
+          ...theme.getStyle("greyDarker"),
+        }}
+      >
+        20$ - 1500 cal
+      </p>
       <h2
         className="text-[36px] font-bold mb-6"
         style={{
@@ -535,11 +543,11 @@ function ReviewOrderInterface({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 w-[750px] mb-12">
+      <div className="grid grid-cols-2 gap-6 w-[750px] mb-12 justify-items-center">
         {trioProducts.map((product, index) => (
           <Card
             key={product.id}
-            className={`relative rounded-xl p-5 flex flex-col ${index === 2 ? "col-span-1" : ""}`}
+            className={`relative rounded-xl p-5 flex flex-col ${index === 2 ? "col-span-2 justify-self-center" : ""}`}
             style={{
               ...theme.getStyle("whiteBg"),
               border: `1px solid ${theme.colors.greyDarker}`,
@@ -611,8 +619,8 @@ function ReviewOrderInterface({
                   key={tagIndex}
                   className="text-[12px] font-medium px-3 py-1.5 rounded-full"
                   style={{
-                    backgroundColor: tag.isPaid ? "#DC2626" : "#FEF3C7",
-                    color: tag.isPaid ? "#FFFFFF" : "#000000",
+                    backgroundColor: "#FEF3C7",
+                    color: "#000000",
                   }}
                 >
                   {tag.label}
@@ -627,13 +635,13 @@ function ReviewOrderInterface({
         <div
           className="flex items-center rounded-xl overflow-hidden"
           style={{
-            border: `2px solid ${theme.colors.greyDarker}`,
+            border: `1px solid ${theme.colors.greyDarker}`,
             height: "70px",
             width: "550px",
           }}
         >
           <button
-            className="flex-1 h-full flex items-center justify-center transition-all"
+            className="flex-[0.7] h-full flex items-center justify-center transition-all"
             style={{
               ...theme.getStyle("whiteBg"),
               borderRight: `2px solid ${theme.colors.greyDarker}`,
@@ -648,7 +656,7 @@ function ReviewOrderInterface({
             </span>
           </button>
           <div
-            className="flex-1 h-full flex items-center justify-center"
+            className="flex-[1.5] h-full flex items-center justify-center"
             style={{
               ...theme.getStyle("whiteBg"),
               borderRight: `2px solid ${theme.colors.greyDarker}`,
@@ -662,7 +670,7 @@ function ReviewOrderInterface({
             </span>
           </div>
           <button
-            className="flex-1 h-full flex items-center justify-center transition-all"
+            className="flex-[0.7] h-full flex items-center justify-center transition-all"
             style={{
               backgroundColor: theme.colors.secondary,
             }}
@@ -680,25 +688,11 @@ function ReviewOrderInterface({
 
       <div className="flex gap-3 justify-center">
         <Button
-          variant="outline"
-          className="h-[72px] text-[20px] font-semibold rounded-xl bg-transparent"
-          style={{
-            ...theme.getStyle("whiteBg"),
-            ...theme.getStyle("black"),
-            borderColor: theme.colors.greyDark,
-            borderWidth: "2px",
-            width: "273px",
-          }}
-          onClick={onBack}
-        >
-          Go Back
-        </Button>
-        <Button
           className="h-[72px] text-[20px] font-semibold rounded-xl"
           style={{
             ...theme.getStyle("secondaryBg"),
             ...theme.getStyle("black"),
-            width: "273px",
+            width: "420px",
           }}
           onClick={onAddToOrder}
         >
@@ -778,7 +772,7 @@ function TrioSelectionContent({
 
   if (currentStep === 4) {
     return (
-      <ReviewOrderInterface
+      <ReviewOrderInterface   
         selectedBurger={selectedBurger}
         selectedSide={selectedSide}
         selectedDrink={selectedDrink}
@@ -858,7 +852,7 @@ function TrioSelectionContent({
                       {isSelected && (
                         <Button
                           variant="outline"
-                          className="w-[100px] h-[30px] text-[12px] font-bold bg-transparent"
+                          className="w-[110px] h-[40px] text-[16px] font-bold bg-transparent"
                           style={{
                             ...theme.getStyle("whiteBg"),
                             ...theme.getStyle("greyDarkerBorder"),

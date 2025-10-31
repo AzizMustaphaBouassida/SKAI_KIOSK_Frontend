@@ -11,7 +11,7 @@
   "login": {
     "title": "Member ?",
     "subtitle": "Scan the QR code with your phone",
-    "skipLogin": "Skip login"
+    "skipLogin": "Skip Login"
   },
   "connectInfos": {
     "title": "How to connect",

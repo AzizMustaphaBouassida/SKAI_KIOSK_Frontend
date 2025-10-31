@@ -1,53 +1,62 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Star } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Star, Plus, Minus } from "lucide-react";
 // @ts-ignore
-import InfoIcon from "@/assets/icons/info-icon.svg"
+import InfoIcon from "@/assets/icons/info-icon.svg";
 // @ts-ignore
-import { useTheme } from "@/hooks/useTheme"
+import { useTheme } from "@/hooks/useTheme";
 // @ts-ignore
-import HeaderIconTextLayout from "@/layouts/header-icon-text-layout"
+import HeaderIconTextLayout from "@/layouts/header-icon-text-layout";
 // @ts-ignore
-import DonationIcon from "@/assets/icons/donation-icon.svg"
-import { useTranslation } from "react-i18next"
+import DonationIcon from "@/assets/icons/donation-icon.svg";
+import { useTranslation } from "react-i18next";
 
 export default function TipPage() {
-  const [selectedPercentage, setSelectedPercentage] = useState<number | null>(null)
-  const [customAmount, setCustomAmount] = useState<string>("")
-  const [rating, setRating] = useState<number>(0)
-  const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
-  const theme = useTheme()
-  const { t } = useTranslation()
+  const [selectedPercentage, setSelectedPercentage] = useState<number | null>(
+    null
+  );
+  const [customAmount, setCustomAmount] = useState<number>(0);
+  const [rating, setRating] = useState<number>(0);
+  const boxShadowStyle = { boxShadow: "0px 4px 4px 0px #00000040" };
+  const theme = useTheme();
+  const { t } = useTranslation();
 
   // Simulated order total - this should come from your cart/order context
-  const orderTotal = 50.00 // Replace with actual order total
+  const orderTotal = 50.0; // Replace with actual order total
 
-  const percentageOptions = [1, 3, 4]
+  const percentageOptions = [1, 3, 4];
 
   const calculateTip = () => {
-    if (customAmount) {
-      return Number.parseFloat(customAmount) || 0
+    if (customAmount > 0) {
+      return customAmount;
     }
     if (selectedPercentage) {
-      return (orderTotal * selectedPercentage) / 100
+      return (orderTotal * selectedPercentage) / 100;
     }
-    return 0
-  }
+    return 0;
+  };
 
-  const tipAmount = calculateTip()
+  const tipAmount = calculateTip();
 
   const handlePercentageClick = (percentage: number) => {
-    setSelectedPercentage(percentage)
-    setCustomAmount("")
-  }
+    setSelectedPercentage(percentage);
+    setCustomAmount(0);
+  };
 
-  const handleCustomAmountChange = (value: string) => {
-    setCustomAmount(value)
-    setSelectedPercentage(null)
-  }
+  const handleDecrease = () => {
+    setSelectedPercentage(null);
+    setCustomAmount((prev) => {
+      const next = Math.max(0, Number((prev - 0.25).toFixed(2)));
+      return next;
+    });
+  };
+
+  const handleIncrease = () => {
+    setSelectedPercentage(null);
+    setCustomAmount((prev) => Number((prev + 0.25).toFixed(2)));
+  };
 
   return (
     <HeaderIconTextLayout
@@ -61,7 +70,7 @@ export default function TipPage() {
       >
         {/* Star Rating Section */}
         <div className="flex gap-2">
-          {[1, 2, 3, 4,5].map((star) => (
+          {[1, 2, 3, 4, 5].map((star) => (
             <Star
               key={star}
               className="w-16 h-16 cursor-pointer transition-all"
@@ -101,7 +110,7 @@ export default function TipPage() {
             {/* Percentage Buttons */}
             <div className="flex gap-12 mt-6">
               {percentageOptions.map((percentage) => {
-                const isSelected = selectedPercentage === percentage
+                const isSelected = selectedPercentage === percentage;
                 return (
                   <Button
                     key={percentage}
@@ -125,7 +134,7 @@ export default function TipPage() {
                   >
                     {percentage}%
                   </Button>
-                )
+                );
               })}
             </div>
 
@@ -140,23 +149,46 @@ export default function TipPage() {
               {t("common.or")}
             </p>
 
-            {/* Custom Amount Input */}
-            <div className="w-[600px]">
-              <Input
-                type="number"
-                step="0.01"
-                min="0"
-                value={customAmount}
-                onChange={(e) => handleCustomAmountChange(e.target.value)}
-                placeholder={t("tip.placeholder")}
-                className="w-full h-[85px] text-center text-[20px] font-light border-[2px] rounded-lg focus:outline-none focus:ring-0 focus:border-[#FFC72C] placeholder:text-[20px] placeholder:font-light placeholder:text-[#868686] focus:text-[20px] focus:font-light"
+            {/* Custom Amount Counter - matched to ReviewOrderPage design */}
+            <div className="w-[600px] flex items-center justify-center mt-2">
+              <div
+                className="flex items-center h-[85px] rounded-xl overflow-hidden border-2 w-[540px]"
                 style={{
-                  ...theme.getStyle("fontSerious"),
-                  borderColor: "#FFC72C",
-                  ...theme.getStyle("greyDarker"),
-                  ...theme.getStyle("whiteBg"),
+                  borderColor: theme.colors.greyDarker,
+                  ...boxShadowStyle,
                 }}
-              />
+              >
+                <button
+                  className="h-full w-[180px] flex items-center justify-center hover:opacity-80 border-r-2"
+                  onClick={handleDecrease}
+                  style={{
+                    backgroundColor: theme.colors.white,
+                    borderColor: theme.colors.greyDarker,
+                  }}
+                >
+                  <Minus className="h-8 w-8" style={theme.getStyle("black")} />
+                </button>
+
+                <div
+                  className="h-full w-[180px] flex items-center justify-center border-r-2 font-medium text-[28px]"
+                  style={{
+                    backgroundColor: theme.colors.white,
+                    borderColor: theme.colors.greyDarker,
+                    ...theme.getStyle("black"),
+                    ...theme.getStyle("fontSerious"),
+                  }}
+                >
+                  {customAmount.toFixed(2)}
+                </div>
+
+                <button
+                  className="h-full w-[180px] flex items-center justify-center hover:opacity-90"
+                  onClick={handleIncrease}
+                  style={{ backgroundColor: theme.colors.secondary }}
+                >
+                  <Plus className="h-8 w-8" style={theme.getStyle("black")} />
+                </button>
+              </div>
             </div>
 
             {/* Give a Tip Button */}
@@ -169,8 +201,8 @@ export default function TipPage() {
                 ...boxShadowStyle,
               }}
               onClick={() => {
-                console.log("[TipPage] Tip amount:", tipAmount)
-                console.log("[TipPage] Rating:", rating)
+                console.log("[TipPage] Tip amount:", tipAmount);
+                console.log("[TipPage] Rating:", rating);
               }}
             >
               {t("tip.giveTip")}
@@ -179,7 +211,7 @@ export default function TipPage() {
             {/* Not Today Button */}
             <Button
               variant="outline"
-              className="w-[260px] h-[80px] border-2 text-[24px] rounded-lg transition hover:opacity-90 bg-transparent mt-5"
+              className="w-[260px] h-[80px] border-2 text-[24px] rounded-lg transition hover:opacity-90 bg-transparent mt-2"
               style={{
                 ...theme.getStyle("fontSerious"),
                 ...theme.getStyle("greyDarkerBorder"),
@@ -187,7 +219,7 @@ export default function TipPage() {
                 ...theme.getStyle("black"),
               }}
               onClick={() => {
-                console.log("[TipPage] User clicked Not today")
+                console.log("[TipPage] User clicked Not today");
               }}
             >
               {t("tip.notToday")}
@@ -196,5 +228,5 @@ export default function TipPage() {
         )}
       </div>
     </HeaderIconTextLayout>
-  )
+  );
 }

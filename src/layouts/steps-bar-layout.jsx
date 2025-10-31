@@ -1,15 +1,18 @@
 import { Check } from "lucide-react"
 import { useTheme } from '../hooks/useTheme'
+import BurgerIcon from '../assets/icons/burger-icon.svg'
+import SideIcon from '../assets/icons/side-icon.svg'
+import DrinkIcon from '../assets/icons/drink-icon.svg'
 
 export default function StepsBarLayout({ currentStep = 3 }) {
     const theme = useTheme()
     const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
 
     const steps = [
-        { id: 1, label: "Burger" },
-        { id: 2, label: "Side" },
-        { id: 3, label: "Drink" },
-        { id: 4, label: "Review" },
+        { id: 1, label: "Burger", icon: BurgerIcon },
+        { id: 2, label: "Side", icon: SideIcon },
+        { id: 3, label: "Drink", icon: DrinkIcon },
+        { id: 4, label: "Review", icon: null },
     ]
 
     const getStepStatus = (stepId) => {
@@ -72,10 +75,18 @@ export default function StepsBarLayout({ currentStep = 3 }) {
                                         </div>
                                     )}
                                     {status === "current" && (
-                                        <div className="w-6 h-6 rounded-full" style={theme.getStyle('whiteBg')} />
+                                        step.icon ? (
+                                            <img src={step.icon} alt={step.label} className="w-9 h-9" />
+                                        ) : (
+                                            <div className="w-6 h-6 rounded-full" style={theme.getStyle('whiteBg')} />
+                                        )
                                     )}
                                     {status === "upcoming" && (
-                                        <div className="w-4 h-4 rounded-full" style={{ backgroundColor: theme.colors.greyLight }} />
+                                        step.icon ? (
+                                            <img src={step.icon} alt={step.label} className="w-9 h-9" />
+                                        ) : (
+                                            <div className="w-4 h-4 rounded-full" style={{ backgroundColor: theme.colors.greyLight }} />
+                                        )
                                     )}
                                 </div>
 

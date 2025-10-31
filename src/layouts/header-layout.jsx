@@ -11,7 +11,7 @@ export default function HeaderLayout({ title, showTitle = false, children }) {
 
             {/* Header section */}
             <header className="w-full" style={theme.getStyle('whiteBg')}>
-                <div className="flex items-center justify-between px-4 py-3">
+                <div className="flex items-center justify-between px-4">
                     <div className="flex items-center gap-8">
                         <Logo className="w-36 h-36 ml-16 mt-16" />
                         {showTitle && title && (
@@ -27,7 +27,7 @@ export default function HeaderLayout({ title, showTitle = false, children }) {
                         )}
                     </div>
 
-                    <div className="flex items-center gap-2 text-3xl font-medium mr-8 -mt-8">
+                    <div className="flex items-center gap-2 text-4xl font-medium mr-8 -mt-8">
                         <span className="font-bold" style={theme.getStyle('primary')}>EN</span>
                         <span style={theme.getStyle('greyDarker')}>|</span>
                         <span style={theme.getStyle('greyDarker')}>FR</span>

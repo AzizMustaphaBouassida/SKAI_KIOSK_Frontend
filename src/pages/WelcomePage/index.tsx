@@ -6,7 +6,7 @@ import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Check } from "lucide-react"
 import backgroundImage from "@/assets/images/login-background.svg"
-import QRCodeSVG from "../../assets/icons/qrcode.svg"
+import ClientScanImage from "../../assets/images/scan-client-image.svg"
 import FrenchFlag from "../../assets/icons/french.svg"
 import EnglishFlag from "../../assets/icons/english.svg"
 // @ts-ignore
@@ -52,12 +52,11 @@ export default function WelcomePage() {
             {/* QR Code */}
             <div className="p-2" style={theme.getStyle('secondaryBg')}>
               <div className="w-80 h-80 flex items-center justify-center" style={theme.getStyle('secondaryBg')}>
-                <img src={QRCodeSVG} alt="QR Code" className="w-full h-full" />
+                <img src={ClientScanImage} alt="QR Code" className="w-140 h-140" />
               </div>
             </div>
           </Card>
-
-          {/* Right Column - Order Now and Language Cards Stacked */}
+         
           <div className="flex flex-col gap-6 h-full">
             {/* Order Now Card */}
             <Card 
@@ -71,7 +70,7 @@ export default function WelcomePage() {
               <h2 className="text-5xl font-bold mb-2 text-center min-h-[60px] flex items-center" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
                 {t('welcome.orderNow')}
               </h2>
-              <p className="text-2xl text-center max-w-[350px] min-h-[60px] flex items-center" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>
+              <p className="text-[26px] font-semibold text-center max-w-[350px] min-h-[60px] flex items-center" style={{ ...theme.getStyle('greyDarker'), ...theme.getStyle('fontSerious') }}>
                 {t('welcome.orderDescription')}
               </p>
             </Card>

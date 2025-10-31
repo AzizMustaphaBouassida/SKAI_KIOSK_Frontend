@@ -11,7 +11,7 @@ import { useTheme } from "@/hooks/useTheme";
 import coffeeDrinkImage from "@/assets/images/coffee_drink-image.svg";
 import cupSizeImage from "@/assets/images/cup-size_image.svg";
 import ellipsePopupImage from "@/assets/images/Ellipse-popup-image.svg";
-import { ChevronDown, ChevronUp, Plus, Check } from "lucide-react";
+import { ChevronDown, ChevronUp, Plus, Check, X } from "lucide-react";
 import popupImage from "@/assets/images/popup-image.svg";
 import restartIcon from "@/assets/icons/restart-icon.svg";
 import saucesIcon from "@/assets/icons/sauces-icon.svg";
@@ -114,6 +114,15 @@ function ProductModal({
         className="max-w-[870px] h-[1250px] overflow-hidden p-12 rounded-3xl flex flex-col"
         style={{ backgroundColor: theme.colors.white }}
       >
+        <button
+          type="button"
+          aria-label="Close"
+          onClick={onClose}
+          className="absolute top-3 right-3 h-12 w-12 flex items-center justify-center rounded-lg hover:opacity-80 mt-6 mr-6"
+          style={{ backgroundColor: theme.colors.greywhite }}
+        >
+          <X className="h-24 w-24" style={theme.getStyle("black")} />
+        </button>
         <div className="mb-8">
           <h2
             className="text-[47px] font-bold leading-tight"
@@ -159,12 +168,12 @@ function ProductModal({
         <div className="mb-8">
           <div className="flex items-start gap-6">
             <h3
-              className="text-[35px] font-bold leading-none pt-1"
+              className="text-4xl font-bold leading-none pt-1"
               style={theme.getStyle("black")}
             >
               Size
             </h3>
-            <div className="flex flex-wrap gap-3 ml-32">
+            <div className="flex flex-wrap gap-2 ml-32">
               {popupSizes.map((size) => {
                 const isSelected = selectedSize === size.id;
                 return (
@@ -223,12 +232,23 @@ function ProductModal({
               onClick={() => setIsSauceOpen(!isSauceOpen)}
               className="w-full flex items-center justify-between p-7"
             >
-              <h3
-                className="text-[35px] font-bold"
-                style={theme.getStyle("black")}
-              >
-                Sauce
-              </h3>
+              <div className="flex items-center gap-4 flex-1">
+                <h3
+                  className="text-4xl font-bold"
+                  style={theme.getStyle("black")}
+                >
+                  Sauce
+                </h3>
+                <span
+                  className="px-4 py-1.5 w-[185px] h-[55px] rounded text-[25px] font-normal ml-auto mr-8"
+                  style={{
+                    backgroundColor: "#FEF3C7",
+                    color: theme.colors.black,
+                  }}
+                >
+                  Default
+                </span>
+              </div>
               <div
                 className="w-16 h-16 rounded-full flex items-center justify-center"
                 style={{ backgroundColor: "#F3F4F6" }}
@@ -322,7 +342,7 @@ function ProductModal({
               className="w-full flex items-center justify-between p-7"
             >
               <h3
-                className="text-[35px] font-bold"
+                className="text-4xl font-bold"
                 style={theme.getStyle("black")}
               >
                 Flavor
@@ -417,7 +437,7 @@ function ProductModal({
           <div className="flex items-center justify-center gap-0 mb-8">
             <button
               type="button"
-              className="w-[137px] h-[98px] rounded-l-xl border-2 flex items-center justify-center bg-white"
+              className="w-[177px] h-[98px] rounded-l-xl border-2 flex items-center justify-center bg-white"
               style={{ borderColor: theme.colors.greyDark }}
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
             >
@@ -429,7 +449,7 @@ function ProductModal({
               </span>
             </button>
             <div
-              className="w-[450px] h-[98px] border-t-2 border-b-2 flex items-center justify-center bg-white"
+              className="w-[320px] h-[98px] border-t-2 border-b-2 flex items-center justify-center bg-white"
               style={{ borderColor: theme.colors.greyDark }}
             >
               <span
@@ -441,7 +461,7 @@ function ProductModal({
             </div>
             <button
               type="button"
-              className="w-[137px] h-[98px] rounded-r-xl flex items-center justify-center"
+              className="w-[177px] h-[98px] rounded-r-xl flex items-center justify-center"
               style={{ backgroundColor: theme.colors.secondary }}
               onClick={() => setQuantity(quantity + 1)}
             >
@@ -454,20 +474,9 @@ function ProductModal({
             </button>
           </div>
 
-          <div className="flex gap-4 justify-center">
+          <div className="flex justify-center">
             <Button
-              variant="outline"
-              className="h-[80px] w-[330px] text-[30px] font-semibold rounded-xl border-2 bg-white"
-              style={{
-                borderColor: theme.colors.greyDarker,
-                color: theme.colors.black,
-              }}
-              onClick={onClose}
-            >
-              Close
-            </Button>
-            <Button
-              className="h-[80px] w-[330px] text-[30px] font-semibold rounded-xl"
+              className="h-[100px] w-[500px] text-[36px] font-semibold rounded-2xl"
               style={{
                 backgroundColor: theme.colors.secondary,
                 color: theme.colors.black,
@@ -713,7 +722,7 @@ function CustomizationInterface({
           </div>
           <Button
             variant="outline"
-            className="h-[48px] px-6 text-[20px] font-semibold rounded-lg border bg-transparent mt-50 flex items-center gap-3"
+            className="h-[48px] px-6 text-[20px] font-semibold rounded-lg border bg-transparent mt-48 flex items-center gap-3"
             style={{
               ...theme.getStyle("whiteBg"),
               borderColor: theme.colors.greyDarker,
@@ -779,7 +788,7 @@ function CustomizationInterface({
         <div className="mb-8">
           <div className="flex items-center gap-50 mb-5">
             <h3
-              className="text-[40px] font-extrabold mb-20"
+              className="text-4xl font-bold mb-20"
               style={theme.getStyle("black")}
             >
               {t("customization.size")}
@@ -843,7 +852,7 @@ function CustomizationInterface({
           <div className="mb-8">
             <div className="flex items-center justify-between mb-5">
               <h3
-                className="text-[40px] font-extrabold mb-20"
+                className="text-4xl font-bold mb-20"
                 style={theme.getStyle("black")}
               >
                 {t("customization.subsection")}
@@ -905,7 +914,7 @@ function CustomizationInterface({
                 )}
                 <div className="flex flex-col gap-1">
                   <h3
-                    className="text-[40px] font-extrabold"
+                    className="text-4xl font-bold"
                     style={theme.getStyle("black")}
                   >
                     {t("customization.subsection")}
@@ -966,7 +975,7 @@ function CustomizationInterface({
                           <img
                             src={hotSauceIcon || "/placeholder.svg"}
                             alt="Option icon"
-                            className="w-8 h-8 object-contain"
+                            className="w-14 h-14 object-contain"
                             style={{
                               opacity: isUnavailable ? 0.4 : 1,
                             }}
@@ -1062,7 +1071,7 @@ function CustomizationInterface({
                 )}
                 <div className="flex flex-col gap-1">
                   <h3
-                    className="text-[40px] font-extrabold"
+                    className="text-4xl font-bold"
                     style={theme.getStyle("black")}
                   >
                     {t("customization.subsection")}
@@ -1120,7 +1129,7 @@ function CustomizationInterface({
                           <img
                             src={hotSauceIcon || "/placeholder.svg"}
                             alt="Option icon"
-                            className="w-8 h-8 object-contain"
+                            className="w-14 h-14 object-contain"
                           />
                         )}
                         <div className="flex flex-col">
@@ -1217,7 +1226,7 @@ function CustomizationInterface({
                 )}
                 <div className="flex flex-col gap-1">
                   <h3
-                    className="text-[40px] font-extrabold"
+                    className="text-4xl font-bold"
                     style={theme.getStyle("black")}
                   >
                     {t("customization.subsection")}
@@ -1234,7 +1243,7 @@ function CustomizationInterface({
                     .map(([checkboxId], index) => (
                       <span
                         key={checkboxId}
-                        className="px-3 py-1 rounded text-[18px] font-normal"
+                        className="px-5 py-2 text-[22px] rounded font-normal"
                         style={{
                           backgroundColor: "#FEF3C7",
                           color: theme.colors.black,
@@ -1284,7 +1293,7 @@ function CustomizationInterface({
                           <img
                             src={hotSauceIcon || "/placeholder.svg"}
                             alt="Option icon"
-                            className="w-8 h-8 object-contain"
+                            className="w-14 h-14 object-contain"
                           />
                         )}
                         <div className="flex flex-col">
@@ -1345,7 +1354,7 @@ function CustomizationInterface({
           >
             <div className="w-full flex items-center justify-between p-5">
               <h3
-                className="text-[40px] font-extrabold"
+                className="text-4xl font-bold"
                 style={theme.getStyle("black")}
               >
                 {t("customization.subsection").toLowerCase()}
@@ -1358,16 +1367,10 @@ function CustomizationInterface({
                   }}
                 >
                   <span
-                    className="text-[22px] font-bold leading-tight"
-                    style={{ color: theme.colors.black }}
-                  >
-                    Name
-                  </span>
-                  <span
                     className="text-[20px] font-normal leading-tight"
                     style={{ color: theme.colors.black }}
                   >
-                    $10-150cal
+                    +$10-150cal
                   </span>
                 </div>
                 {/* </CHANGE> */}
@@ -1429,7 +1432,7 @@ function CustomizationInterface({
           >
             <div className="w-full flex items-center justify-between p-5">
               <h3
-                className="text-[40px] font-extrabold"
+                className="text-4xl font-bold"
                 style={theme.getStyle("black")}
               >
                 {t("customization.subsection").toLowerCase()}
@@ -1502,10 +1505,10 @@ function CustomizationInterface({
                 )}
                 <div className="flex flex-col gap-1">
                   <h3
-                    className="text-[40px] font-extrabold"
+                    className="text-4xl font-bold"
                     style={theme.getStyle("black")}
                   >
-                    Main Toppings
+                    Subsection
                   </h3>
                   <span className="text-[18px] text-gray-500  mr-40">
                     Choose up to 5
@@ -1561,7 +1564,7 @@ function CustomizationInterface({
                           <img
                             src={hotSauceIcon || "/placeholder.svg"}
                             alt="Option icon"
-                            className="w-8 h-8 object-contain"
+                            className="w-14 h-14 object-contain"
                           />
                         )}
                         <div className="flex flex-col">

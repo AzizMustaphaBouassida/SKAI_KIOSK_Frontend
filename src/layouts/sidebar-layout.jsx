@@ -5,11 +5,11 @@ import exampleIcon from '../assets/images/trio-image.svg';
 import SigninBoxLayout from './signin-box-layout';
 import { useState, useRef } from 'react';
 
-export default function SidebarLayout({ children, activePage: initialPage, isLoggedIn = true }) {
+export default function SidebarLayout({ activePage: initialPage, isLoggedIn = false }) {
     const theme = useTheme();
     const scrollContainerRef = useRef(null);
-    const [hoveredItem, setHoveredItem] = useState(null);
-    const [activePage, setActivePage] = useState(initialPage || 'Home'); 
+    const [activePage, setActivePage] = useState(initialPage || 'Home');
+    const cardShadowStyle = { boxShadow: "0px 2px 4px #00000040" };
 
     const handleScroll = (direction) => {
         if (scrollContainerRef.current) {
@@ -31,20 +31,19 @@ export default function SidebarLayout({ children, activePage: initialPage, isLog
         { name: 'Test', icon: exampleIcon },
     ];
 
-    const renderMenuItem = (name, icon, isActive, textSize = "text-3xl") => {
+    const renderMenuItem = (name, icon, isActive, textSize = "text-3xl", isCompact = false) => {
         return (
             <button
-                onClick={() => setActivePage(name)} 
-                className={`w-full flex items-center gap-4 px-4 py-10 rounded-lg transition-all outline-none border ${isActive ? '' : 'border-transparent'
+                onClick={() => setActivePage(name)}
+                className={`w-full flex items-center gap-4 px-4 ${isCompact ? 'py-7' : 'py-10'} rounded-lg last:mb-1 transition-all outline-none border ${isActive ? '' : 'transparent'
                     }`}
                 style={{
-                    backgroundColor: theme.colors.white, 
-                    borderColor: isActive ? theme.colors.primary : 'transparent', 
+                    backgroundColor: theme.colors.white,
+                    borderColor: isActive ? theme.colors.primary : 'transparent',
                     borderWidth: isActive ? '3px' : undefined,
-                    boxShadow: '0px 2px 4px 0px #00000040',
+                    ...cardShadowStyle,
                     ...theme.getStyle('fontBranded')
                 }}
-                onMouseEnter={() => setHoveredItem(null)}
             >
                 <img src={icon} alt={name} className="w-13 h-13 flex-shrink-0" />
                 <span
@@ -92,13 +91,13 @@ export default function SidebarLayout({ children, activePage: initialPage, isLog
         <aside className="w-full h-full flex flex-col py-4 px-2" style={theme.getStyle('whiteBg')}>
             <div className="flex-1 flex flex-col w-[220px] max-h-full">
                 {/* Mc Selects */}
-                <div className="mb-2">
-                    {renderMenuItem("Home", homeIcon, activePage === 'Home', "text-2xl")}
+                <div className="mb-2 px-0.5">
+                    {renderMenuItem("Home", homeIcon, activePage === 'Home', "text-2xl", true)}
                 </div>
 
                 {/* Offers */}
-                <div className="mb-2">
-                    {renderMenuItem("Offers", offreIcon, activePage === 'Offers', "text-2xl")}
+                <div className="mb-2 px-0.5">
+                    {renderMenuItem("Offers", offreIcon, activePage === 'Offers', "text-2xl", true)}
                 </div>
 
                 {/* Scroll Up */}
@@ -109,16 +108,16 @@ export default function SidebarLayout({ children, activePage: initialPage, isLog
                 {/* Menu Categories Scrollable List */}
                 <div
                     ref={scrollContainerRef}
-                    className="relative flex-1 overflow-y-auto scrollbar-hide"
+                    className="relative flex-1 overflow-y-auto overflow-x-visible  scrollbar-hide"
                     style={{
                         scrollbarWidth: 'none',
                         msOverflowStyle: 'none'
                     }}
                 >
-                    <div className="space-y-2 w-[220px] max-h-full absolute top-0 left-0">
+                    <div className="space-y-2 w-[220px] absolute top-0 left-0 p-0.5">
                         {menuCategories.map((item, idx) => (
                             <div key={idx}>
-                                {renderMenuItem(item.name, item.icon, activePage === item.name, "text-2xl")}
+                                {renderMenuItem(item.name, item.icon, activePage === item.name, "text-2xl", false)}
                             </div>
                         ))}
                     </div>
@@ -129,7 +128,7 @@ export default function SidebarLayout({ children, activePage: initialPage, isLog
             </div>
 
             {/* Signin Box */}
-            <div className="w-full shrink-0 pb-4">
+            <div className="w-full shrink-0 pb-2">
                 <SigninBoxLayout isLoggedIn={isLoggedIn} />
             </div>
         </aside>

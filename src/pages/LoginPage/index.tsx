@@ -71,7 +71,7 @@ export default function SignIn() {
 
         <button
           onClick={handleSkipLogin}
-          className="w-[70vw] max-w-xl h-24 text-3xl font-bold border-2 rounded-xl hover:bg-gray-50"
+          className="w-[70vw] max-w-xl h-24 text-4xl font-semibold border-2 rounded-xl hover:bg-gray-50"
           style={{
             ...theme.getStyle('whiteBg'),
             ...theme.getStyle('greyDarker'),
