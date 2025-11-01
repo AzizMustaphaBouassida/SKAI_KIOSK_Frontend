@@ -21,7 +21,7 @@ export default function RecommendationPage() {
   const theme = useTheme();
   const boxShadowStyle = { boxShadow: "0px 4px 4px 0px #00000040" };
 
-  const layout = "grid-2" as "grid-6" | "grid-4" | "grid-2" | "list";
+  const layout = "grid-6" as "grid-6" | "grid-4" | "grid-2" | "list";
 
   // State for vegan icons visibility per card in grid
   // Only cards 2 and 5 (indexes 1 and 4) display vegan icons

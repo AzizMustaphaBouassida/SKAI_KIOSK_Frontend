@@ -31,11 +31,11 @@ import offerTermsIcon from "@/assets/icons/offer-terms_conditions-icon.svg";
 import attentionIcon from "@/assets/icons/attention-icon.svg";
 import replaceIcon from "@/assets/icons/replace-icon.svg";
 
-const IS_OUT_OF_STOCK = false;
-const IS_INGREDIENT_UNAVAILABLE = false; 
-const IS_STOCK_REDUCED = false;
+const IS_OUT_OF_STOCK = true;
+const IS_INGREDIENT_UNAVAILABLE = true; 
+const IS_STOCK_REDUCED = true;
 const STOCK_REDUCED_MAX = 2;
-const IS_PRINCIPAL_INGREDIENT_UNAVAILABLE = false; 
+const IS_PRINCIPAL_INGREDIENT_UNAVAILABLE = true; 
 
 interface TrioProduct {
   id: string;

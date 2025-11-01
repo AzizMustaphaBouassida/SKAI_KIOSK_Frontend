@@ -63,6 +63,7 @@ function App() {
             <Route path="/added-success" element={<AddedSuccessPage />} />
             <Route path="/follow-instructions" element={<FollowInstructionsPage />} />
             <Route path="/feedback" element={<FeedbackPage />} />
+            
             {/* Selection pages */}
             <Route path="/make-trio" element={<SelectionPage type="make-trio" />} />
             <Route path="/order-type" element={<SelectionPage type="order-type" />} />

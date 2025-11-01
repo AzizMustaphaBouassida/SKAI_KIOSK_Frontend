@@ -21,7 +21,7 @@ export default function Catalog() {
   const theme = useTheme();
   const { t } = useTranslation();
   const isLoggedIn = true;
-  const forYouProductCount: number = 1;
+  const forYouProductCount: number = 3;
   const cardShadowStyle = { boxShadow: "0px 4px 4px 0px #00000040" };
 
   return (
