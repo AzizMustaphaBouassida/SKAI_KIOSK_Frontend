@@ -7,7 +7,7 @@ import HeaderLayout from "@/layouts/header-layout";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 // @ts-ignore
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 import coffeeDrinkImage from "@/assets/images/coffee_drink-image.svg";
 import cupSizeImage from "@/assets/images/cup-size_image.svg";
 import ellipsePopupImage from "@/assets/images/Ellipse-popup-image.svg";

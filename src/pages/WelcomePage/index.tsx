@@ -10,7 +10,7 @@ import ClientScanImage from "../../assets/images/scan-client-image.svg"
 import FrenchFlag from "../../assets/icons/french.svg"
 import EnglishFlag from "../../assets/icons/english.svg"
 // @ts-ignore
-import { useTheme } from "../../hooks/useTheme"
+import { useTheme } from "@/app/hooks/useTheme"
 
 export default function WelcomePage() {
   const theme = useTheme()

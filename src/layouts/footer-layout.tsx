@@ -1,6 +1,6 @@
 import trashIcon from '../assets/icons/trash-icon.svg';
 // @ts-ignore
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from '@/app/hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 
 export default function FooterLayout() {

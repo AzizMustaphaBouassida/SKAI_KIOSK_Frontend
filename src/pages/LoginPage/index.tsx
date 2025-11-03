@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 // @ts-ignore
 import HeaderTitleLayout from "../../layouts/header-title-layout"
 // @ts-ignore
-import { useTheme } from "../../hooks/useTheme"
+import { useTheme } from "@/app/hooks/useTheme"
 // @ts-ignore
 import { THEME_COLORS } from "../../config/theme"
 import InfoIconSVG from "../../assets/icons/info-icon.svg"

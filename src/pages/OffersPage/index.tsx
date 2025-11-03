@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog"
 import { useState } from "react"
 // @ts-ignore
-import { useTheme } from "@/hooks/useTheme"
+import { useTheme } from "@/app/hooks/useTheme"
 import discountImage from "@/assets/images/discount-image.svg"
 import friesImage from "@/assets/images/fries-image.svg"
 import barcodeImage from "@/assets/images/barcode-image.svg"

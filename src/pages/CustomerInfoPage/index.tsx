@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import DeleteIcon from "@/assets/icons/delete-icon.svg";
 
 // @ts-ignore
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 import { useTranslation } from "react-i18next";
 
 interface CustomerInfoPageProps {

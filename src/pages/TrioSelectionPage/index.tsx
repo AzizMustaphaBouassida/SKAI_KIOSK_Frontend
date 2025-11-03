@@ -7,7 +7,7 @@ import StepsMenuLayout from "@/layouts/steps-menu-layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 // @ts-ignore
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 import doubleBurgerImage from "@/assets/images/double-burger-image.svg";
 import tripleBurgerImage from "@/assets/images/triple-burger-image.svg";
 import forYouBurgerImage from "@/assets/images/foryou-burger-image.svg";

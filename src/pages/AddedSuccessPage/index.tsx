@@ -5,7 +5,7 @@ import HeaderTitleLayout from "../../layouts/header-title-layout";
 import AddedSuccessImage from "@/assets/images/added_success_image.svg";
 import { motion } from "framer-motion";
 // @ts-ignore
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 import { useTranslation } from "react-i18next";
 
 interface AddedSuccessPageProps {

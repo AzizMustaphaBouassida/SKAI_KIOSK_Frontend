@@ -7,7 +7,7 @@ import MainMenuLayout from "@/layouts/main-menu-layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 // @ts-ignore
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 import VeganIcon from "@/assets/icons/vegan_icon.svg";
 import Vegan2Icon from "@/assets/icons/vegan2-icon.svg";
 import Vegan3Icon from "@/assets/icons/vegan3-icon.svg";

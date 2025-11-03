@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 // @ts-ignore
 import HeaderIconTextLayout from '../../layouts/header-icon-text-layout'
 // @ts-ignore
-import { useTheme } from '../../hooks/useTheme'
+import { useTheme } from '@/app/hooks/useTheme'
 // @ts-ignore
 import { CONFIRMATION_PAGE_CONFIGS } from '../../config/confirmationPages'
 

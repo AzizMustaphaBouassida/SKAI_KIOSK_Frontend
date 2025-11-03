@@ -1,6 +1,6 @@
 import { useState, ReactNode } from 'react'
 // @ts-ignore
-import { useTheme } from '../hooks/useTheme'
+import { useTheme } from '@/app/hooks/useTheme'
 import { useTranslation } from 'react-i18next'
 import HeaderLayout from './header-layout.tsx'
 import FooterLayout from './footer-layout.tsx'
@@ -16,27 +16,11 @@ interface MainMenuLayoutProps {
 
 export default function MainMenuLayout({ children, title, activePage }: MainMenuLayoutProps) {
     const theme = useTheme()
-    const [showNotification, setShowNotification] = useState(true)
-    const [cartItems, setCartItems] = useState(2)
-    const [totalPrice, setTotalPrice] = useState(15.99)
+    const [showNotification] = useState(true)
+    const [cartItems] = useState(2)
+    const [totalPrice] = useState(15.99)
     const { t } = useTranslation()
 
-    const handleLogin = () => {
-        setShowNotification(true)
-        setTimeout(() => setShowNotification(false), 3000)
-    }
-
-    const handleLogout = () => {
-        setCartItems(0)
-        setTotalPrice(0.00)
-    }
-
-    const addToCart = () => {
-        setCartItems(prev => prev + 1)
-        setTotalPrice(prev => prev + 8.99)
-        setShowNotification(true)
-        setTimeout(() => setShowNotification(false), 3000)
-    }
 
     return (
         <div className="relative h-screen flex flex-col" style={theme.getStyle('whiteBg')}>

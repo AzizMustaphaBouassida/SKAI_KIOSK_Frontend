@@ -3,7 +3,7 @@
 // @ts-ignore
 import HeaderLayout from "../../layouts/header-layout";
 // @ts-ignore
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 import { useTranslation } from "react-i18next";
 
 export default function FollowInstructionsPage() {

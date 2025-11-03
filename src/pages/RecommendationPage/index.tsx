@@ -15,7 +15,7 @@ import cokeImage from "@/assets/images/coke-image.svg";
 import doubleBurgerImage from "@/assets/images/double-burger-image.svg";
 import poutineImage from "@/assets/images/poutine-image.svg";
 // @ts-ignore
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 import React, { useState } from "react";
 
 export default function RecommendationPage() {

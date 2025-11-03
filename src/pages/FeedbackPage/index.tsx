@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Star } from "lucide-react";
 
 // @ts-ignore
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 // @ts-ignore
 import HeaderIconTextLayout from "@/layouts/header-icon-text-layout";
 // @ts-ignore

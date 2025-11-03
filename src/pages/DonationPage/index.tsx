@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 // @ts-ignore
 import InfoIcon from "@/assets/icons/info-icon.svg";
 // @ts-ignore
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 // @ts-ignore
 import HeaderIconTextLayout from "@/layouts/header-icon-text-layout";
 

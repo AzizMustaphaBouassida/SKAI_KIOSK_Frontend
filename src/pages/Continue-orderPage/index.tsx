@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 // @ts-ignore
 import HeaderIconTextLayout from '../../layouts/header-icon-text-layout'
 // @ts-ignore
-import { useTheme } from '../../hooks/useTheme'
+import { useTheme } from '@/app/hooks/useTheme'
 import questionIcon from '../../assets/icons/question-icon.svg'
 
 export default function ContinueOrderPage() {

@@ -1,5 +1,5 @@
 // @ts-ignore
-import { useTheme } from '../hooks/useTheme'
+import { useTheme } from '@/app/hooks/useTheme';
 import HeaderLayout from './header-layout'
 import { ReactNode } from 'react'
 

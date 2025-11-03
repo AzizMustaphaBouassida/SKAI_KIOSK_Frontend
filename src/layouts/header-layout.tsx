@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 // @ts-ignore
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from '@/app/hooks/useTheme';
 // @ts-ignore
 import Logo from '../components/Logo';
 import { ReactNode } from 'react';

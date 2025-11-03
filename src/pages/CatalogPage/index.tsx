@@ -6,7 +6,7 @@ import MainMenuLayout from "@/layouts/main-menu-layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 // @ts-ignore
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 import qrCodeImage from "@/assets/icons/qrcode.svg";
 import forYouBurgerImage from "@/assets/images/foryou-burger-image.svg";
 import trioBurgerImage from "@/assets/images/trio-burger-image.svg";

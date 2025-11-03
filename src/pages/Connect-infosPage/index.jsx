@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next"
 import HeaderTitleLayout from "../../layouts/header-title-layout"
-import { useTheme } from "../../hooks/useTheme"
+import { useTheme } from "@/app/hooks/useTheme"
 import QRCodeSVG from "../../assets/icons/qrcode.svg"
 import LoginInfoIcon from "../../assets/icons/login-info-icon.svg"
 import GiftIcon from "../../assets/icons/gift-icon.svg"
 
 export default function ConnectInfosPage() {
     const theme = useTheme()
-    const { t} = useTranslation()
+    const { t } = useTranslation()
     const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
 
     return (

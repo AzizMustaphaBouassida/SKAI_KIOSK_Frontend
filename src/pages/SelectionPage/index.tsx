@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 // @ts-ignore
 import HeaderTitleLayout from "../../layouts/header-title-layout";
 // @ts-ignore
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 // @ts-ignore
 import { SELECTION_PAGE_CONFIGS } from "../../config/selectionPages";
 

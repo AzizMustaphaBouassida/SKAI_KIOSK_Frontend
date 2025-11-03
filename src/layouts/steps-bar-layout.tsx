@@ -1,6 +1,6 @@
 import { Check } from "lucide-react"
 // @ts-ignore
-import { useTheme } from '../hooks/useTheme'
+import { useTheme } from '@/app/hooks/useTheme'
 import { useTranslation } from 'react-i18next'
 import BurgerIcon from '../assets/icons/burger-icon.svg'
 import SideIcon from '../assets/icons/side-icon.svg'

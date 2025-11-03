@@ -6,7 +6,7 @@ import DoubleCheckIcon from "@/assets/icons/double-check-icon.svg";
 // @ts-ignore
 import HeaderTitleLayout from "../../layouts/header-title-layout";
 // @ts-ignore
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 import { useTranslation } from "react-i18next";
 
 export default function OrderNumberPage() {

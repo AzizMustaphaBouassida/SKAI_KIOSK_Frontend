@@ -1,6 +1,6 @@
 import React, { useState, ReactNode } from 'react'
 // @ts-ignore
-import { useTheme } from '../hooks/useTheme'
+import { useTheme } from '@/app/hooks/useTheme'
 import HeaderLayout from './header-layout'
 import FooterLayout from './footer-layout'
 import StepsBarLayout from './steps-bar-layout'

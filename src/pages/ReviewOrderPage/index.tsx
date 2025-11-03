@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { X, Plus, Minus, MoreHorizontal } from "lucide-react";
 // @ts-ignore
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "@/app/hooks/useTheme";
 import { useTranslation } from "react-i18next";
 import {
   Dialog,

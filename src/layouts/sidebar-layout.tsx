@@ -1,5 +1,5 @@
 // @ts-ignore
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from '@/app/hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 import homeIcon from '../assets/icons/home.svg';
 import offreIcon from '../assets/icons/offre.svg';

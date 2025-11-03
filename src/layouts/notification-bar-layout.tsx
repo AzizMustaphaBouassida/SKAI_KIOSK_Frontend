@@ -1,5 +1,5 @@
 // @ts-ignore
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from '@/app/hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 import addedToCartIcon from '../assets/icons/added_to_cart_sac_icon.svg';
 

@@ -1,6 +1,6 @@
 "use client"
 // @ts-ignore
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from '@/app/hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 import guestIcon from '../assets/icons/guest-icon.svg';
 
