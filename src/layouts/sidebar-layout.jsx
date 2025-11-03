@@ -1,4 +1,5 @@
 import { useTheme } from '../hooks/useTheme';
+import { useTranslation } from 'react-i18next';
 import homeIcon from '../assets/icons/home.svg';
 import offreIcon from '../assets/icons/offre.svg';
 import exampleIcon from '../assets/images/trio-image.svg';
@@ -7,9 +8,10 @@ import { useState, useRef } from 'react';
 
 export default function SidebarLayout({ activePage: initialPage, isLoggedIn = false }) {
     const theme = useTheme();
+    const { t } = useTranslation();
     const scrollContainerRef = useRef(null);
     const [activePage, setActivePage] = useState(initialPage || 'Home');
-    const cardShadowStyle = { boxShadow: "0px 2px 4px #00000040" };
+    const cardShadowStyle = { boxShadow: "0px 2px 4px #00000040, 0px -1px 4px #00000040" };
 
     const handleScroll = (direction) => {
         if (scrollContainerRef.current) {
@@ -31,11 +33,11 @@ export default function SidebarLayout({ activePage: initialPage, isLoggedIn = fa
         { name: 'Test', icon: exampleIcon },
     ];
 
-    const renderMenuItem = (name, icon, isActive, textSize = "text-3xl", isCompact = false) => {
+    const renderMenuItem = (name, icon, isActive, textSize = "text-3xl", isCompact = false, isSmallIcon = false) => {
         return (
             <button
                 onClick={() => setActivePage(name)}
-                className={`w-full flex items-center gap-4 px-4 ${isCompact ? 'py-7' : 'py-10'} rounded-lg last:mb-1 transition-all outline-none border ${isActive ? '' : 'transparent'
+                className={`w-full flex items-center gap-4 px-4 ${isCompact ? 'py-5' : 'py-10'} rounded-lg last:mb-1 transition-all outline-none border ${isActive ? '' : 'transparent'
                     }`}
                 style={{
                     backgroundColor: theme.colors.white,
@@ -45,7 +47,11 @@ export default function SidebarLayout({ activePage: initialPage, isLoggedIn = fa
                     ...theme.getStyle('fontBranded')
                 }}
             >
-                <img src={icon} alt={name} className="w-13 h-13 flex-shrink-0" />
+                <img 
+                    src={icon} 
+                    alt={name} 
+                    className={`${isSmallIcon ? 'w-8 h-8' : 'w-14 h-14'} flex-shrink-0`} 
+                />
                 <span
                     className={`${textSize} font-bold break-words mt-3`}
                     style={theme.getStyle('black')}
@@ -90,14 +96,14 @@ export default function SidebarLayout({ activePage: initialPage, isLoggedIn = fa
     return (
         <aside className="w-full h-full flex flex-col py-4 px-2" style={theme.getStyle('whiteBg')}>
             <div className="flex-1 flex flex-col w-[220px] max-h-full">
-                {/* Mc Selects */}
+                {/* Home */}
                 <div className="mb-2 px-0.5">
-                    {renderMenuItem("Home", homeIcon, activePage === 'Home', "text-2xl", true)}
+                    {renderMenuItem(t('layouts.home'), homeIcon, activePage === 'Home', "text-2xl", true, true)}
                 </div>
 
                 {/* Offers */}
                 <div className="mb-2 px-0.5">
-                    {renderMenuItem("Offers", offreIcon, activePage === 'Offers', "text-2xl", true)}
+                    {renderMenuItem(t('offers.title'), offreIcon, activePage === 'Offers', "text-2xl", true, true)}
                 </div>
 
                 {/* Scroll Up */}

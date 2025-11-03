@@ -6,6 +6,7 @@ import AddedSuccessImage from "@/assets/images/added_success_image.svg";
 import { motion } from "framer-motion";
 // @ts-ignore
 import { useTheme } from "../../hooks/useTheme";
+import { useTranslation } from "react-i18next";
 
 interface AddedSuccessPageProps {
   message?: string;
@@ -14,14 +15,16 @@ interface AddedSuccessPageProps {
 }
 
 export default function AddedSuccessPage({
-  message = "Your total is now up to date",
+  message,
   total = "14.2$",
   calories = "1500 Cal",
 }: AddedSuccessPageProps) {
   const theme = useTheme();
+  const { t } = useTranslation();
+  const displayMessage = message || t('pages.addedSuccess.message');
 
   return (
-    <HeaderTitleLayout title="Item added to bag">
+    <HeaderTitleLayout title={t('pages.addedSuccess.title')}>
       <div className="text-center mt-8 mb-12">
         {message && (
           <p
@@ -31,7 +34,7 @@ export default function AddedSuccessPage({
               ...theme.getStyle("fontSerious"),
             }}
           >
-            {message}
+            {displayMessage}
           </p>
         )}
         {total && (

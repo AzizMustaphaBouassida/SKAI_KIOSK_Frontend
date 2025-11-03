@@ -194,7 +194,18 @@
     "sizeM": "M",
     "sizeL": "L",
     "customize": "Customize",
-    "chooseSize": "Choose size"
+    "chooseSize": "Choose size",
+    "trioName": "Big Mac Trio",
+    "product": "Product",
+    "doublePatty": "Double patty",
+    "medium": "Medium",
+    "extraCheese": "Extra cheese {{price}}",
+    "extraCheeseNoPrice": "Extra cheese",
+    "changeProduct": "Change Product",
+    "modify": "Modify",
+    "addToOrder": "Add to order",
+    "calories": "cal",
+    "sizeXL": "XL"
   },
   "common": {
     "yes": "Yes",
@@ -204,6 +215,107 @@
     "back": "Back",
     "next": "Next",
     "close": "Close",
-    "or": "or"
+    "or": "or",
+    "skip": "Skip",
+    "send": "Send",
+    "notToday": "Not today",
+    "add": "Add",
+    "product": "Product"
+  },
+  "layouts": {
+    "checkout": "Checkout",
+    "cancel": "Cancel",
+    "legal": "Legal",
+    "calorieInfo": "Caloric requirements vary by age and activity level, ranging from approximately 1,000–1,800 kcal daily for children,1,800–2,800 kcal for adolescents and 1,600–3,000 kcal for adults, with differences based on gender",
+    "addedToCart": "Added to Cart: {{item}}",
+    "guest": "Guest",
+    "firstName": "First Name",
+    "logOut": "Log Out",
+    "signIn": "Sign In",
+    "home": "Home",
+    "steps": "Steps",
+    "burger": "Burger",
+    "side": "Side",
+    "drink": "Drink",
+    "review": "Review"
+  },
+  "pages": {
+    "addedSuccess": {
+      "title": "Item added to bag",
+      "message": "Your total is now up to date"
+    },
+    "confirmOrder": {
+      "title": "Confirm Order",
+      "subtotal": "Subtotal",
+      "promotion": "Promotion",
+      "tip": "Tip",
+      "taxes": "Taxes",
+      "total": "Total",
+      "changeOrder": "Change order",
+      "pay": "Pay"
+    },
+    "customerInfo": {
+      "enterNumber": "Enter your number",
+      "enterName": "Enter your name",
+      "numberDescription": "Your number will be used to call you when your order is ready",
+      "nameDescription": "Your name will be used to call you when your order is ready",
+      "placeholder": {
+        "phone": "555-555-5555",
+        "name": "Enter your name"
+      },
+      "maj": "MAJ"
+    },
+    "feedback": {
+      "title": "Rate us",
+      "subtitle": "Your rating shows appreciation for our staff's hard work, thank you for your support",
+      "question": "Want to leave a feedback ?",
+      "options": {
+        "easy": "Easy",
+        "fast": "Fast",
+        "smooth": "Smooth",
+        "quickOrder": "Quick Order",
+        "userFriendly": "User Friendly",
+        "intuitive": "Intuitive",
+        "okay": "Okay",
+        "tookTime": "Took Time",
+        "confusing": "Confusing",
+        "tooSlow": "Too Slow"
+      }
+    },
+    "followInstructions": {
+      "message": "Follow the keypad instructions to pay."
+    },
+    "orderNumber": {
+      "title": "Thank You",
+      "receiptCard": "Take your receipt & number.",
+      "receiptCash": "Take your preorder and pay at the cashier.",
+      "number": "No.",
+      "disconnected": "Disconnected"
+    },
+    "recommendation": {
+      "title": "You may also like"
+    },
+    "reviewOrder": {
+      "title": "Review Order",
+      "exclusiveOffer": "Exclusive One-Time Offer – 25% Off Your Next Purchase",
+      "validOneUse": "Valid for One Use Only!",
+      "termsConditions": "Terms & Conditions",
+      "modify": "Modify",
+      "remove": "Remove",
+      "changeProduct": "Change product",
+      "youMightLike": "You might also like",
+      "subtotal": "Subtotal",
+      "promotion": "Promotion",
+      "total": "Total",
+      "checkout": "Checkout",
+      "dealMessage": "You're just ${{amount}} away from grabbing this amazing deal!",
+      "outOfStock": "Out of stock",
+      "ingredientUnavailable": "Ingredient unavailable",
+      "stockReduced": "Stock reduced to {{max}}",
+      "principalIngredientUnavailable": "Principal ingredient unavailable",
+      "replaceWith": "Replace with",
+      "continueToOrder": "Continue to order",
+      "reviewCart": "Review cart"
+    }
   }
 }

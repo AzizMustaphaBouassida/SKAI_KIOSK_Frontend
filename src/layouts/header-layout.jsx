@@ -1,8 +1,22 @@
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import Logo from '../components/Logo';
 
 export default function HeaderLayout({ title, showTitle = false, children }) {
     const theme = useTheme();
+    const { i18n } = useTranslation();
+
+    const currentLanguage = i18n.resolvedLanguage || i18n.language || 'en';
+    const normalizedLanguage = currentLanguage.split('-')[0];
+
+    const isEnglish = normalizedLanguage === 'en';
+    const isFrench = normalizedLanguage === 'fr';
+
+    const handleLanguageChange = (language) => {
+        if (normalizedLanguage !== language) {
+            i18n.changeLanguage(language);
+        }
+    };
 
     return (
         <div>
@@ -27,10 +41,34 @@ export default function HeaderLayout({ title, showTitle = false, children }) {
                         )}
                     </div>
 
-                    <div className="flex items-center gap-2 text-4xl font-medium mr-8 -mt-8">
-                        <span className="font-bold" style={theme.getStyle('primary')}>EN</span>
+                    <div className="flex items-center gap-2 text-4xl mr-8 -mt-8">
+                        <button
+                            type="button"
+                            onClick={() => handleLanguageChange('en')}
+                            className={`uppercase px-2 py-1 transition-colors focus:outline-none cursor-pointer ${isEnglish ? 'font-bold' : 'font-medium'}`}
+                            style={{
+                                ...(isEnglish ? theme.getStyle('primary') : theme.getStyle('greyDarker')),
+                                backgroundColor: 'transparent',
+                                border: 'none'
+                            }}
+                            aria-pressed={isEnglish}
+                        >
+                            EN
+                        </button>
                         <span style={theme.getStyle('greyDarker')}>|</span>
-                        <span style={theme.getStyle('greyDarker')}>FR</span>
+                        <button
+                            type="button"
+                            onClick={() => handleLanguageChange('fr')}
+                            className={`uppercase px-2 py-1 transition-colors focus:outline-none cursor-pointer ${isFrench ? 'font-bold' : 'font-medium'}`}
+                            style={{
+                                ...(isFrench ? theme.getStyle('primary') : theme.getStyle('greyDarker')),
+                                backgroundColor: 'transparent',
+                                border: 'none'
+                            }}
+                            aria-pressed={isFrench}
+                        >
+                            FR
+                        </button>
                     </div>
                 </div>
             </header>

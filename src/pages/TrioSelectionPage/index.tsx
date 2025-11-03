@@ -167,7 +167,7 @@ function CustomizationInterface({
       price: "+$12.00",
       calories: "400cal",
     },
-    { id: "XL" as const, label: "XL", price: "+$20.00", calories: "500cal" },
+    { id: "XL" as const, label: t("trioSelection.sizeXL"), price: "+$20.00", calories: "500cal" },
   ];
 
   return (
@@ -196,7 +196,7 @@ function CustomizationInterface({
               className="text-[20px] font-semibold"
               style={theme.getStyle("greyDarker")}
             >
-              {option.price} /{option.calories} cal
+              {option.price} /{option.calories} {t('trioSelection.calories')}
             </p>
           </div>
         </div>
@@ -456,7 +456,6 @@ function ReviewOrderInterface({
   selectedBurger,
   selectedSide,
   selectedDrink,
-  onBack,
   onAddToOrder,
 }: {
   selectedBurger: string | null;
@@ -477,52 +476,44 @@ function ReviewOrderInterface({
   const trioProducts = [
     {
       id: "burger",
-      name: "Prod1",
+      name: t('trioSelection.product'),
       price: "+5$",
       image: burgerOption?.image || forYouBurgerImage,
       tags: [
-        { label: "Double patty", isPaid: false },
-        { label: "Medium", isPaid: false },
-        { label: "Medium", isPaid: false },
-        { label: "Extra cheese +2$", isPaid: true },
+        { label: t('trioSelection.doublePatty'), isPaid: false },
+        { label: t('trioSelection.medium'), isPaid: false },
+        { label: t('trioSelection.medium'), isPaid: false },
+        { label: t('trioSelection.extraCheese', { price: '+2$' }), isPaid: true },
       ],
     },
     {
       id: "side",
-      name: "Prod1",
+      name: t('trioSelection.product'),
       price: "+5$",
       image: sideOption?.image || friesImage,
       tags: [
-        { label: "Double patty", isPaid: false },
-        { label: "Medium", isPaid: false },
-        { label: "Medium", isPaid: false },
-        { label: "Extra cheese", isPaid: false },
+        { label: t('trioSelection.doublePatty'), isPaid: false },
+        { label: t('trioSelection.medium'), isPaid: false },
+        { label: t('trioSelection.medium'), isPaid: false },
+        { label: t('trioSelection.extraCheeseNoPrice'), isPaid: false },
       ],
     },
     {
       id: "drink",
-      name: "Prod1",
+      name: t('trioSelection.product'),
       price: "+5$",
       image: drinkOption?.image || cokeImage,
       tags: [
-        { label: "Double patty", isPaid: false },
-        { label: "Medium", isPaid: false },
-        { label: "Medium", isPaid: false },
-        { label: "Extra cheese", isPaid: false },
+        { label: t('trioSelection.doublePatty'), isPaid: false },
+        { label: t('trioSelection.medium'), isPaid: false },
+        { label: t('trioSelection.medium'), isPaid: false },
+        { label: t('trioSelection.extraCheeseNoPrice'), isPaid: false },
       ],
     },
   ];
 
   return (
     <div className="relative flex flex-col" style={theme.getStyle("fontSerious")}>
-      <p
-        className="absolute -top-6 left-0 text-[22px] font-medium mb-2"
-        style={{
-          ...theme.getStyle("greyDarker"),
-        }}
-      >
-        20$ - 1500 cal
-      </p>
       <h2
         className="text-[36px] font-bold mb-6"
         style={{
@@ -530,20 +521,28 @@ function ReviewOrderInterface({
           ...theme.getStyle("fontBranded"),
         }}
       >
-        Review your Order
+        {t('pages.reviewOrder.title')}
       </h2>
 
       <div className="flex justify-center mb-6">
         <div className="relative w-[250px] h-[250px]">
           <img
             src={trioBurgerImage || "/placeholder.svg"}
-            alt="Big Mac Trio"
-            className="w-full h-full object-contain"
+            alt={t('trioSelection.trioName')}
+            className="w-full h-full object-contain md-16"
           />
+                <p
+        className="text-[26px] font-semibold pt-2 ml-8"
+        style={{
+          ...theme.getStyle("greyDarker"),
+        }}
+      >
+        20$ - 1500 {t('trioSelection.calories')}
+      </p>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 w-[750px] mb-12 justify-items-center">
+      <div className="grid grid-cols-2 gap-6 w-[750px] mb-12 mt-10 justify-items-center">
         {trioProducts.map((product, index) => (
           <Card
             key={product.id}
@@ -566,7 +565,7 @@ function ReviewOrderInterface({
               >
                 <img
                   src={changeProductIcon}
-                  alt="Change Product"
+                  alt={t('trioSelection.changeProduct')}
                   className="w-[28px] h-[28px]"
                 />
               </button>
@@ -579,7 +578,7 @@ function ReviewOrderInterface({
               >
                 <img
                   src={modifyIcon}
-                  alt="Modify"
+                  alt={t('trioSelection.modify')}
                   className="w-[24px] h-[24px]"
                 />
               </button>
@@ -595,9 +594,9 @@ function ReviewOrderInterface({
               </div>
             </div>
 
-            <div className="mb-3">
+            <div className="mb-3 flex justify-between items-center">
               <h3
-                className="text-[25px] font-bold mb-1"
+                className="text-[25px] font-bold"
                 style={{
                   ...theme.getStyle("black"),
                   ...theme.getStyle("fontBranded"),
@@ -605,12 +604,12 @@ function ReviewOrderInterface({
               >
                 {product.name}
               </h3>
-              <p
-                className="text-[18px] font-bold"
+              <span
+                className="text-[20px] font-bold ml-4 mt-6"
                 style={{ color: theme.colors.greyDarker }}
               >
                 {product.price}
-              </p>
+              </span>
             </div>
 
             <div className="flex flex-wrap gap-1.5 flex-1 items-start">
@@ -696,7 +695,7 @@ function ReviewOrderInterface({
           }}
           onClick={onAddToOrder}
         >
-          Add to order
+          {t('trioSelection.addToOrder')}
         </Button>
       </div>
     </div>
@@ -842,8 +841,8 @@ function TrioSelectionContent({
                       }}
                     >
                       {currentStep === 2
-                        ? `Medium · ${option.calories} cal`
-                        : `${option.calories} cal`}
+                        ? `${t('trioSelection.medium')} · ${option.calories} ${t('trioSelection.calories')}`
+                        : `${option.calories} ${t('trioSelection.calories')}`}
                     </p>
 
                     <div

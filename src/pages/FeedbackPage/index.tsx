@@ -11,32 +11,34 @@ import HeaderIconTextLayout from "@/layouts/header-icon-text-layout";
 import DonationIcon from "@/assets/icons/donation-icon.svg";
 // @ts-ignore
 import { getThemeStyle } from "@/config/theme";
-
-const feedbackOptions = [
-  "Easy",
-  "Fast",
-  "Smooth",
-  "Quick Order",
-  "User Friendly",
-  "Intuitive",
-  "Okay",
-  "Took Time",
-  "Confusing",
-  "Too Slow",
-];
+import { useTranslation } from "react-i18next";
 
 export default function FeedbackPage() {
   const [rating, setRating] = useState<number>(3);
   const [selectedFeedback, setSelectedFeedback] = useState<string | null>(null);
   const theme = useTheme();
+  const { t } = useTranslation();
+
+  const feedbackOptions = [
+    { key: 'easy', label: t('pages.feedback.options.easy') },
+    { key: 'fast', label: t('pages.feedback.options.fast') },
+    { key: 'smooth', label: t('pages.feedback.options.smooth') },
+    { key: 'quickOrder', label: t('pages.feedback.options.quickOrder') },
+    { key: 'userFriendly', label: t('pages.feedback.options.userFriendly') },
+    { key: 'intuitive', label: t('pages.feedback.options.intuitive') },
+    { key: 'okay', label: t('pages.feedback.options.okay') },
+    { key: 'tookTime', label: t('pages.feedback.options.tookTime') },
+    { key: 'confusing', label: t('pages.feedback.options.confusing') },
+    { key: 'tooSlow', label: t('pages.feedback.options.tooSlow') },
+  ];
 
   const boxShadowStyle = { boxShadow: "0px 4px 4px 0px #00000040" };
 
   return (
     <HeaderIconTextLayout
       icon={DonationIcon}
-      text="Rate us"
-      subtitle="Your rating shows appreciation for our staff's hard work, thank you for your support"
+      text={t('pages.feedback.title')}
+      subtitle={t('pages.feedback.subtitle')}
     >
       <div
         className="w-full mx-auto flex flex-col items-center space-y-6 px-6 pb-8"
@@ -65,17 +67,17 @@ export default function FeedbackPage() {
             ...theme.getStyle("fontBranded"),
           }}
         >
-          Want to leave a feedback ?
+          {t('pages.feedback.question')}
         </h2>
         {/* Feedback Options as a responsive tag cloud */}
         <div className="w-full flex flex-wrap gap-3 justify-center mb-12">
           {feedbackOptions.map((feedback, index) => (
             <button
               key={index}
-              onClick={() => setSelectedFeedback(feedback)}
-              className={`px-6 py-3 rounded-full border-2 text-center font-medium text-[22px] transition-all ${selectedFeedback === feedback ? "border-[#FFC72C] bg-[#FFF9E6]" : "border-gray-300 bg-white hover:border-gray-400"}`}
+              onClick={() => setSelectedFeedback(feedback.key)}
+              className={`px-6 py-3 rounded-full border-2 text-center font-medium text-[22px] transition-all ${selectedFeedback === feedback.key ? "border-[#FFC72C] bg-[#FFF9E6]" : "border-gray-300 bg-white hover:border-gray-400"}`}
               style={
-                selectedFeedback === feedback
+                selectedFeedback === feedback.key
                   ? {
                       ...theme.getStyle("fontSerious"),
                       ...theme.getStyle("secondaryBorder"),
@@ -90,7 +92,7 @@ export default function FeedbackPage() {
                     }
               }
             >
-              {feedback}
+              {feedback.label}
             </button>
           ))}
         </div>
@@ -109,7 +111,7 @@ export default function FeedbackPage() {
             console.log("Feedback:", selectedFeedback);
           }}
         >
-          Send
+          {t('common.send')}
         </button>
         {/* Not Today Button */}
         <button
@@ -123,7 +125,7 @@ export default function FeedbackPage() {
             ...boxShadowStyle,
           }}
         >
-          Not today
+          {t('common.notToday')}
         </button>
       </div>
     </HeaderIconTextLayout>

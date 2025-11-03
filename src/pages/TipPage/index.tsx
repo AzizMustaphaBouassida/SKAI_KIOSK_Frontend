@@ -152,14 +152,13 @@ export default function TipPage() {
             {/* Custom Amount Counter - matched to ReviewOrderPage design */}
             <div className="w-[600px] flex items-center justify-center mt-2">
               <div
-                className="flex items-center h-[85px] rounded-xl overflow-hidden border-2 w-[540px]"
+                className="flex items-center h-[85px] rounded-xl overflow-hidden border-2"
                 style={{
                   borderColor: theme.colors.greyDarker,
-                  ...boxShadowStyle,
                 }}
               >
                 <button
-                  className="h-full w-[180px] flex items-center justify-center hover:opacity-80 border-r-2"
+                  className="h-full w-[150px] flex items-center justify-center hover:opacity-80 border-r-2"
                   onClick={handleDecrease}
                   style={{
                     backgroundColor: theme.colors.white,
@@ -170,7 +169,7 @@ export default function TipPage() {
                 </button>
 
                 <div
-                  className="h-full w-[180px] flex items-center justify-center border-r-2 font-medium text-[28px]"
+                  className="h-full w-[240px] flex items-center justify-center border-r-2 font-medium text-[28px]"
                   style={{
                     backgroundColor: theme.colors.white,
                     borderColor: theme.colors.greyDarker,
@@ -178,11 +177,11 @@ export default function TipPage() {
                     ...theme.getStyle("fontSerious"),
                   }}
                 >
-                  {customAmount.toFixed(2)}
+                  {customAmount.toFixed(2)} $
                 </div>
 
                 <button
-                  className="h-full w-[180px] flex items-center justify-center hover:opacity-90"
+                  className="h-full w-[150px] flex items-center justify-center hover:opacity-90"
                   onClick={handleIncrease}
                   style={{ backgroundColor: theme.colors.secondary }}
                 >
@@ -216,7 +215,7 @@ export default function TipPage() {
                 ...theme.getStyle("fontSerious"),
                 ...theme.getStyle("greyDarkerBorder"),
                 ...theme.getStyle("whiteBg"),
-                ...theme.getStyle("black"),
+                ...theme.getStyle("greyDarker"),
               }}
               onClick={() => {
                 console.log("[TipPage] User clicked Not today");

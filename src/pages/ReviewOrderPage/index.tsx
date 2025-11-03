@@ -4,6 +4,7 @@ import { useState } from "react";
 import { X, Plus, Minus, MoreHorizontal } from "lucide-react";
 // @ts-ignore
 import { useTheme } from "../../hooks/useTheme";
+import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -62,6 +63,7 @@ interface CartItem {
 
 export default function ReviewOrderPage() {
   const theme = useTheme();
+  const { t } = useTranslation();
   const cardShadowStyle = { boxShadow: "0px 2px 4px 0px #00000040" };
 
   const SHOW_UNAVAILABLE_POPUP = false;
@@ -224,7 +226,7 @@ export default function ReviewOrderPage() {
 
   return (
     <div className="h-screen flex flex-col bg-white">
-      <HeaderLayout showTitle={true} title="Review Order" />
+      <HeaderLayout showTitle={true} title={t('pages.reviewOrder.title')} />
 
       <div className="flex-1 px-5 py-4 mx-auto w-[1050px] flex flex-col overflow-hidden pb-[400px]">
         {showPromo && (
@@ -261,13 +263,13 @@ export default function ReviewOrderPage() {
                       ...theme.getStyle("fontBranded"),
                     }}
                   >
-                    Exclusive One-Time Offer – 25% Off Your Next Purchase
+                    {t('pages.reviewOrder.exclusiveOffer')}
                   </p>
                   <p
                     className="text-[17px] font-medium"
                     style={theme.getStyle("greyDarker")}
                   >
-                    Valid for One Use Only!
+                    {t('pages.reviewOrder.validOneUse')}
                   </p>
                 </div>
               </div>
@@ -283,7 +285,7 @@ export default function ReviewOrderPage() {
                 }}
                 onClick={handleTermsClick}
               >
-                Terms & Conditions
+                {t('pages.reviewOrder.termsConditions')}
               </button>
             </div>
           </div>
@@ -493,7 +495,7 @@ export default function ReviewOrderPage() {
                         className="text-[20px] font-semibold mt-2"
                         style={{ ...theme.getStyle("red") }}
                       >
-                        Out of stock
+                        {t('pages.reviewOrder.outOfStock')}
                       </p>
                     )}
                     {isStockReduced && (
@@ -501,7 +503,7 @@ export default function ReviewOrderPage() {
                         className="text-[20px] font-semibold mt-2"
                         style={{ ...theme.getStyle("red") }}
                       >
-                        Stock reduced: Max {item.quantity} available
+                        {t('pages.reviewOrder.stockReduced', { max: item.quantity })}
                       </p>
                     )}
                   </div>
@@ -646,7 +648,7 @@ export default function ReviewOrderPage() {
                             </div>
                           </div>
 
-                          <div className="mb-4">
+                          <div className="mb-4 flex justify-between items-center">
                             <h4
                               className="font-bold text-[25px]"
                               style={{
@@ -656,12 +658,12 @@ export default function ReviewOrderPage() {
                             >
                               {product.name}
                             </h4>
-                            <p
-                              className="text-[18px] font-medium"
+                            <span
+                              className="text-[20px] font-bold ml-4 mt-6"
                               style={theme.getStyle("greyDarker")}
                             >
                               +{product.priceModifier}$
-                            </p>
+                            </span>
                           </div>
 
                           <div className="flex flex-wrap gap-2">
@@ -715,7 +717,7 @@ export default function ReviewOrderPage() {
                 ...theme.getStyle("fontSerious"),
               }}
             >
-              You're just $7.40 away from grabbing this amazing deal!
+              {t('pages.reviewOrder.dealMessage', { amount: '7.40' })}
             </p>
           </div>
         )}
@@ -731,7 +733,7 @@ export default function ReviewOrderPage() {
                 ...theme.getStyle("fontBranded"),
               }}
             >
-              You might also like
+              {t('pages.reviewOrder.youMightLike')}
             </h2>
             <div className="flex justify-center gap-3">
               {[
@@ -819,7 +821,7 @@ export default function ReviewOrderPage() {
                     ...theme.getStyle("fontSerious"),
                   }}
                 >
-                  Subtotal
+                  {t('pages.reviewOrder.subtotal')}
                 </span>
                 <span
                   className="font-medium text-[25px]"
@@ -839,7 +841,7 @@ export default function ReviewOrderPage() {
                     ...theme.getStyle("fontSerious"),
                   }}
                 >
-                  Promotion
+                  {t('pages.reviewOrder.promotion')}
                 </span>
                 <span
                   className="text-[25px] h-[47px] w-[124px] font-semibold rounded-xl flex items-center justify-center absolute"
@@ -861,7 +863,7 @@ export default function ReviewOrderPage() {
                       ...theme.getStyle("fontBranded"),
                     }}
                   >
-                    Total
+                    {t('pages.reviewOrder.total')}
                   </span>
                   <span
                     className="font-bold text-[25px]"
@@ -887,7 +889,7 @@ export default function ReviewOrderPage() {
                   ...cardShadowStyle,
                 }}
               >
-                Review
+                {t('common.back')}
               </button>
               <button
                 className="h-[84px] w-[561px] text-[28px] font-semibold rounded-xl hover:opacity-90"
@@ -899,7 +901,7 @@ export default function ReviewOrderPage() {
                 }}
                 onClick={handleContinueToOrder}
               >
-                Continue to order
+                {t('pages.reviewOrder.continueToOrder')}
               </button>
             </div>
           </div>
@@ -922,7 +924,7 @@ export default function ReviewOrderPage() {
                   ...theme.getStyle("fontBranded"),
                 }}
               >
-                Terms & Conditions
+                {t('pages.reviewOrder.termsConditions')}
               </DialogTitle>
               <DialogDescription
                 className="text-[30px] font-semibold"
@@ -931,7 +933,7 @@ export default function ReviewOrderPage() {
                   ...theme.getStyle("fontSerious"),
                 }}
               >
-                Exclusive One-Time Offer
+                {t('pages.reviewOrder.exclusiveOffer')}
               </DialogDescription>
             </div>
             <div className="flex-shrink-0 ml-4">
@@ -974,7 +976,7 @@ export default function ReviewOrderPage() {
                 ...cardShadowStyle,
               }}
             >
-              Close
+              {t('common.close')}
             </Button>
             <Button
               onClick={handleCloseTerms}
@@ -986,7 +988,7 @@ export default function ReviewOrderPage() {
                 ...cardShadowStyle,
               }}
             >
-              Apply to Cart
+              {t('offers.applyToCart')}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -1052,7 +1054,7 @@ export default function ReviewOrderPage() {
                     ...theme.getStyle("fontSerious"),
                   }}
                 >
-                  Out of stock
+                  {t('pages.reviewOrder.outOfStock')}
                 </span>
               </div>
               <div className="flex items-center gap-8 w-full rounded-xl mr-10 bg-[#FFF9E6] py-[14px]">
@@ -1086,7 +1088,7 @@ export default function ReviewOrderPage() {
                     ...theme.getStyle("fontSerious"),
                   }}
                 >
-                  Stock reduced: Max {STOCK_REDUCED_MAX} available
+                  {t('pages.reviewOrder.stockReduced', { max: STOCK_REDUCED_MAX })}
                 </span>
               </div>
             </div>
@@ -1101,7 +1103,7 @@ export default function ReviewOrderPage() {
                 ...theme.getStyle("fontBranded"),
               }}
             >
-              Review cart
+              {t('pages.reviewOrder.reviewCart')}
             </Button>
           </DialogFooter>
         </DialogContent>

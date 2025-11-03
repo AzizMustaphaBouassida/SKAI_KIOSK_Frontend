@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useTheme } from '../hooks/useTheme'
+import { useTranslation } from 'react-i18next'
 import HeaderLayout from './header-layout'
 import FooterLayout from './footer-layout'
 import SidebarLayout from './sidebar-layout'
@@ -11,6 +12,7 @@ export default function MainMenuLayout({ children, title, activePage }) {
     const [showNotification, setShowNotification] = useState(true)
     const [cartItems, setCartItems] = useState(2)
     const [totalPrice, setTotalPrice] = useState(15.99)
+    const { t } = useTranslation()
 
     const handleLogin = () => {
         setIsSignedIn(true)
@@ -63,7 +65,7 @@ export default function MainMenuLayout({ children, title, activePage }) {
                             {showNotification && (
                                 <div className="z-50 mb-0 mr-6 ml-6">
                                     <NotificationBarLayout
-                                        message="Added to Cart: Offer name"
+                                        itemName={t('offers.offerName')}
                                         show={showNotification}
                                     />
                                 </div>

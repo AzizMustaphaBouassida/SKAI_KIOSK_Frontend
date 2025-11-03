@@ -1,12 +1,14 @@
 "use client"
 import { useTheme } from '../hooks/useTheme';
+import { useTranslation } from 'react-i18next';
 import guestIcon from '../assets/icons/guest-icon.svg';
 
 export default function SigninBoxLayout({ isLoggedIn = true }) {
     const theme = useTheme();
+    const { t } = useTranslation();
 
-    const displayName = isLoggedIn ? "First Name" : "Guest";
-    const buttonText = isLoggedIn ? "Log Out" : "Sign In";
+    const displayName = isLoggedIn ? t('layouts.firstName') : t('layouts.guest');
+    const buttonText = isLoggedIn ? t('layouts.logOut') : t('layouts.signIn');
     const buttonStyle = isLoggedIn
         ? { ...theme.getStyle('secondaryBg'), ...theme.getStyle('black') }
         : { ...theme.getStyle('primaryBg'), ...theme.getStyle('white') };

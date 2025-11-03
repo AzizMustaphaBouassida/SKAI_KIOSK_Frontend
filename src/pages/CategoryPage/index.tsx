@@ -34,7 +34,7 @@ export default function CategoryPage() {
   };
 
   const ourPicksProductCount = 3;
-  const allSectionColumns = 3;
+  const allSectionColumns = 2;
 
   const cardHeight = allSectionColumns === 2 ? "342px" : "300px";
   const imageSize = allSectionColumns === 2 ? "230px" : "190px";
@@ -44,12 +44,12 @@ export default function CategoryPage() {
 
   // State: vegan icon visibility for 6 cards in 'All Section'
   const [veganVisible] = useState([
-    true, // Card 1
-    false, // Card 2
-    false, // Card 3
-    false, // Card 4
-    false, // Card 5
-    false, // Card 6
+    true, 
+    false, 
+    false, 
+    false, 
+    false, 
+    false, 
   ]);
 
   return (

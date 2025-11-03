@@ -16,13 +16,13 @@ export const SELECTION_PAGE_CONFIGS = {
         image: eatInImage,
         labelKey: 'orderType.eatIn',
         imageScale: 'scale-90 mt-24',
-        onSelect: '/catalog' // Navigate to catalog after selection
+        onSelect: '/catalog'
       },
       {
         image: takeawayImage,
         labelKey: 'orderType.takeAway',
         imageScale: 'scale-100 mt-16',
-        onSelect: '/catalog' // Navigate to catalog after selection
+        onSelect: '/catalog'
       }
     ]
   },

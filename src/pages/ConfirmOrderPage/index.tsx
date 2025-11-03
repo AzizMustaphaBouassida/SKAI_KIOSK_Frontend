@@ -3,6 +3,7 @@
 import { useState } from "react";
 // @ts-ignore
 import { useTheme } from "../../hooks/useTheme";
+import { useTranslation } from "react-i18next";
 
 // @ts-ignore
 import HeaderLayout from "../../layouts/header-layout";
@@ -37,6 +38,7 @@ interface CartItem {
 
 export default function ConfirmOrderPage() {
   const theme = useTheme();
+  const { t } = useTranslation();
   const cardShadowStyle = { boxShadow: "0px 2px 4px 0px rgba(0, 0, 0, 0.25)" };
 
   const [cartItems] = useState<CartItem[]>([
@@ -128,7 +130,7 @@ export default function ConfirmOrderPage() {
 
   return (
     <div className="h-screen flex flex-col bg-white">
-      <HeaderLayout showTitle={true} title="Confirm Order" />
+      <HeaderLayout showTitle={true} title={t('pages.confirmOrder.title')} />
 
       <div className="flex-1 px-5 py-4 mx-auto w-[1050px] flex flex-col overflow-hidden pb-[400px]">
         {/* Cart Items Section */}
@@ -170,7 +172,6 @@ export default function ConfirmOrderPage() {
                   />
                 </div>
 
-                {/* Product Info */}
                 <div className="flex-1 min-w-0 space-y-3">
                   <h3
                     className="font-bold text-[25px] leading-tight"
@@ -299,7 +300,7 @@ export default function ConfirmOrderPage() {
                       </div>
                     </div>
 
-                    <div className="mb-4">
+                    <div className="mb-4 flex justify-between items-center">
                       <h4
                         className="font-bold text-[25px]"
                         style={{
@@ -309,12 +310,12 @@ export default function ConfirmOrderPage() {
                       >
                         {product.name}
                       </h4>
-                      <p
-                        className="text-[18px] font-medium"
+                      <span
+                        className="text-[20px] font-bold mt-6 ml-4"
                         style={theme.getStyle("greyDarker")}
                       >
                         +{product.priceModifier}$
-                      </p>
+                      </span>
                     </div>
 
                     <div className="flex flex-wrap gap-2">
@@ -366,7 +367,7 @@ export default function ConfirmOrderPage() {
                     ...theme.getStyle("fontSerious"),
                   }}
                 >
-                  Subtotal
+                  {t('pages.confirmOrder.subtotal')}
                 </span>
                 <span
                   className="font-medium text-[25px]"
@@ -388,7 +389,7 @@ export default function ConfirmOrderPage() {
                     ...theme.getStyle("fontSerious"),
                   }}
                 >
-                  Promotion
+                  {t('pages.confirmOrder.promotion')}
                 </span>
                 <span
                   className="text-[25px] h-[47px] px-4 font-semibold rounded-xl flex items-center justify-center absolute"
@@ -411,7 +412,7 @@ export default function ConfirmOrderPage() {
                     ...theme.getStyle("fontSerious"),
                   }}
                 >
-                  Tip
+                  {t('pages.confirmOrder.tip')}
                 </span>
                 <span
                   className="font-medium text-[25px]"
@@ -433,7 +434,7 @@ export default function ConfirmOrderPage() {
                     ...theme.getStyle("fontSerious"),
                   }}
                 >
-                  Taxes
+                  {t('pages.confirmOrder.taxes')}
                 </span>
                 <span
                   className="font-medium text-[25px]"
@@ -456,7 +457,7 @@ export default function ConfirmOrderPage() {
                       ...theme.getStyle("fontBranded"),
                     }}
                   >
-                    Total
+                    {t('pages.confirmOrder.total')}
                   </span>
                   <span
                     className="font-bold text-[25px]"
@@ -483,7 +484,7 @@ export default function ConfirmOrderPage() {
                   ...cardShadowStyle,
                 }}
               >
-                Change order
+                {t('pages.confirmOrder.changeOrder')}
               </button>
               <button
                 className="h-[84px] w-[561px] text-[28px] font-semibold rounded-xl hover:opacity-90"
@@ -494,7 +495,7 @@ export default function ConfirmOrderPage() {
                   ...cardShadowStyle,
                 }}
               >
-                Pay
+                {t('pages.confirmOrder.pay')}
               </button>
             </div>
           </div>

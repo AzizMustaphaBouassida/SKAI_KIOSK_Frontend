@@ -8,6 +8,7 @@ import DeleteIcon from "@/assets/icons/delete-icon.svg";
 
 // @ts-ignore
 import { useTheme } from "../../hooks/useTheme";
+import { useTranslation } from "react-i18next";
 
 interface CustomerInfoPageProps {
   type: "phone" | "name";
@@ -15,6 +16,7 @@ interface CustomerInfoPageProps {
 
 export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
   const theme = useTheme();
+  const { t } = useTranslation();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [isUppercase, setIsUppercase] = useState(true);
@@ -22,7 +24,6 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
 
   const boxShadowStyle = { boxShadow: "0px 4px 4px 0px #00000040" };
 
-  // Letter keyboard layout for name input (QWERTY)
   const letterRows = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
@@ -47,7 +48,7 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
 
   const handleLetterClick = (letter: string) => {
     if (type === "phone") return;
-    if (customerName.length >= 20) return; // Limit name length
+    if (customerName.length >= 20) return;
     const before = customerName.slice(0, cursorIndex);
     const after = customerName.slice(cursorIndex);
     const updated = before + letter + after;
@@ -96,7 +97,7 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
 
   return (
     <HeaderTitleLayout
-      title={type === "phone" ? "Enter your number" : "Enter your name"}
+      title={type === "phone" ? t('pages.customerInfo.enterNumber') : t('pages.customerInfo.enterName')}
     >
       <div
         className={`flex flex-col items-center px-6 py-8 mx-auto ${type === "phone" ? "w-[720px]" : "w-[900px]"}`}
@@ -110,8 +111,8 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
           }}
         >
           {type === "phone"
-            ? "Your number will be used to call you when your order is ready"
-            : "Your name will be used to call you when your order is ready"}
+            ? t('pages.customerInfo.numberDescription')
+            : t('pages.customerInfo.nameDescription')}
         </p>
 
         {/* Input Display with Backspace */}
@@ -134,7 +135,7 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
                   ...theme.getStyle("fontSerious"),
                 }}
               >
-                {phoneNumber || "555-555-5555"}
+                {phoneNumber || t('pages.customerInfo.placeholder.phone')}
               </span>
             ) : (
               <span
@@ -147,7 +148,7 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
                 }}
               >
                 {customerName.length === 0 ? (
-                  "Enter your name"
+                  t('pages.customerInfo.placeholder.name')
                 ) : (
                   <>
                     {customerName.slice(0, cursorIndex)}
@@ -259,7 +260,7 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
                       ...boxShadowStyle,
                     }}
                   >
-                    {isUppercase ? "MAJ" : "maj"}
+                    {isUppercase ? t('pages.customerInfo.maj') : t('pages.customerInfo.maj').toLowerCase()}
                   </Button>
                 )}
               </div>
@@ -327,7 +328,7 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
               ...boxShadowStyle,
             }}
           >
-            Skip
+            {t('common.skip')}
           </Button>
           <Button
             onClick={handleConfirm}
@@ -339,7 +340,7 @@ export default function CustomerInfoPage({ type }: CustomerInfoPageProps) {
               ...boxShadowStyle,
             }}
           >
-            Confirm
+            {t('common.confirm')}
           </Button>
         </div>
       </div>

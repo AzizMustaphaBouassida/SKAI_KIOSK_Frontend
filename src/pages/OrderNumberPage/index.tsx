@@ -7,9 +7,11 @@ import DoubleCheckIcon from "@/assets/icons/double-check-icon.svg";
 import HeaderTitleLayout from "../../layouts/header-title-layout";
 // @ts-ignore
 import { useTheme } from "../../hooks/useTheme";
+import { useTranslation } from "react-i18next";
 
 export default function OrderNumberPage() {
   const theme = useTheme();
+  const { t } = useTranslation();
   const orderNumber = "0909";
 
   // Payment method state - you can change this to 'card' or 'cash'
@@ -18,12 +20,12 @@ export default function OrderNumberPage() {
   // Dynamic text based on payment method
   const getReceiptText = () => {
     return paymentMethod === "card"
-      ? "Take your receipt & number."
-      : "Take your preorder and pay at the cashier.";
+      ? t('pages.orderNumber.receiptCard')
+      : t('pages.orderNumber.receiptCash');
   };
 
   return (
-    <HeaderTitleLayout title="Thank You">
+    <HeaderTitleLayout title={t('pages.orderNumber.title')}>
       <div className="h-full px-6 py-8">
         <h2
           className="text-center text-[50px] font-bold leading-tight mb-40"
@@ -53,7 +55,7 @@ export default function OrderNumberPage() {
                   ...theme.getStyle("fontSerious"),
                 }}
               >
-                No.
+                {t('pages.orderNumber.number')}
               </div>
               <div
                 className="w-[65px] h-[4px] mb-3"
@@ -103,7 +105,7 @@ export default function OrderNumberPage() {
                 ...theme.getStyle("fontSerious"),
               }}
             >
-              Disconnected
+              {t('pages.orderNumber.disconnected')}
             </span>
           </div>
         </div>

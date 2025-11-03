@@ -1,4 +1,5 @@
 import { useTheme } from '../hooks/useTheme';
+import { useTranslation } from 'react-i18next';
 import sacCheckoutIcon from '../assets/icons/sac-checkout-icon.svg';
 import takeAwayIcon from '../assets/icons/take_away-icon.svg';
 import eatInIcon from '../assets/icons/eat_in-icon.svg';
@@ -9,6 +10,7 @@ export default function CheckoutBarLayout({
     orderType = "takeaway",
 }) {
     const theme = useTheme();
+    const { t } = useTranslation();
     return (
         <div className="w-full border-t px-6 py-8" style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyLightBorder') }}>
             <div className="flex items-center justify-between max-w-7xl mx-auto">
@@ -52,7 +54,7 @@ export default function CheckoutBarLayout({
                         className="px-10 py-6 flex items-center justify-center"
                         style={theme.getStyle('greyLightBg')}
                     >
-                        <span className="text-3xl" style={theme.getStyle('greyDarker')}>Checkout</span>
+                        <span className="text-3xl" style={theme.getStyle('greyDarker')}>{t('layouts.checkout')}</span>
                     </div>
                 </button>
             </div>

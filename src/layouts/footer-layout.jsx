@@ -1,8 +1,10 @@
 import trashIcon from '../assets/icons/trash-icon.svg';
 import { useTheme } from '../hooks/useTheme';
+import { useTranslation } from 'react-i18next';
 
 export default function FooterLayout() {
     const theme = useTheme();
+    const { t } = useTranslation();
 
     return (
         <footer
@@ -20,7 +22,7 @@ export default function FooterLayout() {
                             ...theme.getStyle('fontBranded')
                         }}
                     >
-                        <span>Cancel</span>
+                        <span>{t('layouts.cancel')}</span>
                         <img
                             src={trashIcon}
                             alt="Trash Icon"
@@ -36,9 +38,7 @@ export default function FooterLayout() {
                         ...theme.getStyle('fontSerious')
                     }}
                 >
-                    Caloric requirements vary by age and activity level, ranging from approximately 1,000–1,800 kcal daily for
-                    children,1,800–
-                    2,800 kcal for adolescents and 1,600–3,000 kcal for adults, with differences based on gender
+                    {t('layouts.calorieInfo')}
                 </p>
 
                 <button
@@ -48,7 +48,7 @@ export default function FooterLayout() {
                         ...theme.getStyle('fontBranded')
                     }}
                 >
-                    Legal
+                    {t('layouts.legal')}
                 </button>
             </div>
         </footer>

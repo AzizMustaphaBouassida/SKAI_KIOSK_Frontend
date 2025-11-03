@@ -230,17 +230,17 @@ function ProductModal({
           >
             <button
               onClick={() => setIsSauceOpen(!isSauceOpen)}
-              className="w-full flex items-center justify-between p-7"
+              className="w-full flex items-center justify-between p-4"
             >
               <div className="flex items-center gap-4 flex-1">
                 <h3
-                  className="text-4xl font-bold"
+                  className="text-3xl font-bold"
                   style={theme.getStyle("black")}
                 >
                   Sauce
                 </h3>
                 <span
-                  className="px-4 py-1.5 w-[185px] h-[55px] rounded text-[25px] font-normal ml-auto mr-8"
+                  className="px-4 py-1.5 w-[175px] h-[50px] rounded text-[24px] font-normal ml-auto mr-8"
                   style={{
                     backgroundColor: "#FEF3C7",
                     color: theme.colors.black,
@@ -267,7 +267,7 @@ function ProductModal({
               </div>
             </button>
             {isSauceOpen && (
-              <div className="px-7 pb-7 space-y-3">
+              <div className="px-4 pb-4 space-y-2">
                 {sauceOptions.map((option) => {
                   const isSelected = selectedSauce === option.id;
                   const isUnavailable = !option.available;
@@ -339,10 +339,10 @@ function ProductModal({
           >
             <button
               onClick={() => setIsFlavorOpen(!isFlavorOpen)}
-              className="w-full flex items-center justify-between p-7"
+              className="w-full flex items-center justify-between p-4"
             >
               <h3
-                className="text-4xl font-bold"
+                className="text-3xl font-bold"
                 style={theme.getStyle("black")}
               >
                 Flavor
@@ -365,7 +365,7 @@ function ProductModal({
               </div>
             </button>
             {isFlavorOpen && (
-              <div className="px-7 pb-7 space-y-3">
+              <div className="px-4 pb-4 space-y-2">
                 {flavorOptions.map((option) => {
                   const isSelected = selectedFlavor === option.id;
                   const isUnavailable = !option.available;
@@ -437,7 +437,7 @@ function ProductModal({
           <div className="flex items-center justify-center gap-0 mb-8">
             <button
               type="button"
-              className="w-[177px] h-[98px] rounded-l-xl border-2 flex items-center justify-center bg-white"
+              className="w-[172px] h-[75px] rounded-l-xl border-2 flex items-center justify-center bg-white"
               style={{ borderColor: theme.colors.greyDark }}
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
             >
@@ -449,7 +449,7 @@ function ProductModal({
               </span>
             </button>
             <div
-              className="w-[320px] h-[98px] border-t-2 border-b-2 flex items-center justify-center bg-white"
+              className="w-[315px] h-[75px] border-t-2 border-b-2 flex items-center justify-center bg-white"
               style={{ borderColor: theme.colors.greyDark }}
             >
               <span
@@ -461,7 +461,7 @@ function ProductModal({
             </div>
             <button
               type="button"
-              className="w-[177px] h-[98px] rounded-r-xl flex items-center justify-center"
+              className="w-[172px] h-[75px] rounded-r-xl flex items-center justify-center"
               style={{ backgroundColor: theme.colors.secondary }}
               onClick={() => setQuantity(quantity + 1)}
             >
@@ -476,7 +476,7 @@ function ProductModal({
 
           <div className="flex justify-center">
             <Button
-              className="h-[100px] w-[500px] text-[36px] font-semibold rounded-2xl"
+              className="h-[70px] w-[480px] text-[34px] font-semibold rounded-2xl"
               style={{
                 backgroundColor: theme.colors.secondary,
                 color: theme.colors.black,

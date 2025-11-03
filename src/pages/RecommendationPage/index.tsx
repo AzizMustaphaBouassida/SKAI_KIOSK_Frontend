@@ -1,6 +1,7 @@
 "use client";
 // @ts-ignore
 import HeaderTitleLayout from "../../layouts/header-title-layout";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import { Plus } from "lucide-react";
 import VeganIcon from "@/assets/icons/vegan_icon.svg";
@@ -19,12 +20,11 @@ import React, { useState } from "react";
 
 export default function RecommendationPage() {
   const theme = useTheme();
+  const { t } = useTranslation();
   const boxShadowStyle = { boxShadow: "0px 4px 4px 0px #00000040" };
 
-  const layout = "grid-6" as "grid-6" | "grid-4" | "grid-2" | "list";
+  const layout = "list" as "grid-6" | "grid-4" | "grid-2" | "list";
 
-  // State for vegan icons visibility per card in grid
-  // Only cards 2 and 5 (indexes 1 and 4) display vegan icons
   const [veganVisible, setVeganVisible] = useState([
     false, // Card 1
     false, // Card 2
@@ -62,7 +62,7 @@ export default function RecommendationPage() {
   ];
 
   return (
-    <HeaderTitleLayout title="You may also like">
+    <HeaderTitleLayout title={t('pages.recommendation.title')}>
       <div className="w-full h-full mx-auto px-6 py-4">
         {layout === "list" ? (
           <div className="max-w-[850px] mx-auto space-y-4">
@@ -131,7 +131,7 @@ export default function RecommendationPage() {
                       }}
                     >
                       <img src={PlusIcon} alt="Add" className="w-6 h-6" />
-                      Add
+                      {t('common.add')}
                     </button>
                   </div>
                 </CardContent>
@@ -667,7 +667,7 @@ export default function RecommendationPage() {
                     : "100%",
           }}
         >
-          Not today
+          {t('common.notToday')}
         </button>
       </div>
     </HeaderTitleLayout>

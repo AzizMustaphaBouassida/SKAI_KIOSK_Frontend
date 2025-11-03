@@ -1,31 +1,31 @@
 {
   "welcome": {
     "member": "Membre ?",
-    "memberDescription": "Appuyez pour scanner le code QR",
-    "orderNow": "Commander!",
-    "orderDescription": "Continuer sans se connecter",
+    "memberDescription": "Scannez le code QR ici",
+    "orderNow": "Commander !",
+    "orderDescription": "Continuer sans connexion",
     "preferredLanguage": "Langue préférée ?",
     "french": "Français",
     "english": "Anglais"  
   },
   "login": {
     "title": "Membre ?",
-    "subtitle": "Scannez le code QR avec votre téléphone",
-    "skipLogin": "Passer la connexion"
+    "subtitle": "Scannez le QR code avec votre mobile",
+    "skipLogin": "Passer"
   },
   "connectInfos": {
     "title": "Comment se connecter",
     "step1": {
-      "title": "Scanner le code QR",
-      "description": "Ouvrez votre appareil photo ou scanner QR et scannez le code affiché sur l'écran de la borne."
+      "title": "Scannez le code QR",
+      "description": "Ouvrez votre caméra ou scanner QR et scannez le code affiché sur l'écran de la borne."
     },
     "step2": {
-      "title": "Connectez-vous instantanément",
-      "description": "Vous serez connecté automatiquement — pas d'inscription ou d'étapes supplémentaires nécessaires."
+      "title": "Connexion instantanée",
+      "description": "Vous serez connecté automatiquement — aucune inscription ou étape supplémentaire."
     },
     "step3": {
       "title": "Profitez d'offres spéciales",
-      "description": "Une fois connecté, vous débloquerez des offres exclusives, des recommandations personnalisées et bien plus de surprises rien que pour vous !"
+      "description": "Une fois connecté, débloquez des offres exclusives, des recommandations personnalisées et plus encore !"
     },
     "understood": "Compris"
   },
@@ -36,52 +36,52 @@
   },
   "makeTrio": {
     "title": "Faire un Trio ?",
-    "goForTrio": "Opter pour un trio",
-    "articleOnly": "Article seulement",
+    "goForTrio": "Choisir le trio",
+    "articleOnly": "Article seul",
     "price": "12 $",
-    "goBack": "Revenir"
+    "goBack": "Retour"
   },
   "paymentMethod": {
-    "title": "Comment souhaitez-vous payer ?",
-    "debitCard": "Carte de débit",
+    "title": "Mode de paiement ?",
+    "debitCard": "Carte débit",
     "cash": "Espèces",
-    "goBack": "Revenir"
+    "goBack": "Retour"
   },
   "loginSuccess": {
-    "message": "Vous avez été connecté avec succès."
+    "message": "Connexion réussie."
   },
   "logoutConfirmation": {
-    "title": "Êtes-vous sûr de vouloir vous déconnecter ?",
-    "subtitle": "Pour continuer votre commande, cliquez sur 'Continuer'",
+    "title": "Voulez-vous vous déconnecter ?",
+    "subtitle": "Cliquez sur 'Continuer' pour votre commande",
     "cancel": "Annuler",
     "continue": "Continuer"
   },
   "cardConfirmation": {
-    "title": "Êtes-vous sûr d'avoir une carte ?",
+    "title": "Avez-vous une carte ?",
     "cancel": "Annuler",
     "continue": "Continuer"
   },
   "cashConfirmation": {
-    "title": "Êtes-vous sûr d'avoir de l'argent ?",
+    "title": "Avez-vous des espèces ?",
     "cancel": "Annuler",
     "continue": "Continuer"
   },
   "logoutSuccess": {
-    "message": "Vous avez été déconnecté."
+    "message": "Déconnexion réussie."
   },
   "thankYou": {
     "donation": "Merci pour votre don",
-    "feedback": "Merci pour vos commentaires",
-    "tip": "Merci pour votre pourboire"
+    "feedback": "Merci pour votre avis",
+    "tip": "Merci pour le pourboire"
   },
   "continueOrder": {
-    "title": "Vous y réfléchissez ?",
-    "subtitle": "Pour continuer votre commande, cliquez sur 'Continuer'",
+    "title": "Vous hésitez ?",
+    "subtitle": "Cliquez sur 'Continuer' pour votre commande",
     "continue": "Continuer"
   },
   "donation": {
-    "title": "Envie de faire un don ?",
-    "subtitle": "Notre soutien apporte espoir et réconfort aux familles en difficulté",
+    "title": "Envie de donner ?",
+    "subtitle": "Votre soutien aide des familles en difficulté",
     "thanks": "Merci pour votre aide",
     "roundUp": "Arrondir",
     "subtotal": "Sous-total : {{amount}} $",
@@ -90,11 +90,11 @@
   },
   "tip": {
     "title": "Notez-nous",
-    "subtitle": "Votre note témoigne de votre reconnaissance envers le travail de notre équipe, merci pour votre soutien",
-    "askTip": "Envie de laisser un pourboire ?",
-    "info": "Le pourboire est calculé sur le montant de votre commande avant taxes.",
+    "subtitle": "Votre note valorise le travail de notre équipe, merci !",
+    "askTip": "Laisser un pourboire ?",
+    "info": "Pourboire calculé sur le total avant taxes.",
     "placeholder": "0,00$",
-    "giveTip": "Laisser un pourboire",
+    "giveTip": "Donner un pourboire",
     "notToday": "Pas aujourd'hui"
   },
   "catalog": {
@@ -103,9 +103,9 @@
     "productName": "Produit",
     "price": "{{price}} $",
     "calories": "{{calories}} cal",
-    "helpTitle": "Besoin d'aide pour choisir ?",
-    "helpSubtitle": "Nous sommes là pour vous",
-    "helpDescription": "Appuyez pour scanner le code QR",
+    "helpTitle": "Besoin d'aide ?",
+    "helpSubtitle": "On s'occupe de vous",
+    "helpDescription": "Scannez le code QR ici",
     "mcSelectsTitle": "Mc Selects",
     "trioBurger": {
       "line1": "Trio",
@@ -115,8 +115,8 @@
       "line1": "Menu",
       "line2": "Famille"
     },
-    "cantChooseTitle": "Vous hésitez ? Nous avons la solution.",
-    "cantChooseSubtitle": "Quelques questions, de super recommandations",
+    "cantChooseTitle": "Vous hésitez ? On vous aide.",
+    "cantChooseSubtitle": "Quelques questions, super résultats",
     "cantChooseCta": "Commencer",
     "mccafeTitle": "McCafe",
     "happyMeal": {
@@ -126,65 +126,65 @@
     "bestSellersTitle": "Meilleures ventes",
     "notLoggedIn": {
       "scanCouponTitle": "Scannez votre coupon",
-      "scanCouponSubtitle": "Vos récompenses ne sont qu'à un scan – profitez-en maintenant !",
-      "message": "Veuillez réessayer plus tard ou connectez-vous pour accéder aux offres personnalisées et aux promotions uniques"
+      "scanCouponSubtitle": "Vos récompenses à portée de scan !",
+      "message": "Réessayez plus tard ou connectez-vous pour accéder aux offres personnalisées"
     }
   },
   "category": {
     "title": "Nom de catégorie",
-    "pickYourOption": "Choisissez votre option",
+    "pickYourOption": "Choisissez",
     "hungry": "Affamé",
     "littleHungry": "Petit faim",
-    "newTry": "Nouveau à essayer",
+    "newTry": "Nouveauté",
     "ourPicks": "Nos choix",
     "all": "Tout",
     "new": "Nouveau",
     "product": "Produit",
-    "outOfStock": "temporairement en rupture de stock"
+    "outOfStock": "rupture de stock temporaire"
   },
   "customization": {
     "restart": "Recommencer",
-    "mostPopular": "Le plus populaire",
+    "mostPopular": "Plus populaire",
     "previousChoice": "Choix précédent",
-    "ourRecommendation": "Notre recommandation",
-    "orderedBy": "#1, Commandé par plus de 100 personnes",
+    "ourRecommendation": "Recommandation",
+    "orderedBy": "#1, Commandé par 100+ clients",
     "size": "Taille",
     "subsection": "Sous-section",
     "default": "Par défaut",
     "option": "Option",
-    "frequentlyBought": "Fréquemment achetés ensemble",
+    "frequentlyBought": "Souvent achetés ensemble",
     "popular": "Populaire",
     "addToCart": "Ajouter au panier",
-    "calorieInfo": "Les besoins caloriques varient selon l'âge et le niveau d'activité, allant d'environ 1 000 à 1 800 kcal par jour pour les enfants, de 1 800 à 2 800 kcal pour les adolescents et de 1 600 à 3 000 kcal pour les adultes, avec des différences selon le sexe et le mode de vie"
+    "calorieInfo": "Besoins caloriques variant selon l'âge et activité, environ 1 000-1 800 kcal/jour pour enfants, 1 800-2 800 kcal pour ados et 1 600-3 000 kcal pour adultes, avec différences selon genre et mode de vie"
   },
   "offers": {
     "title": "Offres",
-    "exclusiveOffer": "Offre exclusive unique – 25% de réduction sur votre prochain achat",
-    "validOneUse": "Valable pour une seule utilisation !",
-    "freeFries": "Obtenez des frites moyennes GRATUITES avec chaque achat de Big Mac® ou McChicken®.",
-    "limitedTime": "Disponible pour une durée limitée – commandez maintenant et profitez-en !",
+    "exclusiveOffer": "Offre unique – 25% sur votre prochain achat",
+    "validOneUse": "Valable une seule fois !",
+    "freeFries": "Frites moyennes GRATUITES avec Big Mac® ou McChicken®.",
+    "limitedTime": "Durée limitée – commandez maintenant !",
     "scanCoupon": "Scannez votre coupon",
-    "scanRewards": "Vos récompenses ne sont qu'à un scan – profitez-en maintenant !",
+    "scanRewards": "Vos récompenses à portée de scan !",
     "sweetDeal": "Offre sucrée !",
-    "sweetDealDesc": "Obtenez un Sundae GRATUIT avec tout achat de repas de plus de 15$",
-    "limitedTimeOnly": "Pour une durée limitée seulement.",
+    "sweetDealDesc": "Sundae GRATUIT avec repas de plus de 15$",
+    "limitedTimeOnly": "Durée limitée.",
     "doubleRefreshment": "Double rafraîchissement !",
-    "buyOneDrink": "Achetez une boisson, obtenez-en une GRATUITE !",
-    "anySizeDrink": "N'importe quelle taille de boisson gazeuse – parfait pour partager",
-    "coffeeBreak": "Pause café seulement 1,98$ !",
-    "coffeeBreakDesc": "Rechargez votre journée avec n'importe quel petit café McCafe (Latte, Cappuccino ou Americano) pour seulement 1,98$",
-    "termsConditions": "Termes et Conditions",
+    "buyOneDrink": "Achetez 1 boisson, la 2ème GRATUITE !",
+    "anySizeDrink": "Toute boisson gazeuse – parfait à partager",
+    "coffeeBreak": "Pause café 1,98$ !",
+    "coffeeBreakDesc": "Petit café McCafe (Latte, Cappuccino ou Americano) à 1,98$",
+    "termsConditions": "Termes & Conditions",
     "applyToCart": "Appliquer au panier",
     "offerName": "Nom de l'offre"
   },
   "trioSelection": {
     "step1Title": "Choisissez votre burger",
-    "step2Title": "Choisissez votre accompagnement",
+    "step2Title": "Choisissez l'accompagnement",
     "step3Title": "Choisissez votre boisson",
     "simple": "Simple",
     "double": "Double",
     "tripler": "Triple",
-    "fries": "Frites",
+    "frites": "Frites",
     "poutine": "Poutine",
     "salad": "Salade",
     "coke": "Coca",
@@ -194,7 +194,18 @@
     "sizeM": "M",
     "sizeL": "G",
     "customize": "Personnaliser",
-    "chooseSize": "Choisir la taille"
+    "chooseSize": "Choisir taille",
+    "trioName": "Menu Big Mac",
+    "product": "Produit",
+    "doublePatty": "Double steak",
+    "medium": "Moyen",
+    "extraCheese": "Fromage supplémentaire {{price}}",
+    "extraCheeseNoPrice": "Fromage supplémentaire",
+    "changeProduct": "Changer produit",
+    "modify": "Modifier",
+    "addToOrder": "Ajouter commande",
+    "calories": "cal",
+    "sizeXL": "TG"
   },
   "common": {
     "yes": "Oui",
@@ -204,6 +215,107 @@
     "back": "Retour",
     "next": "Suivant",
     "close": "Fermer",
-    "or": "ou"
+    "or": "ou",
+    "skip": "Passer",
+    "send": "Envoyer",
+    "notToday": "Pas aujourd'hui",
+    "add": "Ajouter",
+    "product": "Produit"
+  },
+  "layouts": {
+    "checkout": "Commander",
+    "cancel": "Annuler",
+    "legal": "Mentions légales",
+    "calorieInfo": "Besoins caloriques variant selon l'âge et activité, environ 1 000-1 800 kcal/jour pour enfants, 1 800-2 800 kcal pour ados et 1 600-3 000 kcal pour adultes, avec différences selon sexe",
+    "addedToCart": "Ajouté au panier : {{item}}",
+    "guest": "Invité",
+    "firstName": "Prénom",
+    "logOut": "Déconnexion",
+    "signIn": "Connexion",
+    "home": "Accueil",
+    "steps": "Étapes",
+    "burger": "Burger",
+    "side": "Accomp.",
+    "drink": "Boisson",
+    "review": "Révision"
+  },
+  "pages": {
+    "addedSuccess": {
+      "title": "Article ajouté",
+      "message": "Votre total est à jour"
+    },
+    "confirmOrder": {
+      "title": "Confirmer commande",
+      "subtotal": "Sous-total",
+      "promotion": "Promotion",
+      "tip": "Pourboire",
+      "taxes": "Taxes",
+      "total": "Total",
+      "changeOrder": "Modifier",
+      "pay": "Payer"
+    },
+    "customerInfo": {
+      "enterNumber": "Entrez votre numéro",
+      "enterName": "Entrez votre nom",
+      "numberDescription": "Votre numéro pour vous appeler",
+      "nameDescription": "Votre nom pour vous appeler",
+      "placeholder": {
+        "phone": "555-555-5555",
+        "name": "Entrez votre nom"
+      },
+      "maj": "MAJ"
+    },
+    "feedback": {
+      "title": "Notez-nous",
+      "subtitle": "Votre note valorise le travail de notre équipe, merci !",
+      "question": "Laisser un commentaire ?",
+      "options": {
+        "easy": "Facile",
+        "fast": "Rapide",
+        "smooth": "Fluide",
+        "quickOrder": "Commande rapide",
+        "userFriendly": "Convivial",
+        "intuitive": "Intuitif",
+        "okay": "Correct",
+        "tookTime": "Temps long",
+        "confusing": "Confus",
+        "tooSlow": "Trop lent"
+      }
+    },
+    "followInstructions": {
+      "message": "Suivez les instructions pour payer."
+    },
+    "orderNumber": {
+      "title": "Merci",
+      "receiptCard": "Prenez reçu et numéro.",
+      "receiptCash": "Prenez précommande et payez à la caisse.",
+      "number": "No.",
+      "disconnected": "Déconnecté"
+    },
+    "recommendation": {
+      "title": "Vous aimerez aussi"
+    },
+    "reviewOrder": {
+      "title": "Réviser commande",
+      "exclusiveOffer": "Offre unique – 25% sur votre prochain achat",
+      "validOneUse": "Valable une seule fois !",
+      "termsConditions": "Termes & Conditions",
+      "modify": "Modifier",
+      "remove": "Retirer",
+      "changeProduct": "Changer produit",
+      "youMightLike": "Vous aimerez aussi",
+      "subtotal": "Sous-total",
+      "promotion": "Promotion",
+      "total": "Total",
+      "checkout": "Commander",
+      "dealMessage": "Plus que {{amount}}$ pour cette offre !",
+      "outOfStock": "Rupture stock",
+      "ingredientUnavailable": "Ingrédient indisponible",
+      "stockReduced": "Stock réduit à {{max}}",
+      "principalIngredientUnavailable": "Ingrédient principal indisponible",
+      "replaceWith": "Remplacer par",
+      "continueToOrder": "Continuer",
+      "reviewCart": "Réviser panier"
+    }
   }
 }

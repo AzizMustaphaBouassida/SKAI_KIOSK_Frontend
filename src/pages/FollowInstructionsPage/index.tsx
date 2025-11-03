@@ -4,9 +4,11 @@
 import HeaderLayout from "../../layouts/header-layout";
 // @ts-ignore
 import { useTheme } from "../../hooks/useTheme";
+import { useTranslation } from "react-i18next";
 
 export default function FollowInstructionsPage() {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -22,7 +24,7 @@ export default function FollowInstructionsPage() {
             ...theme.getStyle("fontBranded"),
           }}
         >
-          Follow the keypad instructions to pay.
+          {t('pages.followInstructions.message')}
         </h1>
       </div>
     </>

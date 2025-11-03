@@ -1,18 +1,20 @@
 import { Check } from "lucide-react"
 import { useTheme } from '../hooks/useTheme'
+import { useTranslation } from 'react-i18next'
 import BurgerIcon from '../assets/icons/burger-icon.svg'
 import SideIcon from '../assets/icons/side-icon.svg'
 import DrinkIcon from '../assets/icons/drink-icon.svg'
 
 export default function StepsBarLayout({ currentStep = 3 }) {
     const theme = useTheme()
+    const { t } = useTranslation()
     const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
 
     const steps = [
-        { id: 1, label: "Burger", icon: BurgerIcon },
-        { id: 2, label: "Side", icon: SideIcon },
-        { id: 3, label: "Drink", icon: DrinkIcon },
-        { id: 4, label: "Review", icon: null },
+        { id: 1, label: t('layouts.burger'), icon: BurgerIcon },
+        { id: 2, label: t('layouts.side'), icon: SideIcon },
+        { id: 3, label: t('layouts.drink'), icon: DrinkIcon },
+        { id: 4, label: t('layouts.review'), icon: null },
     ]
 
     const getStepStatus = (stepId) => {
@@ -36,7 +38,7 @@ export default function StepsBarLayout({ currentStep = 3 }) {
             }}
         >
             <h2 className="font-bold text-4xl mb-10" style={{ ...theme.getStyle('black'), ...theme.getStyle('fontBranded') }}>
-                Steps
+                {t('layouts.steps')}
             </h2>
 
             {/* Steps List */}
