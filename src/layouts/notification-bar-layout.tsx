@@ -1,11 +1,19 @@
+// @ts-ignore
 import { useTheme } from '../hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 import addedToCartIcon from '../assets/icons/added_to_cart_sac_icon.svg';
 
-export default function NotificationLayout({ message, itemName = 'item', show = true }) {
+interface NotificationLayoutProps {
+    message?: string;
+    itemName?: string;
+    show?: boolean;
+}
+
+export default function NotificationLayout({ message, itemName = 'item', show = true }: NotificationLayoutProps) {
     const theme = useTheme();
     const { t } = useTranslation();
     const displayMessage = message || t('layouts.addedToCart', { item: itemName });
+    
     if (!show) return null
 
     return (

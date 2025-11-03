@@ -1,19 +1,25 @@
+// @ts-ignore
 import { useTheme } from '../hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 import homeIcon from '../assets/icons/home.svg';
 import offreIcon from '../assets/icons/offre.svg';
 import exampleIcon from '../assets/images/trio-image.svg';
-import SigninBoxLayout from './signin-box-layout';
+import SigninBoxLayout from './signin-box-layout.tsx';
 import { useState, useRef } from 'react';
 
-export default function SidebarLayout({ activePage: initialPage, isLoggedIn = false }) {
+interface SidebarLayoutProps {
+    activePage?: string;
+    isLoggedIn?: boolean;
+}
+
+export default function SidebarLayout({ activePage: initialPage, isLoggedIn = false }: SidebarLayoutProps) {
     const theme = useTheme();
     const { t } = useTranslation();
-    const scrollContainerRef = useRef(null);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [activePage, setActivePage] = useState(initialPage || 'Home');
     const cardShadowStyle = { boxShadow: "0px 2px 4px #00000040, 0px -1px 4px #00000040" };
 
-    const handleScroll = (direction) => {
+    const handleScroll = (direction: 'up' | 'down') => {
         if (scrollContainerRef.current) {
             const scrollAmount = 160;
             scrollContainerRef.current.scrollBy({
@@ -33,7 +39,7 @@ export default function SidebarLayout({ activePage: initialPage, isLoggedIn = fa
         { name: 'Test', icon: exampleIcon },
     ];
 
-    const renderMenuItem = (name, icon, isActive, textSize = "text-3xl", isCompact = false, isSmallIcon = false) => {
+    const renderMenuItem = (name: string, icon: string, isActive: boolean, textSize = "text-3xl", isCompact = false, isSmallIcon = false) => {
         return (
             <button
                 onClick={() => setActivePage(name)}
@@ -63,7 +69,7 @@ export default function SidebarLayout({ activePage: initialPage, isLoggedIn = fa
     };
 
 
-    const renderScrollButton = (direction, onClick) => {
+    const renderScrollButton = (direction: 'up' | 'down', onClick: () => void) => {
         const isUp = direction === 'up';
         const bgColor = isUp ? theme.colors.greyDark : theme.colors.secondary;
         const buttonExtraClasses = isUp ? '' : 'mt-3';

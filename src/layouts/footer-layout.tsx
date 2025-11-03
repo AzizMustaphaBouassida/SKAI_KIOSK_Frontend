@@ -1,4 +1,5 @@
 import trashIcon from '../assets/icons/trash-icon.svg';
+// @ts-ignore
 import { useTheme } from '../hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 

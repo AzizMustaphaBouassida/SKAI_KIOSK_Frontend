@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
+import { useState, ReactNode } from 'react'
+// @ts-ignore
 import { useTheme } from '../hooks/useTheme'
 import { useTranslation } from 'react-i18next'
-import HeaderLayout from './header-layout'
-import FooterLayout from './footer-layout'
-import SidebarLayout from './sidebar-layout'
-import CheckoutBarLayout from './checkout-bar-layout'
-import NotificationBarLayout from './notification-bar-layout'
+import HeaderLayout from './header-layout.tsx'
+import FooterLayout from './footer-layout.tsx'
+import SidebarLayout from './sidebar-layout.tsx'
+import CheckoutBarLayout from './checkout-bar-layout.tsx'
+import NotificationBarLayout from './notification-bar-layout.tsx'
 
-export default function MainMenuLayout({ children, title, activePage }) {
+interface MainMenuLayoutProps {
+    children?: ReactNode;
+    title?: string;
+    activePage?: string;
+}
+
+export default function MainMenuLayout({ children, title, activePage }: MainMenuLayoutProps) {
     const theme = useTheme()
     const [showNotification, setShowNotification] = useState(true)
     const [cartItems, setCartItems] = useState(2)
@@ -15,13 +22,11 @@ export default function MainMenuLayout({ children, title, activePage }) {
     const { t } = useTranslation()
 
     const handleLogin = () => {
-        setIsSignedIn(true)
         setShowNotification(true)
         setTimeout(() => setShowNotification(false), 3000)
     }
 
     const handleLogout = () => {
-        setIsSignedIn(false)
         setCartItems(0)
         setTotalPrice(0.00)
     }

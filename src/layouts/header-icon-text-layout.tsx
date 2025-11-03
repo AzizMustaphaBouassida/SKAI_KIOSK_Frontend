@@ -1,12 +1,22 @@
+// @ts-ignore
 import { useTheme } from '../hooks/useTheme'
-import HeaderLayout from './header-layout'
+
+import HeaderLayout from './header-layout.tsx'
+import { ReactNode } from 'react'
+
+interface HeaderIconTextLayoutProps {
+    icon?: string;
+    text?: string;
+    subtitle?: string;
+    children?: ReactNode;
+}
 
 export default function HeaderIconTextLayout({
     icon,
     text,
     subtitle,
     children
-}) {
+}: HeaderIconTextLayoutProps) {
     const theme = useTheme()
 
     return (

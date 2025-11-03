@@ -1,8 +1,17 @@
 import { useTranslation } from 'react-i18next';
+// @ts-ignore
 import { useTheme } from '../hooks/useTheme';
+// @ts-ignore
 import Logo from '../components/Logo';
+import { ReactNode } from 'react';
 
-export default function HeaderLayout({ title, showTitle = false, children }) {
+interface HeaderLayoutProps {
+    title?: string;
+    showTitle?: boolean;
+    children?: ReactNode;
+}
+
+export default function HeaderLayout({ title, showTitle = false, children }: HeaderLayoutProps) {
     const theme = useTheme();
     const { i18n } = useTranslation();
 
@@ -12,7 +21,7 @@ export default function HeaderLayout({ title, showTitle = false, children }) {
     const isEnglish = normalizedLanguage === 'en';
     const isFrench = normalizedLanguage === 'fr';
 
-    const handleLanguageChange = (language) => {
+    const handleLanguageChange = (language: string) => {
         if (normalizedLanguage !== language) {
             i18n.changeLanguage(language);
         }

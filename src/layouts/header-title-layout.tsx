@@ -1,7 +1,15 @@
+// @ts-ignore
 import { useTheme } from '../hooks/useTheme'
 import HeaderLayout from './header-layout'
+import { ReactNode } from 'react'
 
-export default function HeaderTitleLayout({ title, subtitle, children }) {
+interface HeaderTitleLayoutProps {
+    title?: string;
+    subtitle?: string;
+    children?: ReactNode;
+}
+
+export default function HeaderTitleLayout({ title, subtitle, children }: HeaderTitleLayoutProps) {
     const theme = useTheme()
 
     return (

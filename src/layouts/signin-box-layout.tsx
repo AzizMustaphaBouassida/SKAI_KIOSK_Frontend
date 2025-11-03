@@ -1,9 +1,14 @@
 "use client"
+// @ts-ignore
 import { useTheme } from '../hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 import guestIcon from '../assets/icons/guest-icon.svg';
 
-export default function SigninBoxLayout({ isLoggedIn = true }) {
+interface SigninBoxLayoutProps {
+    isLoggedIn?: boolean;
+}
+
+export default function SigninBoxLayout({ isLoggedIn = true }: SigninBoxLayoutProps) {
     const theme = useTheme();
     const { t } = useTranslation();
 

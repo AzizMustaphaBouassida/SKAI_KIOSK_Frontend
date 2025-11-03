@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, ReactNode } from 'react'
+// @ts-ignore
 import { useTheme } from '../hooks/useTheme'
 import HeaderLayout from './header-layout'
 import FooterLayout from './footer-layout'
 import StepsBarLayout from './steps-bar-layout'
 
-export default function StepsMenuLayout({ children }) {
+interface StepsMenuLayoutProps {
+    children?: ReactNode;
+}
+
+export default function StepsMenuLayout({ children }: StepsMenuLayoutProps) {
     const theme = useTheme()
     const [currentStep, setCurrentStep] = useState(1)
 
@@ -26,7 +31,7 @@ export default function StepsMenuLayout({ children }) {
                 currentStep,
                 onNext: handleNext,
                 onBack: handleBack
-            })
+            } as any)
         }
         return child
     })

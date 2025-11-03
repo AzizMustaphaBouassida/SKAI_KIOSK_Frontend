@@ -1,16 +1,24 @@
+// @ts-ignore
 import { useTheme } from '../hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 import sacCheckoutIcon from '../assets/icons/sac-checkout-icon.svg';
 import takeAwayIcon from '../assets/icons/take_away-icon.svg';
 import eatInIcon from '../assets/icons/eat_in-icon.svg';
 
+interface CheckoutBarLayoutProps {
+    itemCount?: number;
+    totalPrice?: number;
+    orderType?: "takeaway" | "eatin";
+}
+
 export default function CheckoutBarLayout({
     itemCount = 0,
     totalPrice = 0.0,
     orderType = "takeaway",
-}) {
+}: CheckoutBarLayoutProps) {
     const theme = useTheme();
     const { t } = useTranslation();
+    
     return (
         <div className="w-full border-t px-6 py-8" style={{ ...theme.getStyle('whiteBg'), ...theme.getStyle('greyLightBorder') }}>
             <div className="flex items-center justify-between max-w-7xl mx-auto">
