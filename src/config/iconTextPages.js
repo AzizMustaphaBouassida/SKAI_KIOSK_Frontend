@@ -14,10 +14,6 @@ export const ICON_TEXT_PAGE_CONFIGS = {
     icon: logoutSuccessIcon,
     textKey: 'logoutSuccess.message'
   },
-  'donation': {
-    icon: donationIcon,
-    textKey: 'thankYou.donation'
-  },
   'feedback': {
     icon: donationIcon,
     textKey: 'thankYou.feedback'
