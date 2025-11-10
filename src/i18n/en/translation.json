@@ -34,9 +34,9 @@
     "eatIn": "Eat In",
     "takeAway": "Take away"
   },
-  "makeTrio": {
-    "title": "Make a Trio?",
-    "goForTrio": "Go for a trio",
+  "makeBundle": {
+    "title": "Make a Bundle?",
+    "goForBundle": "Go for a bundle",
     "articleOnly": "Article only",
     "price": "12 $",
     "goBack": "Go Back"
@@ -177,7 +177,7 @@
     "applyToCart": "Apply to cart",
     "offerName": "Offer name"
   },
-  "trioSelection": {
+  "bundleSelection": {
     "step1Title": "Choose your burger",
     "step2Title": "Choose your side",
     "step3Title": "Choose your drink",
@@ -195,7 +195,7 @@
     "sizeL": "L",
     "customize": "Customize",
     "chooseSize": "Choose size",
-    "trioName": "Big Mac Trio",
+    "bundleName": "Big Mac Trio",
     "product": "Product",
     "doublePatty": "Double patty",
     "medium": "Medium",

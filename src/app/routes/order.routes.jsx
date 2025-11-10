@@ -24,6 +24,5 @@ export const orderRoutes = [
     { path: "/card-confirmation", element: <ConfirmationPage type="card" /> },
     { path: "/cash-confirmation", element: <ConfirmationPage type="cash" /> },
     { path: "/thank-you-feedback", element: <IconTextPage type="feedback" /> },
-    { path: "/thank-you-tip", element: <IconTextPage type="tip" /> },
-
+    { path: "/thank-you-tip", element: <IconTextPage type="tip" /> }, 
 ];

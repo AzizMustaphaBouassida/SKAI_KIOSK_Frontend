@@ -2,31 +2,22 @@ import { Check } from "lucide-react"
 // @ts-ignore
 import { useTheme } from '@/app/hooks/useTheme'
 import { useTranslation } from 'react-i18next'
-import BurgerIcon from '../../assets/icons/burger-icon.svg'
-import SideIcon from '../../assets/icons/side-icon.svg'
-import DrinkIcon from '../../assets/icons/drink-icon.svg'
 
-interface StepsBarLayoutProps {
-    currentStep?: number;
-}
-
-interface Step {
+export interface Step {
     id: number;
     label: string;
     icon: string | null;
 }
 
-export default function StepsBarLayout({ currentStep = 3 }: StepsBarLayoutProps) {
+interface StepsBarLayoutProps {
+    currentStep?: number;
+    steps: Step[];
+}
+
+export default function StepsBarLayout({ currentStep = 1, steps }: StepsBarLayoutProps) {
     const theme = useTheme()
     const { t } = useTranslation()
     const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
-
-    const steps: Step[] = [
-        { id: 1, label: t('layouts.burger'), icon: BurgerIcon },
-        { id: 2, label: t('layouts.side'), icon: SideIcon },
-        { id: 3, label: t('layouts.drink'), icon: DrinkIcon },
-        { id: 4, label: t('layouts.review'), icon: null },
-    ]
 
     const getStepStatus = (stepId: number): "completed" | "current" | "upcoming" => {
         if (stepId < currentStep) return "completed"

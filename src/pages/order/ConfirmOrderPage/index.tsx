@@ -15,7 +15,7 @@ import discountBackground from "@/assets/icons/discount-background-icon.svg";
 import TrioImage from "@/assets/images/trio-image.svg";
 import FriesImage from "@/assets/images/fries-image.svg";
 
-interface TrioProduct {
+interface BundleProduct {
   id: string;
   name: string;
   priceModifier: number;
@@ -32,8 +32,8 @@ interface CartItem {
   image: string;
   customizations: string[];
   badge?: string;
-  isTrio?: boolean;
-  trioProducts?: TrioProduct[];
+  isBundle?: boolean;
+  bundleProducts?: BundleProduct[];
 }
 
 export default function ConfirmOrderPage() {
@@ -77,17 +77,17 @@ export default function ConfirmOrderPage() {
     },
   ]);
 
-  const bigMacTrio: CartItem = {
+  const bigMacBundle: CartItem = {
     id: "4",
     name: "Big Mac Trio",
     price: 5.6,
     originalPrice: 7.0,
     image: TrioImage,
     customizations: [],
-    isTrio: true,
-    trioProducts: [
+    isBundle: true,
+    bundleProducts: [
       {
-        id: "trio-1",
+        id: "bundle-1",
         name: "Prod1",
         priceModifier: 5,
         image: BurgerImage,
@@ -95,7 +95,7 @@ export default function ConfirmOrderPage() {
         paidExtras: ["Extra cheese +2$"],
       },
       {
-        id: "trio-2",
+        id: "bundle-2",
         name: "Prod1",
         priceModifier: 5,
         image: FriesImage,
@@ -107,7 +107,7 @@ export default function ConfirmOrderPage() {
         ],
       },
       {
-        id: "trio-3",
+        id: "bundle-3",
         name: "Prod1",
         priceModifier: 5,
         image: CoffeeDrinkImage,
@@ -225,7 +225,7 @@ export default function ConfirmOrderPage() {
             </div>
           ))}
 
-          {/* Big Mac Trio Section */}
+          {/* Big Mac Bundle Section */}
           <div
             className="rounded-xl border bg-white p-5"
             style={{
@@ -237,8 +237,8 @@ export default function ConfirmOrderPage() {
               {/* Product Image */}
               <div className="relative flex-shrink-0">
                 <img
-                  src={bigMacTrio.image || "/placeholder.svg"}
-                  alt={bigMacTrio.name}
+                  src={bigMacBundle.image || "/placeholder.svg"}
+                  alt={bigMacBundle.name}
                   className="h-[150px] w-[110px] object-contain relative z-10"
                 />
               </div>
@@ -252,7 +252,7 @@ export default function ConfirmOrderPage() {
                     ...theme.getStyle("fontBranded"),
                   }}
                 >
-                  {bigMacTrio.name}
+                  {bigMacBundle.name}
                 </h3>
               </div>
 
@@ -265,23 +265,23 @@ export default function ConfirmOrderPage() {
                     ...theme.getStyle("fontBranded"),
                   }}
                 >
-                  {bigMacTrio.price.toFixed(2).replace(".", ",")}$
+                  {bigMacBundle.price.toFixed(2).replace(".", ",")}$
                 </div>
-                {bigMacTrio.originalPrice && (
+                {bigMacBundle.originalPrice && (
                   <div
                     className="text-[16px] line-through mt-1"
                     style={theme.getStyle("greyDarker")}
                   >
-                    {bigMacTrio.originalPrice.toFixed(2).replace(".", ",")}$
+                    {bigMacBundle.originalPrice.toFixed(2).replace(".", ",")}$
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Trio Products - Always Expanded */}
-            {bigMacTrio.trioProducts && (
+            {/* Bundle Products - Always Expanded */}
+            {bigMacBundle.bundleProducts && (
               <div className="flex gap-4">
-                {bigMacTrio.trioProducts.map((product) => (
+                {bigMacBundle.bundleProducts.map((product) => (
                   <div
                     key={product.id}
                     className="rounded-xl border bg-white p-5 flex-1 relative h-[325px] w-[305px]"

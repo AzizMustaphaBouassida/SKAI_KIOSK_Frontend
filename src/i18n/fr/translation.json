@@ -34,9 +34,9 @@
     "eatIn": "Sur place",
     "takeAway": "À emporter"
   },
-  "makeTrio": {
-    "title": "Faire un Trio ?",
-    "goForTrio": "Choisir le trio",
+  "makeBundle": {
+    "title": "Faire un bundle ?",
+    "goForBundle": "Choisir le bundle",
     "articleOnly": "Article seul",
     "price": "12 $",
     "goBack": "Retour"
@@ -177,14 +177,14 @@
     "applyToCart": "Appliquer au panier",
     "offerName": "Nom de l'offre"
   },
-  "trioSelection": {
+  "bundleSelection": {
     "step1Title": "Choisissez votre burger",
     "step2Title": "Choisissez l'accompagnement",
     "step3Title": "Choisissez votre boisson",
     "simple": "Simple",
     "double": "Double",
     "tripler": "Triple",
-    "frites": "Frites",
+    "fries": "Frites",
     "poutine": "Poutine",
     "salad": "Salade",
     "coke": "Coca",
@@ -195,7 +195,7 @@
     "sizeL": "G",
     "customize": "Personnaliser",
     "chooseSize": "Choisir taille",
-    "trioName": "Menu Big Mac",
+    "bundleName": "Menu Big Mac",
     "product": "Produit",
     "doublePatty": "Double steak",
     "medium": "Moyen",

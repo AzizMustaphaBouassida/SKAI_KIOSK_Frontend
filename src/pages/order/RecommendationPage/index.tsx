@@ -16,7 +16,7 @@ import doubleBurgerImage from "@/assets/images/double-burger-image.svg";
 import poutineImage from "@/assets/images/poutine-image.svg";
 // @ts-ignore
 import { useTheme } from "@/app/hooks/useTheme";
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function RecommendationPage() {
   const theme = useTheme();
@@ -25,7 +25,7 @@ export default function RecommendationPage() {
 
   const layout = "list" as "grid-6" | "grid-4" | "grid-2" | "list";
 
-  const [veganVisible, setVeganVisible] = useState([
+  const [veganVisible] = useState([
     false, // Card 1
     false, // Card 2
     true, // Card 3

@@ -5,13 +5,11 @@ import { useTranslation } from "react-i18next";
 // @ts-ignore
 import HeaderLayout from "@/layouts/layout-parts/header-layout.tsx";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 // @ts-ignore
 import { useTheme } from "@/app/hooks/useTheme";
 import coffeeDrinkImage from "@/assets/images/coffee_drink-image.svg";
 import cupSizeImage from "@/assets/images/cup-size_image.svg";
-import ellipsePopupImage from "@/assets/images/Ellipse-popup-image.svg";
-import { ChevronDown, ChevronUp, Plus, Check, X } from "lucide-react";
+import { ChevronDown, ChevronUp, Plus, Check } from "lucide-react";
 import popupImage from "@/assets/images/popup-image.svg";
 import restartIcon from "@/assets/icons/restart-icon.svg";
 import saucesIcon from "@/assets/icons/sauces-icon.svg";
@@ -63,440 +61,16 @@ function CoffeeCupIcon({
   );
 }
 
-function ProductModal({
-  isOpen,
-  onClose,
-  product,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-  product: { name: string; price: string; calories: string; image?: string };
-}) {
-  const theme = useTheme();
-  const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState<
-    "S" | "M" | "L" | "XL" | null
-  >(null);
-  const [isSauceOpen, setIsSauceOpen] = useState(false);
-  const [isFlavorOpen, setIsFlavorOpen] = useState(false);
-  const [selectedSauce, setSelectedSauce] = useState<string | null>(null);
-  const [selectedFlavor, setSelectedFlavor] = useState<string | null>(null);
-
-  const popupSizes = [
-    { id: "S" as const, label: "S", price: "+$4.50", calories: "200cal" },
-    { id: "M" as const, label: "M", price: "+$9.00", calories: "300cal" },
-    { id: "L" as const, label: "L", price: "+$12.00", calories: "400cal" },
-    { id: "XL" as const, label: "XL", price: "+$20.00", calories: "500cal" },
-  ];
-
-  const sauceOptions = [
-    { id: "sauce-1", label: "Ketchup", available: true },
-    { id: "sauce-2", label: "Mayo", available: true },
-    { id: "sauce-3", label: "BBQ", available: false },
-    { id: "sauce-4", label: "Mustard", available: true },
-  ];
-
-  const flavorOptions = [
-    { id: "flavor-1", label: "Original", available: true },
-    { id: "flavor-2", label: "Spicy", available: true },
-    { id: "flavor-3", label: "Sweet", available: true },
-    { id: "flavor-4", label: "Savory", available: false },
-  ];
-
-  return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(open) => {
-        if (!open) onClose();
-      }}
-    >
-      <DialogContent
-        className="max-w-[870px] h-[1250px] overflow-hidden p-12 rounded-3xl flex flex-col"
-        style={{ backgroundColor: theme.colors.white }}
-      >
-        <button
-          type="button"
-          aria-label="Close"
-          onClick={onClose}
-          className="absolute top-3 right-3 h-12 w-12 flex items-center justify-center rounded-lg hover:opacity-80 mt-6 mr-6"
-          style={{ backgroundColor: theme.colors.greywhite }}
-        >
-          <X className="h-24 w-24" style={theme.getStyle("black")} />
-        </button>
-        <div className="mb-8">
-          <h2
-            className="text-[47px] font-bold leading-tight"
-            style={theme.getStyle("black")}
-          >
-            {product.name}
-          </h2>
-          <p
-            className="text-[27px] font-medium mt-2"
-            style={{ color: theme.colors.greyDarker }}
-          >
-            {product.price} - {product.calories}
-          </p>
-        </div>
-
-        {/* Product Image with Yellow Oval Background */}
-        <div className="flex justify-center mt-2">
-          <div className="relative flex items-center justify-center">
-            <img
-              src={ellipsePopupImage || "/placeholder.svg"}
-              alt="Ellipse background"
-              className="w-[504px] h-[110px] object-contain"
-            />
-            <img
-              src={product.image || "/placeholder.svg?height=200&width=300"}
-              alt={product.name}
-              className="absolute object-contain"
-              style={{ width: "60%", maxHeight: "254px", top: "-59px" }}
-            />
-          </div>
-        </div>
-
-        <p
-          className="text-[22px] font-normal mt-6 mb-6"
-          style={{ color: theme.colors.black }}
-        >
-          Calorie needs vary by age and activity: 1,000–1,800 kcal for children,
-          1,800–2,800 for teens, and 1,600–3,000 for adults, depending on gender
-          and lifestyle.
-        </p>
-
-        {/* Size Section - Fixed (not scrollable) */}
-        <div className="mb-8">
-          <div className="flex items-start gap-6">
-            <h3
-              className="text-4xl font-bold leading-none pt-1"
-              style={theme.getStyle("black")}
-            >
-              Size
-            </h3>
-            <div className="flex flex-wrap gap-2 ml-32">
-              {popupSizes.map((size) => {
-                const isSelected = selectedSize === size.id;
-                return (
-                  <button
-                    key={size.id}
-                    onClick={() =>
-                      setSelectedSize((current) =>
-                        current === size.id ? null : size.id
-                      )
-                    }
-                    className="flex flex-col items-center justify-center py-2 px-8 rounded-xl transition-all border-2 bg-white"
-                    style={{
-                      backgroundColor: isSelected
-                        ? theme.colors.secondary
-                        : theme.colors.white,
-                      borderColor: isSelected
-                        ? theme.colors.secondary
-                        : theme.colors.greyDark,
-                    }}
-                  >
-                    <span
-                      className="text-[32px] font-extrabold mb-1"
-                      style={{ color: theme.colors.black }}
-                    >
-                      {size.label}
-                    </span>
-                    <div
-                      className="text-[18px] font-medium"
-                      style={{ color: theme.colors.black }}
-                    >
-                      {size.price}
-                    </div>
-                    <div
-                      className="text-[14px]"
-                      style={{ color: theme.colors.greyDarker }}
-                    >
-                      {size.calories}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Scrollable content area - Only Sauce and Flavor subsections */}
-        <div
-          className="flex-1 overflow-y-auto pr-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-          style={{ minHeight: 0 }}
-        >
-          <div
-            className="rounded-xl border bg-white mb-5"
-            style={{ borderColor: theme.colors.greyDarker }}
-          >
-            <button
-              onClick={() => setIsSauceOpen(!isSauceOpen)}
-              className="w-full flex items-center justify-between p-4"
-            >
-              <div className="flex items-center gap-4 flex-1">
-                <h3
-                  className="text-3xl font-bold"
-                  style={theme.getStyle("black")}
-                >
-                  Sauce
-                </h3>
-                <span
-                  className="px-4 py-1.5 w-[175px] h-[50px] rounded text-[24px] font-normal ml-auto mr-8"
-                  style={{
-                    backgroundColor: "#FEF3C7",
-                    color: theme.colors.black,
-                  }}
-                >
-                  Default
-                </span>
-              </div>
-              <div
-                className="w-16 h-16 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: "#F3F4F6" }}
-              >
-                {isSauceOpen ? (
-                  <ChevronUp
-                    className="w-9 h-9"
-                    style={theme.getStyle("greyDarker")}
-                  />
-                ) : (
-                  <ChevronDown
-                    className="w-9 h-9"
-                    style={theme.getStyle("greyDarker")}
-                  />
-                )}
-              </div>
-            </button>
-            {isSauceOpen && (
-              <div className="px-4 pb-4 space-y-2">
-                {sauceOptions.map((option) => {
-                  const isSelected = selectedSauce === option.id;
-                  const isUnavailable = !option.available;
-
-                  return (
-                    <div
-                      key={option.id}
-                      className="flex items-center justify-between py-4 px-7 rounded-xl"
-                      style={{
-                        backgroundColor: isSelected
-                          ? "#F3F4F6"
-                          : theme.colors.white,
-                      }}
-                    >
-                      <span
-                        className="text-[31px] font-medium"
-                        style={{
-                          color: isUnavailable ? "#D1D5DB" : theme.colors.black,
-                        }}
-                      >
-                        {option.label}
-                      </span>
-                      <div className="flex items-center gap-8">
-                        {isUnavailable && (
-                          <span
-                            className="text-[26px] font-medium"
-                            style={{ color: theme.colors.red }}
-                          >
-                            Unavailable
-                          </span>
-                        )}
-                        <button
-                          onClick={() =>
-                            !isUnavailable && setSelectedSauce(option.id)
-                          }
-                          disabled={isUnavailable}
-                          className="w-12 h-12 rounded-full flex items-center justify-center"
-                          style={{
-                            backgroundColor: isUnavailable
-                              ? "#D1D5DB"
-                              : isSelected
-                                ? theme.colors.secondary
-                                : "transparent",
-                            border:
-                              isUnavailable || isSelected
-                                ? "none"
-                                : `4px solid ${theme.colors.greyDark}`,
-                            cursor: isUnavailable ? "not-allowed" : "pointer",
-                          }}
-                        >
-                          {isSelected && !isUnavailable && (
-                            <div
-                              className="w-6 h-6 rounded-full"
-                              style={{ backgroundColor: theme.colors.white }}
-                            />
-                          )}
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-
-          <div
-            className="rounded-xl border bg-white mb-8"
-            style={{ borderColor: theme.colors.greyDarker }}
-          >
-            <button
-              onClick={() => setIsFlavorOpen(!isFlavorOpen)}
-              className="w-full flex items-center justify-between p-4"
-            >
-              <h3
-                className="text-3xl font-bold"
-                style={theme.getStyle("black")}
-              >
-                Flavor
-              </h3>
-              <div
-                className="w-16 h-16 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: "#F3F4F6" }}
-              >
-                {isFlavorOpen ? (
-                  <ChevronUp
-                    className="w-9 h-9"
-                    style={theme.getStyle("greyDarker")}
-                  />
-                ) : (
-                  <ChevronDown
-                    className="w-9 h-9"
-                    style={theme.getStyle("greyDarker")}
-                  />
-                )}
-              </div>
-            </button>
-            {isFlavorOpen && (
-              <div className="px-4 pb-4 space-y-2">
-                {flavorOptions.map((option) => {
-                  const isSelected = selectedFlavor === option.id;
-                  const isUnavailable = !option.available;
-
-                  return (
-                    <div
-                      key={option.id}
-                      className="flex items-center justify-between py-4 px-7 rounded-xl"
-                      style={{
-                        backgroundColor: isSelected
-                          ? "#F3F4F6"
-                          : theme.colors.white,
-                      }}
-                    >
-                      <span
-                        className="text-[31px] font-medium"
-                        style={{
-                          color: isUnavailable ? "#D1D5DB" : theme.colors.black,
-                        }}
-                      >
-                        {option.label}
-                      </span>
-                      <div className="flex items-center gap-8">
-                        {isUnavailable && (
-                          <span
-                            className="text-[26px] font-medium"
-                            style={{ color: theme.colors.red }}
-                          >
-                            Unavailable
-                          </span>
-                        )}
-                        <button
-                          onClick={() =>
-                            !isUnavailable && setSelectedFlavor(option.id)
-                          }
-                          disabled={isUnavailable}
-                          className="w-12 h-12 rounded-full flex items-center justify-center"
-                          style={{
-                            backgroundColor: isUnavailable
-                              ? "#D1D5DB"
-                              : isSelected
-                                ? theme.colors.secondary
-                                : "transparent",
-                            border:
-                              isUnavailable || isSelected
-                                ? "none"
-                                : `4px solid ${theme.colors.greyDark}`,
-                            cursor: isUnavailable ? "not-allowed" : "pointer",
-                          }}
-                        >
-                          {isSelected && !isUnavailable && (
-                            <div
-                              className="w-6 h-6 rounded-full"
-                              style={{ backgroundColor: theme.colors.white }}
-                            />
-                          )}
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Fixed bottom section - outside scrollable area */}
-        <div className="mt-8">
-          <div className="flex items-center justify-center gap-0 mb-8">
-            <button
-              type="button"
-              className="w-[172px] h-[75px] rounded-l-xl border-2 flex items-center justify-center bg-white"
-              style={{ borderColor: theme.colors.greyDark }}
-              onClick={() => setQuantity(Math.max(1, quantity - 1))}
-            >
-              <span
-                className="text-[47px] font-normal"
-                style={theme.getStyle("black")}
-              >
-                -
-              </span>
-            </button>
-            <div
-              className="w-[315px] h-[75px] border-t-2 border-b-2 flex items-center justify-center bg-white"
-              style={{ borderColor: theme.colors.greyDark }}
-            >
-              <span
-                className="text-[39px] font-medium"
-                style={theme.getStyle("black")}
-              >
-                {quantity}
-              </span>
-            </div>
-            <button
-              type="button"
-              className="w-[172px] h-[75px] rounded-r-xl flex items-center justify-center"
-              style={{ backgroundColor: theme.colors.secondary }}
-              onClick={() => setQuantity(quantity + 1)}
-            >
-              <span
-                className="text-[47px] font-bold"
-                style={theme.getStyle("black")}
-              >
-                +
-              </span>
-            </button>
-          </div>
-
-          <div className="flex justify-center">
-            <Button
-              className="h-[70px] w-[480px] text-[34px] font-semibold rounded-2xl"
-              style={{
-                backgroundColor: theme.colors.secondary,
-                color: theme.colors.black,
-              }}
-            >
-              Add to cart
-            </Button>
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
-function CustomizationInterface({
+export function CustomizationInterface({
   option,
   onClose,
+  showFrequentlyBought = true,
+  compactMode = false,
 }: {
   option: Option;
   onClose: () => void;
+  showFrequentlyBought?: boolean;
+  compactMode?: boolean;
 }) {
   const theme = useTheme();
   const { t } = useTranslation();
@@ -543,11 +117,6 @@ function CustomizationInterface({
   });
   const [subsection4Quantity, setSubsection4Quantity] = useState(0);
   const [subsection5Level, setSubsection5Level] = useState(1);
-  const [selectedProduct, setSelectedProduct] = useState<{
-    name: string;
-    price: string;
-    calories: string;
-  } | null>(null);
   const showSubsection1Icon = false;
   const showSubsection2Icon = true;
   const showSubsection3Icon = true;
@@ -650,20 +219,23 @@ function CustomizationInterface({
 
   return (
     <div
-      className="w-full h-full flex flex-col"
-      style={theme.getStyle("fontSerious")}
+      className={`w-full h-full flex flex-col ${compactMode ? 'scale-[0.75] origin-top-left' : ''}`}
+      style={{
+        ...theme.getStyle("fontSerious"),
+        ...(compactMode ? { width: '133.33%', height: '133.33%' } : {})
+      }}
     >
       <div className="flex-1">
-        <div className="flex items-start justify-end mb-4">
-          <div className="flex items-center mr-24 shrink-0">
+        <div className={`flex items-start justify-end ${compactMode ? 'mb-2' : 'mb-4'}`}>
+          <div className={`flex items-center ${compactMode ? 'mr-12' : 'mr-24'} shrink-0`}>
             <img
               src={option.image || "/placeholder.svg"}
               alt={option.name}
-              className="w-[260px] h-[260px] object-contain shrink-0"
+              className={`${compactMode ? 'w-[180px] h-[180px]' : 'w-[260px] h-[260px]'} object-contain shrink-0`}
             />
             <div className="flex flex-col shrink-0">
               <h2
-                className="text-[55px] font-bold leading-tight"
+                className={`${compactMode ? 'text-[38px]' : 'text-[55px]'} font-bold leading-tight`}
                 style={{
                   ...theme.getStyle("black"),
                   ...theme.getStyle("fontBranded"),
@@ -671,12 +243,12 @@ function CustomizationInterface({
               >
                 {option.name}
               </h2>
-              <p className="text-[26px]" style={theme.getStyle("greyDarker")}>
+              <p className={`${compactMode ? 'text-[18px]' : 'text-[26px]'}`} style={theme.getStyle("greyDarker")}>
                 {option.price} /{option.calories} cal
               </p>
 
               <div
-                className="flex items-stretch overflow-hidden border rounded-xl w-[250px] h-[50px] mt-16"
+                className={`flex items-stretch overflow-hidden border rounded-xl ${compactMode ? 'w-[180px] h-[40px] mt-8' : 'w-[250px] h-[50px] mt-16'}`}
                 style={{ borderColor: theme.colors.greyDarker }}
               >
                 <button
@@ -685,18 +257,18 @@ function CustomizationInterface({
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 >
                   <span
-                    className="text-[22px] font-normal"
+                    className={`${compactMode ? 'text-[16px]' : 'text-[22px]'} font-normal`}
                     style={theme.getStyle("black")}
                   >
                     -
                   </span>
                 </button>
                 <div
-                  className="w-[80px] flex items-center justify-center border-l border-r bg-white"
+                  className={`${compactMode ? 'w-[60px]' : 'w-[80px]'} flex items-center justify-center border-l border-r bg-white`}
                   style={{ borderColor: theme.colors.greyDarker }}
                 >
                   <span
-                    className="text-[18px] font-medium"
+                    className={`${compactMode ? 'text-[14px]' : 'text-[18px]'} font-medium`}
                     style={theme.getStyle("black")}
                   >
                     {quantity}
@@ -711,7 +283,7 @@ function CustomizationInterface({
                   onClick={() => setQuantity(quantity + 1)}
                 >
                   <span
-                    className="text-[22px] font-bold"
+                    className={`${compactMode ? 'text-[16px]' : 'text-[22px]'} font-bold`}
                     style={theme.getStyle("black")}
                   >
                     +
@@ -722,7 +294,7 @@ function CustomizationInterface({
           </div>
           <Button
             variant="outline"
-            className="h-[48px] px-6 text-[20px] font-semibold rounded-lg border bg-transparent mt-48 flex items-center gap-3"
+            className={`${compactMode ? 'h-[36px] px-4 text-[14px] mt-24' : 'h-[48px] px-6 text-[20px] mt-48'} font-semibold rounded-lg border bg-transparent flex items-center gap-3`}
             style={{
               ...theme.getStyle("whiteBg"),
               borderColor: theme.colors.greyDarker,
@@ -731,19 +303,19 @@ function CustomizationInterface({
           >
             {t("customization.restart")}
             <span
-              className="inline-flex items-center justify-center w-10 h-10 rounded-lg"
+              className={`inline-flex items-center justify-center ${compactMode ? 'w-7 h-7' : 'w-10 h-10'} rounded-lg`}
               style={{ backgroundColor: theme.colors.white }}
             >
               <img
                 src={restartIcon || "/placeholder.svg"}
                 alt="Restart icon"
-                className="w-6 h-6 ml-8"
+                className={`${compactMode ? 'w-4 h-4 ml-4' : 'w-6 h-6 ml-8'}`}
               />
             </span>
           </Button>
         </div>
 
-        <div className="flex gap-3 mb-8">
+        <div className={`flex gap-3 ${compactMode ? 'mb-4' : 'mb-8'}`}>
           {tabs.map((tab) => {
             const isSelected = selectedTab === tab.id;
             return (
@@ -754,7 +326,7 @@ function CustomizationInterface({
                     current === tab.id ? null : tab.id
                   )
                 }
-                className="h-[130px] w-full rounded-lg text-left transition-all border-2"
+                className={`${compactMode ? 'h-[90px]' : 'h-[130px]'} w-full rounded-lg text-left transition-all border-2`}
                 style={{
                   backgroundColor: "white",
                   borderColor: isSelected
@@ -763,19 +335,19 @@ function CustomizationInterface({
                 }}
               >
                 <div
-                  className="text-[26px] font-extrabold mb-2 ml-4 mt-2"
+                  className={`${compactMode ? 'text-[18px] mb-1 ml-3 mt-1' : 'text-[26px] mb-2 ml-4 mt-2'} font-extrabold`}
                   style={theme.getStyle("red")}
                 >
                   {tab.label}
                 </div>
                 <div
-                  className="text-[18px] font-semibold ml-4"
+                  className={`${compactMode ? 'text-[12px] ml-3' : 'text-[18px] ml-4'} font-semibold`}
                   style={{ color: theme.colors.black }}
                 >
                   {tab.subtitle}
                 </div>
                 <div
-                  className="text-[16px] ml-4 mb-2"
+                  className={`${compactMode ? 'text-[11px] ml-3 mb-1' : 'text-[16px] ml-4 mb-2'}`}
                   style={{ color: theme.colors.greyDarker }}
                 >
                   {tab.detail}
@@ -785,15 +357,15 @@ function CustomizationInterface({
           })}
         </div>
 
-        <div className="mb-8">
-          <div className="flex items-center gap-50 mb-5">
+        <div className={`${compactMode ? 'mb-4' : 'mb-8'}`}>
+          <div className={`flex items-center gap-50 ${compactMode ? 'mb-3' : 'mb-5'}`}>
             <h3
-              className="text-4xl font-bold mb-20"
+              className={`${compactMode ? 'text-2xl mb-10' : 'text-4xl mb-20'} font-bold`}
               style={theme.getStyle("black")}
             >
               {t("customization.size")}
             </h3>
-            <div className="flex gap-4">
+            <div className={`flex ${compactMode ? 'gap-2' : 'gap-4'}`}>
               {sizes.map((size) => {
                 const isSelected = selectedSize === size.id;
                 return (
@@ -804,7 +376,7 @@ function CustomizationInterface({
                         current === size.id ? null : size.id
                       )
                     }
-                    className="w-[155px] h-[135px] rounded-lg flex flex-col items-center justify-center gap-1 transition-all border-2 bg-white"
+                    className={`${compactMode ? 'w-[110px] h-[95px]' : 'w-[155px] h-[135px]'} rounded-lg flex flex-col items-center justify-center gap-1 transition-all border-2 bg-white`}
                     style={{
                       backgroundColor: isSelected
                         ? theme.colors.secondary
@@ -814,11 +386,11 @@ function CustomizationInterface({
                         : theme.colors.greyDarker,
                     }}
                   >
-                    <div className="flex flex-col items-center mb-10 mr-4">
+                    <div className={`flex flex-col items-center ${compactMode ? 'mb-6 mr-2' : 'mb-10 mr-4'}`}>
                       <div className="relative -mb-10">
                         <CoffeeCupIcon size={size.id} />
                         <span
-                          className="absolute top-1/2 left-1/2 transform text-[30px] font-extrabold"
+                          className={`absolute top-1/2 left-1/2 transform ${compactMode ? 'text-[20px]' : 'text-[30px]'} font-extrabold`}
                           style={{
                             color: "#DC2626",
                             transform: "translate(-30%, -50%)",
@@ -829,13 +401,13 @@ function CustomizationInterface({
                       </div>
                       {/* </CHANGE> */}
                       <div
-                        className="text-[16px] font-light leading-tight ml-2"
+                        className={`${compactMode ? 'text-[11px]' : 'text-[16px]'} font-light leading-tight ml-2`}
                         style={{ color: theme.colors.black }}
                       >
                         {size.price}
                       </div>
                       <div
-                        className="text-[12px] font-medium leading-tight ml-2"
+                        className={`${compactMode ? 'text-[9px]' : 'text-[12px]'} font-medium leading-tight ml-2`}
                         style={{ color: theme.colors.greyDarker }}
                       >
                         {size.calories}
@@ -849,15 +421,15 @@ function CustomizationInterface({
         </div>
 
         {showOptionSelector && (
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-5">
+          <div className={`${compactMode ? 'mb-4' : 'mb-8'}`}>
+            <div className={`flex items-center justify-between ${compactMode ? 'mb-3' : 'mb-5'}`}>
               <h3
-                className="text-4xl font-bold mb-20"
+                className={`${compactMode ? 'text-2xl mb-10' : 'text-4xl mb-20'} font-bold`}
                 style={theme.getStyle("black")}
               >
                 {t("customization.subsection")}
               </h3>
-              <div className="flex gap-4">
+              <div className={`flex ${compactMode ? 'gap-2' : 'gap-4'}`}>
                 {options.map((opt) => {
                   const isSelected = selectedOption === opt.id;
                   return (
@@ -868,7 +440,7 @@ function CustomizationInterface({
                           current === opt.id ? null : opt.id
                         )
                       }
-                      className="w-[145px] h-[125px] rounded-lg flex items-center justify-center transition-all border-2"
+                      className={`${compactMode ? 'w-[100px] h-[85px]' : 'w-[145px] h-[125px]'} rounded-lg flex items-center justify-center transition-all border-2`}
                       style={{
                         backgroundColor: isSelected
                           ? theme.colors.primary
@@ -881,7 +453,7 @@ function CustomizationInterface({
                           : theme.colors.black,
                       }}
                     >
-                      <span className="text-[24px] font-semibold">
+                      <span className={`${compactMode ? 'text-[16px]' : 'text-[24px]'} font-semibold`}>
                         {opt.label}
                       </span>
                     </button>
@@ -892,7 +464,7 @@ function CustomizationInterface({
           </div>
         )}
 
-        <div className="space-y-5 mb-8 max-h-145 overflow-y-auto no-scrollbar">
+        <div className={`${compactMode ? 'space-y-3 mb-4 max-h-96' : 'space-y-5 mb-8 max-h-145'} overflow-y-auto no-scrollbar`}>
           {/* First Subsection - Radio Buttons */}
           <div
             className="rounded-xl border bg-white"
@@ -1623,95 +1195,89 @@ function CustomizationInterface({
         </div>
       </div>
 
-      <div>
-        <style>{noScrollbarStyles}</style>
-        <div className="mb-6">
-          <h3
-            className="text-[40px] font-extrabold mb-5"
-            style={theme.getStyle("black")}
-          >
-            {t("customization.frequentlyBought")}
-          </h3>
-          <div className="flex gap-5">
-            {frequentlyBought.map((item) => (
-              <div
-                key={item.id}
-                className="flex-1 p-5 rounded-lg border bg-zinc-50 relative"
-                style={{
-                  borderColor: theme.colors.white,
-                }}
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h4
-                      className="text-[25px] font-bold mb-2 leading-tight"
-                      style={theme.getStyle("black")}
-                    >
-                      {item.name}
-                    </h4>
-                    <p
-                      className="text-[18px] font-normal mb-3"
-                      style={theme.getStyle("black")}
-                    >
-                      ${item.price.replace("$", "")} - {item.calories}
-                    </p>
-                    <span
-                      className="inline-block px-5 py-1.5 rounded-xl text-[16px] font-semibold"
-                      style={{
-                        ...theme.getStyle("secondaryBg"),
-                        ...theme.getStyle("black"),
-                      }}
-                    >
-                      {t("customization.popular")}
-                    </span>
-                  </div>
-                  <div className="flex flex-col items-end gap-3">
-                    <button
-                      onClick={() => setSelectedProduct(item)}
-                      className="hover:opacity-70 transition-opacity"
-                    >
-                      <Plus className="w-6 h-6" />
-                    </button>
-                    <div />
+      {showFrequentlyBought && (
+        <div>
+          <style>{noScrollbarStyles}</style>
+          <div className="mb-6">
+            <h3
+              className="text-[40px] font-extrabold mb-5"
+              style={theme.getStyle("black")}
+            >
+              {t("customization.frequentlyBought")}
+            </h3>
+            <div className="flex gap-5">
+              {frequentlyBought.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex-1 p-5 rounded-lg border bg-zinc-50 relative"
+                  style={{
+                    borderColor: theme.colors.white,
+                  }}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h4
+                        className="text-[25px] font-bold mb-2 leading-tight"
+                        style={theme.getStyle("black")}
+                      >
+                        {item.name}
+                      </h4>
+                      <p
+                        className="text-[18px] font-normal mb-3"
+                        style={theme.getStyle("black")}
+                      >
+                        ${item.price.replace("$", "")} - {item.calories}
+                      </p>
+                      <span
+                        className="inline-block px-5 py-1.5 rounded-xl text-[16px] font-semibold"
+                        style={{
+                          ...theme.getStyle("secondaryBg"),
+                          ...theme.getStyle("black"),
+                        }}
+                      >
+                        {t("customization.popular")}
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end gap-3">
+                      <button
+                        onClick={() => console.log("Navigate to popup page for:", item)}
+                        className="hover:opacity-70 transition-opacity"
+                      >
+                        <Plus className="w-6 h-6" />
+                      </button>
+                      <div />
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <Button
+              variant="outline"
+              className="w-[40%] h-[70px] text-[24px] font-bold rounded-xl border bg-white"
+              style={{
+                borderColor: theme.colors.greyDarker,
+                color: theme.colors.greyDarker,
+              }}
+              onClick={onClose}
+            >
+              {t("common.cancel")}
+            </Button>
+            <Button
+              className="w-[60%] h-[70px] text-[24px] font-bold rounded-xl flex items-center justify-center gap-3"
+              style={{
+                ...theme.getStyle("secondaryBg"),
+                ...theme.getStyle("black"),
+              }}
+            >
+              <div className="w-6 h-6 rounded-full border-2 border-black flex items-center justify-center">
+                <Plus className="w-4 h-4" />
               </div>
-            ))}
+              {t("customization.addToCart")}
+            </Button>
           </div>
         </div>
-        <div className="flex gap-4">
-          <Button
-            variant="outline"
-            className="w-[40%] h-[70px] text-[24px] font-bold rounded-xl border bg-white"
-            style={{
-              borderColor: theme.colors.greyDarker,
-              color: theme.colors.greyDarker,
-            }}
-            onClick={onClose}
-          >
-            {t("common.cancel")}
-          </Button>
-          <Button
-            className="w-[60%] h-[70px] text-[24px] font-bold rounded-xl flex items-center justify-center gap-3"
-            style={{
-              ...theme.getStyle("secondaryBg"),
-              ...theme.getStyle("black"),
-            }}
-          >
-            <div className="w-6 h-6 rounded-full border-2 border-black flex items-center justify-center">
-              <Plus className="w-4 h-4" />
-            </div>
-            {t("customization.addToCart")}
-          </Button>
-        </div>
-      </div>
-
-      {selectedProduct && (
-        <ProductModal
-          isOpen={!!selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-          product={selectedProduct}
-        />
       )}
     </div>
   );

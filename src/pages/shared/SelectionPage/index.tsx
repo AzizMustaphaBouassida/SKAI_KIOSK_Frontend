@@ -18,7 +18,7 @@ interface SelectionOption {
 }
 
 interface SelectionPageProps {
-  type: "order-type" | "make-trio" | "payment-method";
+  type: "order-type" | "make-bundle" | "payment-method";
 }
 
 export default function SelectionPage({ type }: SelectionPageProps) {
@@ -94,7 +94,7 @@ export default function SelectionPage({ type }: SelectionPageProps) {
           ))}
         </div>
 
-        {/* Go Back Button - Only shown for make-trio page */}
+        {/* Go Back Button - Only shown for make-bundle page */}
         {pageConfig.showBackButton && (
           <button
             className="w-full max-w-[1200px] h-24 mt-12 text-3xl font-semibold border-2 rounded-lg hover:bg-gray-50 transition-colors"

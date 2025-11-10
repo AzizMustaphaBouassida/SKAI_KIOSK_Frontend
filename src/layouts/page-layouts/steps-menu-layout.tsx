@@ -3,18 +3,21 @@ import React, { useState, ReactNode } from 'react'
 import { useTheme } from '@/app/hooks/useTheme'
 import HeaderLayout from '../layout-parts/header-layout'
 import FooterLayout from '../layout-parts/footer-layout'
-import StepsBarLayout from '../layout-parts/steps-bar-layout'
+import StepsBarLayout, { Step } from '../layout-parts/steps-bar-layout'
 
 interface StepsMenuLayoutProps {
     children?: ReactNode;
+    steps: Step[];
+    bundleTitle?: string;
 }
 
-export default function StepsMenuLayout({ children }: StepsMenuLayoutProps) {
+export default function StepsMenuLayout({ children, steps, bundleTitle = "Go for a Bundle" }: StepsMenuLayoutProps) {
     const theme = useTheme()
     const [currentStep, setCurrentStep] = useState(1)
+    const totalSteps = steps.length
 
     const handleNext = () => {
-        if (currentStep < 4) {
+        if (currentStep < totalSteps) {
             setCurrentStep(currentStep + 1)
         }
     }
@@ -40,19 +43,19 @@ export default function StepsMenuLayout({ children }: StepsMenuLayoutProps) {
         <div className="relative h-screen flex flex-col" style={theme.getStyle('whiteBg')}>
             {/* Header Layout */}
             <div className="relative shrink-0">
-                <HeaderLayout showTitle={true} title="Go for a Trio" />
+                <HeaderLayout showTitle={true} title={bundleTitle} />
             </div>
 
             {/* Main Content Area with Steps Bar */}
             <div className="relative flex-1 flex overflow-hidden">
                 {/* Steps Bar - Left Side */}
                 <div className="relative p-6">
-                    <StepsBarLayout currentStep={currentStep} />
+                    <StepsBarLayout currentStep={currentStep} steps={steps} />
                 </div>
 
                 {/* Main Content Area - Right Side */}
                 <div className="flex-1 overflow-auto">
-                    <div className="h-full w-full py-4">
+                    <div className="h-full w-[750px] py-4">
                         {childrenWithProps}
                     </div>
                 </div>

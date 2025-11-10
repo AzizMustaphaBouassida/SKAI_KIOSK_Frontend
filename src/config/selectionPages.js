@@ -26,22 +26,22 @@ export const SELECTION_PAGE_CONFIGS = {
       }
     ]
   },
-  'make-trio': {
-    titleKey: 'makeTrio.title',
+  'make-bundle': {
+    titleKey: 'makeBundle.title',
     showBackButton: true,
-    backButtonLabelKey: 'makeTrio.goBack',
+    backButtonLabelKey: 'makeBundle.goBack',
     options: [
       {
         image: trioImage,
-        labelKey: 'makeTrio.goForTrio',
-        priceKey: 'makeTrio.price',
+        labelKey: 'makeBundle.goForBundle',
+        priceKey: 'makeBundle.price',
         imageScale: 'scale-90',
         onSelect: '/catalog'
       },
       {
         image: forYouBurgerImage,
-        labelKey: 'makeTrio.articleOnly',
-        priceKey: 'makeTrio.price',
+        labelKey: 'makeBundle.articleOnly',
+        priceKey: 'makeBundle.price',
         imageScale: 'scale-90',
         onSelect: '/catalog' 
       }

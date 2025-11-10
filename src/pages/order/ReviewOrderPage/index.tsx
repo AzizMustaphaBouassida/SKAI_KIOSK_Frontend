@@ -38,7 +38,7 @@ const IS_STOCK_REDUCED = true;
 const STOCK_REDUCED_MAX = 2;
 const IS_PRINCIPAL_INGREDIENT_UNAVAILABLE = true; 
 
-interface TrioProduct {
+interface BundleProduct {
   id: string;
   name: string;
   priceModifier: number;
@@ -57,8 +57,8 @@ interface CartItem {
   image: string;
   customizations: string[];
   badge?: string;
-  isTrio?: boolean;
-  trioProducts?: TrioProduct[];
+  isBundle?: boolean;
+  bundleProducts?: BundleProduct[];
 }
 
 export default function ReviewOrderPage() {
@@ -69,7 +69,7 @@ export default function ReviewOrderPage() {
   const SHOW_UNAVAILABLE_POPUP = false;
 
   const [showPromo, setShowPromo] = useState(true);
-  const [expandedTrios, setExpandedTrios] = useState<Set<string>>(new Set());
+  const [expandedBundles, setExpandedBundles] = useState<Set<string>>(new Set());
   const [showDealBar] = useState(true);
   const [isTermsDialogOpen, setIsTermsDialogOpen] = useState(false);
   const [isUnavailableDialogOpen, setIsUnavailableDialogOpen] = useState(false);
@@ -136,10 +136,10 @@ export default function ReviewOrderPage() {
       quantity: 1,
       image: TrioImage,
       customizations: [],
-      isTrio: true,
-      trioProducts: [
+      isBundle: true,
+      bundleProducts: [
         {
-          id: "trio-1",
+          id: "bundle-1",
           name: "Prod1",
           priceModifier: 5,
           image: BurgerImage,
@@ -147,7 +147,7 @@ export default function ReviewOrderPage() {
           paidExtras: ["Extra cheese +2$"],
         },
         {
-          id: "trio-2",
+          id: "bundle-2",
           name: "Prod1",
           priceModifier: 5,
           image: FriesImage,
@@ -159,7 +159,7 @@ export default function ReviewOrderPage() {
           ],
         },
         {
-          id: "trio-3",
+          id: "bundle-3",
           name: "Prod1",
           priceModifier: 5,
           image: CoffeeDrinkImage,
@@ -188,8 +188,8 @@ export default function ReviewOrderPage() {
     setCartItems((items) => items.filter((item) => item.id !== id));
   };
 
-  const toggleTrioExpansion = (id: string) => {
-    setExpandedTrios((prev) => {
+  const toggleBundleExpansion = (id: string) => {
+    setExpandedBundles((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(id)) {
         newSet.delete(id);
@@ -307,7 +307,7 @@ export default function ReviewOrderPage() {
                 style={{
                   borderColor: theme.colors.greyLight,
                   height:
-                    item.isTrio && expandedTrios.has(item.id)
+                    item.isBundle && expandedBundles.has(item.id)
                       ? "auto"
                       : "205px",
                   ...cardShadowStyle,
@@ -325,16 +325,16 @@ export default function ReviewOrderPage() {
                       <X className="h-8 w-8" style={theme.getStyle("black")} />
                     </button>
 
-                    {item.isTrio ? (
+                    {item.isBundle ? (
                       <button
                         className="h-[50px] w-[50px] flex items-center justify-center rounded-full hover:opacity-80"
                         style={{
-                          backgroundColor: expandedTrios.has(item.id)
+                          backgroundColor: expandedBundles.has(item.id)
                             ? theme.colors.secondary
                             : theme.colors.white,
                           border: `1.5px solid ${theme.colors.greyDarker}`,
                         }}
-                        onClick={() => toggleTrioExpansion(item.id)}
+                        onClick={() => toggleBundleExpansion(item.id)}
                       >
                         <MoreHorizontal
                           className="h-6 w-6"
@@ -470,11 +470,11 @@ export default function ReviewOrderPage() {
                       })}
                     </div>
 
-                    {item.isTrio &&
-                      item.trioProducts &&
-                      item.trioProducts.length > 0 && (
+                    {item.isBundle &&
+                      item.bundleProducts &&
+                      item.bundleProducts.length > 0 && (
                         <div className="flex flex-wrap gap-2 max-w-[400px]">
-                          {item.trioProducts.map((product) => (
+                          {item.bundleProducts.map((product) => (
                             <span
                               key={`trio-${product.id}`}
                               className="text-[15px] px-3.5 py-1.5 rounded-lg leading-none h-8 flex items-center"
@@ -596,11 +596,11 @@ export default function ReviewOrderPage() {
                     </div>
                   </div>
                 </div>
-                {item.isTrio &&
-                  expandedTrios.has(item.id) &&
-                  item.trioProducts && (
+                {item.isBundle &&
+                  expandedBundles.has(item.id) &&
+                  item.bundleProducts && (
                     <div className="flex gap-4 mt-6 pt-6">
-                      {item.trioProducts.map((product) => (
+                      {item.bundleProducts.map((product) => (
                         <div
                           key={product.id}
                           className="rounded-xl border bg-white p-5 flex-1 relative h-[325px] w-[305px]"
