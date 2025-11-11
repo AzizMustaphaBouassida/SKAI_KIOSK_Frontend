@@ -18,7 +18,7 @@ interface SelectionOption {
 }
 
 interface SelectionPageProps {
-  type: "order-type" | "make-bundle" | "payment-method";
+  type: "order-type" | "make-bundle";
 }
 
 export default function SelectionPage({ type }: SelectionPageProps) {

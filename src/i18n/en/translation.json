@@ -41,12 +41,6 @@
     "price": "12 $",
     "goBack": "Go Back"
   },
-  "paymentMethod": {
-    "title": "How would you pay?",
-    "debitCard": "Debit Card",
-    "cash": "Cash",
-    "goBack": "Go Back"
-  },
   "loginSuccess": {
     "message": "You have been logged in sucessfuly."
   },
@@ -56,22 +50,11 @@
     "cancel": "Cancel",
     "continue": "Continue"
   },
-  "cardConfirmation": {
-    "title": "Are you sure you have a card ?",
-    "cancel": "Cancel",
-    "continue": "Continue"
-  },
-  "cashConfirmation": {
-    "title": "Are you sure you have cash ?",
-    "cancel": "Cancel",
-    "continue": "Continue"
-  },
   "logoutSuccess": {
     "message": "You have been logged out."
   },
   "thankYou": {
     "donation": "Thank you for your donation",
-    "feedback": "Thank you for your feedback",
     "tip": "Thank you for your tip"
   },
   "continueOrder": {
@@ -264,23 +247,6 @@
         "name": "Enter your name"
       },
       "maj": "MAJ"
-    },
-    "feedback": {
-      "title": "Rate us",
-      "subtitle": "Your rating shows appreciation for our staff's hard work, thank you for your support",
-      "question": "Want to leave a feedback ?",
-      "options": {
-        "easy": "Easy",
-        "fast": "Fast",
-        "smooth": "Smooth",
-        "quickOrder": "Quick Order",
-        "userFriendly": "User Friendly",
-        "intuitive": "Intuitive",
-        "okay": "Okay",
-        "tookTime": "Took Time",
-        "confusing": "Confusing",
-        "tooSlow": "Too Slow"
-      }
     },
     "followInstructions": {
       "message": "Follow the keypad instructions to pay."

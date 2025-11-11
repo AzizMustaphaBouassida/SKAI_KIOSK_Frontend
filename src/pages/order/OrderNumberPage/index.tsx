@@ -1,6 +1,4 @@
 "use client";
-
-import { useState } from "react";
 import HappyEmployeeImage from "@/assets/images/happy-employee-image.svg";
 import DoubleCheckIcon from "@/assets/icons/double-check-icon.svg";
 // @ts-ignore
@@ -14,16 +12,6 @@ export default function OrderNumberPage() {
   const { t } = useTranslation();
   const orderNumber = "0909";
 
-  // Payment method state - you can change this to 'card' or 'cash'
-  const [paymentMethod] = useState<"card" | "cash">("card");
-
-  // Dynamic text based on payment method
-  const getReceiptText = () => {
-    return paymentMethod === "card"
-      ? t('pages.orderNumber.receiptCard')
-      : t('pages.orderNumber.receiptCash');
-  };
-
   return (
     <HeaderTitleLayout title={t('pages.orderNumber.title')}>
       <div className="h-full px-6 py-8">
@@ -34,7 +22,7 @@ export default function OrderNumberPage() {
             ...theme.getStyle("fontBranded"),
           }}
         >
-          {getReceiptText()}
+          {t('pages.orderNumber.receiptCard')}
         </h2>
 
         {/* Order Number Card */}

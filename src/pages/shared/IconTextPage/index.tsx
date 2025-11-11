@@ -7,7 +7,7 @@ import HeaderIconTextLayout from '@/layouts/page-layouts/header-icon-text-layout
 import { ICON_TEXT_PAGE_CONFIGS } from '@/config/iconTextPages'
 
 interface IconTextPageProps {
-    type: 'login' | 'logout' | 'feedback' | 'tip'
+    type: 'login' | 'logout' | 'tip'
 }
 
 export default function IconTextPage({ type }: IconTextPageProps) {

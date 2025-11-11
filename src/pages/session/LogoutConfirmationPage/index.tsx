@@ -6,49 +6,27 @@ import { useTranslation } from 'react-i18next'
 import HeaderIconTextLayout from '@/layouts/page-layouts/header-icon-text-layout'
 // @ts-ignore
 import { useTheme } from '@/app/hooks/useTheme'
-// @ts-ignore
-import { CONFIRMATION_PAGE_CONFIGS } from '@/config/confirmationPages'
+import questionIcon from '@/assets/icons/question-icon.svg'
 
-interface ConfirmationPageProps {
-    type: 'logout' | 'card' | 'cash'
-}
-
-export default function ConfirmationPage({ type }: ConfirmationPageProps) {
+export default function LogoutConfirmationPage() {
     const theme = useTheme()
     const { t } = useTranslation()
     const navigate = useNavigate()
     const boxShadowStyle = { boxShadow: '0px 4px 4px 0px #00000040' }
-    
-    const pageConfig = CONFIRMATION_PAGE_CONFIGS[type]
-
-    if (!pageConfig) {
-        return (
-            <div className="h-screen flex items-center justify-center">
-                <h1 className="text-4xl font-bold">Page not found</h1>
-            </div>
-        )
-    }
 
     const handleCancel = () => {
-        if (pageConfig.onCancel === 'goBack') {
-            navigate(-1)
-        } else {
-            navigate(pageConfig.onCancel)
-        }
+        navigate(-1)
     }
 
     const handleContinue = () => {
-        if (typeof pageConfig.onContinue === 'string') {
-            navigate(pageConfig.onContinue)
-        }
-        // You can add custom logic here based on the page type
+        navigate('/welcome')
     }
 
     return (
         <HeaderIconTextLayout
-            icon={pageConfig.icon}
-            text={t(pageConfig.titleKey)}
-            subtitle={pageConfig.subtitleKey ? t(pageConfig.subtitleKey) : undefined}
+            icon={questionIcon}
+            text={t('logoutConfirmation.title')}
+            subtitle={t('logoutConfirmation.subtitle')}
         >
             <div className="flex justify-center items-center w-full">
                 <div className="flex justify-center items-center gap-6 mt-24">
@@ -63,7 +41,7 @@ export default function ConfirmationPage({ type }: ConfirmationPageProps) {
                         }}
                         onClick={handleCancel}
                     >
-                        {t(pageConfig.cancelKey)}
+                        {t('logoutConfirmation.cancel')}
                     </button>
                     <button
                         className="w-[350px] h-24 text-3xl font-bold rounded-xl transition-colors"
@@ -76,7 +54,7 @@ export default function ConfirmationPage({ type }: ConfirmationPageProps) {
                         }}
                         onClick={handleContinue}
                     >
-                        {t(pageConfig.continueKey)}
+                        {t('logoutConfirmation.continue')}
                     </button>
                 </div>
             </div>

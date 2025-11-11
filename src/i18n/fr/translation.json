@@ -41,12 +41,6 @@
     "price": "12 $",
     "goBack": "Retour"
   },
-  "paymentMethod": {
-    "title": "Mode de paiement ?",
-    "debitCard": "Carte débit",
-    "cash": "Espèces",
-    "goBack": "Retour"
-  },
   "loginSuccess": {
     "message": "Connexion réussie."
   },
@@ -56,22 +50,11 @@
     "cancel": "Annuler",
     "continue": "Continuer"
   },
-  "cardConfirmation": {
-    "title": "Avez-vous une carte ?",
-    "cancel": "Annuler",
-    "continue": "Continuer"
-  },
-  "cashConfirmation": {
-    "title": "Avez-vous des espèces ?",
-    "cancel": "Annuler",
-    "continue": "Continuer"
-  },
   "logoutSuccess": {
     "message": "Déconnexion réussie."
   },
   "thankYou": {
     "donation": "Merci pour votre don",
-    "feedback": "Merci pour votre avis",
     "tip": "Merci pour le pourboire"
   },
   "continueOrder": {
@@ -264,23 +247,6 @@
         "name": "Entrez votre nom"
       },
       "maj": "MAJ"
-    },
-    "feedback": {
-      "title": "Notez-nous",
-      "subtitle": "Votre note valorise le travail de notre équipe, merci !",
-      "question": "Laisser un commentaire ?",
-      "options": {
-        "easy": "Facile",
-        "fast": "Rapide",
-        "smooth": "Fluide",
-        "quickOrder": "Commande rapide",
-        "userFriendly": "Convivial",
-        "intuitive": "Intuitif",
-        "okay": "Correct",
-        "tookTime": "Temps long",
-        "confusing": "Confus",
-        "tooSlow": "Trop lent"
-      }
     },
     "followInstructions": {
       "message": "Suivez les instructions pour payer."
